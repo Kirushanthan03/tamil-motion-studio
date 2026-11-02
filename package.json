@@ -1,0 +1,60 @@
+{
+  "name": "tamil-motion-studio",
+  "version": "1.0.0",
+  "main": "server/index.ts",
+  "scripts": {
+    "dev": "vite",
+    "server": "tsx server/index.ts",
+    "build": "tsc && vite build",
+    "test": "tsx tests/runAllTests.ts",
+    "remotion:studio": "remotion studio src/remotion/index.ts",
+    "remotion:render": "remotion render src/remotion/index.ts TamilReel out.mp4"
+  },
+  "keywords": [
+    "remotion",
+    "motion-graphics",
+    "tamil",
+    "tanglish",
+    "reels",
+    "shorts",
+    "tiktok",
+    "ai-studio"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/noto-sans-tamil": "^5.2.8",
+    "@fontsource/noto-serif-tamil": "^5.2.8",
+    "@fontsource/playfair-display": "^5.2.8",
+    "@remotion/bundler": "^4.0.200",
+    "@remotion/player": "^4.0.200",
+    "@remotion/renderer": "^4.0.200",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "lucide-react": "^1.16.0",
+    "multer": "^1.4.5-lts.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.200",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@remotion/cli": "^4.0.200",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/multer": "^1.4.13",
+    "@types/node": "^25.5.0",
+    "@types/react": "^18.3.28",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.11"
+  }
+}

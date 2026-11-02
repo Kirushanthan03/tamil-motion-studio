@@ -1,0 +1,838 @@
+{
+  "id": "proj-1793611843904",
+  "title": "Retrieval-Augmented Generation (RAG) Architecture",
+  "topic": "Retrieval-Augmented Generation (RAG) Architecture",
+  "targetDuration": 30,
+  "selectedLanguage": "tamil",
+  "status": "COMPLETED",
+  "research": {
+    "topic": "Retrieval-Augmented Generation (RAG) Architecture",
+    "summary": "Due to their multi-component architecture, the systematic evaluation of Retrieval-Augmented Generation (RAG) systems presents distinctive chal-lenges, necessitating a comprehensive evaluation of retrieval quality, genera-tion accuracy, and system trustworthiness [93]. Abstract This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented Generation (RAG) architectures. RAG offers a modular approach for integrating external knowledge without increasing the capacity of the model as LLM ... At Rag About It, we dive deep into the transformative world of AI Retrieval Augmented Generation (RAG) technologies, offering a treasure trove of insights",
+    "sources": [
+      {
+        "title": "Engineering the RAG Stack: A Comprehensive Review of the Architecture ...",
+        "url": "https://arxiv.org/pdf/2601.05264",
+        "snippet": "Due to their multi-component architecture, the systematic evaluation of Retrieval-Augmented Generation (RAG) systems presents distinctive chal-lenges, necessitating a comprehensive evaluation of retrieval quality, genera-tion accuracy, and system trustworthiness [93].",
+        "sourceName": "arxiv.org",
+        "verified": true
+      },
+      {
+        "title": "Engineering the RAG Stack: A Comprehensive Review of the Architecture ...",
+        "url": "https://arxiv.org/html/2601.05264",
+        "snippet": "Abstract This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented Generation (RAG) architectures. RAG offers a modular approach for integrating external knowledge without increasing the capacity of the model as LLM ...",
+        "sourceName": "arxiv.org",
+        "verified": true
+      },
+      {
+        "title": "News from generation RAG - Dive deep into the transformative world of ...",
+        "url": "https://ragaboutit.com/",
+        "snippet": "At Rag About It, we dive deep into the transformative world of AI Retrieval Augmented Generation (RAG) technologies, offering a treasure trove of insights",
+        "sourceName": "ragaboutit.com",
+        "verified": true
+      },
+      {
+        "title": "PDF Retrieval-Augmented Generation (RAG) Architectures for Generative AI",
+        "url": "https://www.juniper.net/content/dam/www/assets/white-papers/us/en/2025/retrieval-augmented-generation-architectures-for-generative-ai.pdf",
+        "snippet": "01 Executive summary Generative AI (GenAI) is transforming the way we do business. In enterprise, retrieval augmented generation (RAG) is a convenient and powerful tool for bringing localized knowledge to pretrained, consumable language models. Implementation of a RAG architecture requires access to local vector databases, and while there are a variety of tools out there for RAG deployments ...",
+        "sourceName": "juniper.net",
+        "verified": true
+      },
+      {
+        "title": "Retrieval-Augmented Generation (RAG) Tutorial: Architecture ...",
+        "url": "https://www.glukhov.org/rag/",
+        "snippet": "Step-by-step RAG tutorial: build retrieval-augmented generation systems with vector databases, hybrid search, reranking, and web search. Architecture, implementation, and production best practices.",
+        "sourceName": "glukhov.org",
+        "verified": true
+      }
+    ],
+    "keyFacts": [
+      "Disclosed across official reporting from arxiv.org.",
+      "Covers architecture, benchmark metrics, and production API rollouts."
+    ],
+    "technicalTerms": [
+      "Architecture",
+      "Performance",
+      "Latency"
+    ],
+    "verified": true
+  },
+  "scripts": {
+    "tamil": {
+      "language": "tamil",
+      "fullText": "LLM hallucination-னால வர தவறான பதில்களை எப்படி தவிர்க்கிறது? அதுக்குத்தான் இந்த RAG architecture! உங்கள் documents vector embeddings ஆக மாற்றப்பட்டு vector database-ல் store செய்யப்படுகிறது. இதன் மூலம் model accuracy 85% வரை உயர்கிறது, latency வெறும் 180 milliseconds-ல் முடிகிறது. Document Chunking, Vector Retrieval, மற்றும் Prompt Synthesis - இதுதான் complete workflow. உங்கள் அடுத்த AI project-ல் RAG பயன்படுத்த follow பண்ண மறந்துடாதீங்க!",
+      "sections": {
+        "hook": "LLM hallucination-னால வர தவறான பதில்களை எப்படி தவிர்க்கிறது?",
+        "introduction": "RAG architecture அறிமுகம்",
+        "explanation": "Vector embeddings மற்றும் storage",
+        "facts": "85% accuracy boost மற்றும் 180ms latency",
+        "impact": "Document Chunking and Vector Retrieval",
+        "conclusion": "Follow for daily AI breakdowns!"
+      },
+      "estimatedDuration": 30
+    },
+    "tanglish": {
+      "language": "tanglish",
+      "fullText": "Guys, stop scrolling! OpenAI just dropped a brand new AI model, and its reasoning benchmark is absolutely insane! Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly பாக்கலாம். Normal LLMs விட இதுல chain-of-thought verification internal-ஆ நடக்குது. So coding மற்றும் math problems-ல accuracy ரொம்பவே high. Official benchmark data படி, Disclosed across official reporting from arxiv.org.. Inference speed sub-second level-ல இருக்கு, and token cost-ஐயும் drastically cut பண்ணிருக்காங்க. இதனால software engineers மற்றும் startup founders-க்கு real-time autonomous pipelines build பண்றது super easy ஆயிடும். இந்த புதிய AI upgrade உங்களுக்கு பயனுள்ளதா இருக்குமா? Let me know in the comments and follow for daily tech updates!",
+      "sections": {
+        "hook": "Guys, stop scrolling! OpenAI just dropped a brand new AI model, and its reasoning benchmark is absolutely insane!",
+        "introduction": "Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly பாக்கலாம்.",
+        "explanation": "Normal LLMs விட இதுல chain-of-thought verification internal-ஆ நடக்குது. So coding மற்றும் math problems-ல accuracy ரொம்பவே high.",
+        "facts": "Official benchmark data படி, Disclosed across official reporting from arxiv.org.. Inference speed sub-second level-ல இருக்கு, and token cost-ஐயும் drastically cut பண்ணிருக்காங்க.",
+        "impact": "இதனால software engineers மற்றும் startup founders-க்கு real-time autonomous pipelines build பண்றது super easy ஆயிடும்.",
+        "conclusion": "இந்த புதிய AI upgrade உங்களுக்கு பயனுள்ளதா இருக்குமா? Let me know in the comments and follow for daily tech updates!"
+      },
+      "estimatedDuration": 46,
+      "notes": "Tanglish tech-creator flow, ideal for Instagram Reels & YouTube Shorts."
+    },
+    "english": {
+      "language": "english",
+      "fullText": "Stop LLM Hallucinations with RAG Architecture Retrieval-Augmented Generation connects private enterprise data to modern LLMs. Documents are transformed into dense vector embeddings and stored in Pinecone and Milvus. Factual accuracy increases by 85% with sub-second 180ms retrieval latency. Document Chunking, Hybrid Vector Retrieval, and Prompt Context Augmentation. RAG is now the production standard for enterprise generative AI applications.",
+      "sections": {
+        "hook": "Stop LLM Hallucinations with RAG Architecture",
+        "introduction": "Retrieval-Augmented Generation connects private enterprise data to modern LLMs.",
+        "explanation": "Documents are transformed into dense vector embeddings and stored in Pinecone and Milvus.",
+        "facts": "Factual accuracy increases by 85% with sub-second 180ms retrieval latency.",
+        "impact": "Document Chunking, Hybrid Vector Retrieval, and Prompt Context Augmentation.",
+        "conclusion": "RAG is now the production standard for enterprise generative AI applications."
+      },
+      "estimatedDuration": 30
+    },
+    "approvedScript": {
+      "language": "tamil",
+      "text": "LLM hallucination-னால வர தவறான பதில்களை எப்படி தவிர்க்கிறது? அதுக்குத்தான் இந்த RAG architecture! உங்கள் documents vector embeddings ஆக மாற்றப்பட்டு vector database-ல் store செய்யப்படுகிறது. இதன் மூலம் model accuracy 85% வரை உயர்கிறது, latency வெறும் 180 milliseconds-ல் முடிகிறது. Document Chunking, Vector Retrieval, மற்றும் Prompt Synthesis - இதுதான் complete workflow. உங்கள் அடுத்த AI project-ல் RAG பயன்படுத்த follow பண்ண மறந்துடாதீங்க!",
+      "sections": {
+        "hook": "LLM hallucination-னால வர தவறான பதில்களை எப்படி தவிர்க்கிறது?",
+        "introduction": "RAG architecture",
+        "explanation": "Vector embeddings",
+        "facts": "85% accuracy boost",
+        "impact": "Complete pipeline",
+        "conclusion": "Follow for daily AI breakdowns!"
+      },
+      "approvedAt": "2026-11-02T15:00:00Z"
+    }
+  },
+  "audio": {
+    "filename": "voiceover.mp3",
+    "originalName": "voiceover.mp3",
+    "path": "/home/ravichandran/tamil-motion-studio/storage/projects/proj-1793611843904/voiceover.mp3",
+    "duration": 33.672,
+    "sampleRate": 24000,
+    "channels": 1,
+    "format": "mp3",
+    "fileSize": 202032,
+    "waveformPeaks": [
+      0.367,
+      0.961,
+      0.601,
+      0.516,
+      0.401,
+      0.589,
+      0.319,
+      0.275,
+      0.461,
+      0.354,
+      0.342,
+      0.33,
+      0.1,
+      0.1,
+      0.507,
+      0.355,
+      0.439,
+      0.571,
+      0.368,
+      0.199,
+      0.329,
+      0.1,
+      0.1,
+      0.552,
+      0.912,
+      0.672,
+      0.245,
+      0.514,
+      0.53,
+      0.42,
+      0.604,
+      0.232,
+      0.298,
+      0.43,
+      0.355,
+      0.507,
+      0.384,
+      0.722,
+      0.173,
+      0.1,
+      0.1,
+      1,
+      0.88,
+      0.593,
+      0.561,
+      0.361,
+      0.421,
+      0.451,
+      0.424,
+      0.446,
+      0.544,
+      0.402,
+      0.363,
+      0.369,
+      0.445,
+      0.548,
+      0.56,
+      0.385,
+      0.311,
+      0.487,
+      0.372,
+      0.423,
+      0.544,
+      0.1,
+      0.1,
+      0.499,
+      0.813,
+      0.431,
+      0.273,
+      0.1,
+      0.595,
+      0.453,
+      0.395,
+      0.173,
+      0.392,
+      0.544,
+      0.365,
+      0.36,
+      0.105,
+      0.644,
+      0.277,
+      0.263,
+      0.343,
+      0.318,
+      0.1,
+      0.1,
+      0.973,
+      0.504,
+      0.302,
+      0.575,
+      0.315,
+      0.501,
+      0.413,
+      0.322,
+      0.351,
+      0.478,
+      0.52,
+      0.572,
+      0.469,
+      0.422
+    ]
+  },
+  "transcript": [
+    {
+      "id": "seg-1",
+      "text": "Stop LLM Hallucinations with RAG Architecture Retrieval-Augmented Generation connects private enterprise data to modern LLMs.",
+      "start": 0.2,
+      "end": 5.4,
+      "words": [
+        {
+          "word": "Stop",
+          "start": 0.2,
+          "end": 0.39,
+          "confidence": 0.9
+        },
+        {
+          "word": "LLM",
+          "start": 0.39,
+          "end": 0.53,
+          "confidence": 0.9
+        },
+        {
+          "word": "Hallucinations",
+          "start": 0.53,
+          "end": 1.19,
+          "confidence": 0.9
+        },
+        {
+          "word": "with",
+          "start": 1.19,
+          "end": 1.38,
+          "confidence": 0.9
+        },
+        {
+          "word": "RAG",
+          "start": 1.38,
+          "end": 1.52,
+          "confidence": 0.9
+        },
+        {
+          "word": "Architecture",
+          "start": 1.52,
+          "end": 2.08,
+          "confidence": 0.9
+        },
+        {
+          "word": "Retrieval-Augmented",
+          "start": 2.08,
+          "end": 2.97,
+          "confidence": 0.9
+        },
+        {
+          "word": "Generation",
+          "start": 2.97,
+          "end": 3.44,
+          "confidence": 0.9
+        },
+        {
+          "word": "connects",
+          "start": 3.44,
+          "end": 3.81,
+          "confidence": 0.9
+        },
+        {
+          "word": "private",
+          "start": 3.81,
+          "end": 4.14,
+          "confidence": 0.9
+        },
+        {
+          "word": "enterprise",
+          "start": 4.14,
+          "end": 4.61,
+          "confidence": 0.9
+        },
+        {
+          "word": "data",
+          "start": 4.61,
+          "end": 4.8,
+          "confidence": 0.9
+        },
+        {
+          "word": "to",
+          "start": 4.8,
+          "end": 4.92,
+          "confidence": 0.9
+        },
+        {
+          "word": "modern",
+          "start": 4.92,
+          "end": 5.2,
+          "confidence": 0.9
+        },
+        {
+          "word": "LLMs.",
+          "start": 5.2,
+          "end": 5.4,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-2",
+      "text": "Documents are transformed into dense vector embeddings and stored in Pinecone and Milvus.",
+      "start": 5.65,
+      "end": 10.54,
+      "words": [
+        {
+          "word": "Documents",
+          "start": 5.65,
+          "end": 6.22,
+          "confidence": 0.9
+        },
+        {
+          "word": "are",
+          "start": 6.22,
+          "end": 6.41,
+          "confidence": 0.9
+        },
+        {
+          "word": "transformed",
+          "start": 6.41,
+          "end": 7.11,
+          "confidence": 0.9
+        },
+        {
+          "word": "into",
+          "start": 7.11,
+          "end": 7.36,
+          "confidence": 0.9
+        },
+        {
+          "word": "dense",
+          "start": 7.36,
+          "end": 7.68,
+          "confidence": 0.9
+        },
+        {
+          "word": "vector",
+          "start": 7.68,
+          "end": 8.06,
+          "confidence": 0.9
+        },
+        {
+          "word": "embeddings",
+          "start": 8.06,
+          "end": 8.7,
+          "confidence": 0.9
+        },
+        {
+          "word": "and",
+          "start": 8.7,
+          "end": 8.89,
+          "confidence": 0.9
+        },
+        {
+          "word": "stored",
+          "start": 8.89,
+          "end": 9.27,
+          "confidence": 0.9
+        },
+        {
+          "word": "in",
+          "start": 9.27,
+          "end": 9.4,
+          "confidence": 0.9
+        },
+        {
+          "word": "Pinecone",
+          "start": 9.4,
+          "end": 9.91,
+          "confidence": 0.9
+        },
+        {
+          "word": "and",
+          "start": 9.91,
+          "end": 10.1,
+          "confidence": 0.9
+        },
+        {
+          "word": "Milvus.",
+          "start": 10.1,
+          "end": 10.54,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-3",
+      "text": "Factual accuracy increases by 85% with sub-second 180ms retrieval latency.",
+      "start": 10.79,
+      "end": 15.12,
+      "words": [
+        {
+          "word": "Factual",
+          "start": 10.79,
+          "end": 11.26,
+          "confidence": 0.9
+        },
+        {
+          "word": "accuracy",
+          "start": 11.26,
+          "end": 11.79,
+          "confidence": 0.9
+        },
+        {
+          "word": "increases",
+          "start": 11.79,
+          "end": 12.39,
+          "confidence": 0.9
+        },
+        {
+          "word": "by",
+          "start": 12.39,
+          "end": 12.52,
+          "confidence": 0.9
+        },
+        {
+          "word": "85%",
+          "start": 12.52,
+          "end": 12.72,
+          "confidence": 0.9
+        },
+        {
+          "word": "with",
+          "start": 12.72,
+          "end": 12.99,
+          "confidence": 0.9
+        },
+        {
+          "word": "sub-second",
+          "start": 12.99,
+          "end": 13.66,
+          "confidence": 0.9
+        },
+        {
+          "word": "180ms",
+          "start": 13.66,
+          "end": 13.99,
+          "confidence": 0.9
+        },
+        {
+          "word": "retrieval",
+          "start": 13.99,
+          "end": 14.59,
+          "confidence": 0.9
+        },
+        {
+          "word": "latency.",
+          "start": 14.59,
+          "end": 15.12,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-4",
+      "text": "Document Chunking,",
+      "start": 15.37,
+      "end": 17.17,
+      "words": [
+        {
+          "word": "Document",
+          "start": 15.37,
+          "end": 16.22,
+          "confidence": 0.9
+        },
+        {
+          "word": "Chunking,",
+          "start": 16.22,
+          "end": 17.17,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-5",
+      "text": "Hybrid Vector Retrieval,",
+      "start": 17.42,
+      "end": 19.42,
+      "words": [
+        {
+          "word": "Hybrid",
+          "start": 17.42,
+          "end": 17.97,
+          "confidence": 0.9
+        },
+        {
+          "word": "Vector",
+          "start": 17.97,
+          "end": 18.52,
+          "confidence": 0.9
+        },
+        {
+          "word": "Retrieval,",
+          "start": 18.52,
+          "end": 19.42,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-6",
+      "text": "and Prompt Context Augmentation.",
+      "start": 19.67,
+      "end": 22.14,
+      "words": [
+        {
+          "word": "and",
+          "start": 19.67,
+          "end": 19.93,
+          "confidence": 0.9
+        },
+        {
+          "word": "Prompt",
+          "start": 19.93,
+          "end": 20.44,
+          "confidence": 0.9
+        },
+        {
+          "word": "Context",
+          "start": 20.44,
+          "end": 21.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "Augmentation.",
+          "start": 21.04,
+          "end": 22.14,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-7",
+      "text": "RAG is now the production standard for enterprise generative AI applications.",
+      "start": 22.39,
+      "end": 26.93,
+      "words": [
+        {
+          "word": "RAG",
+          "start": 22.39,
+          "end": 22.59,
+          "confidence": 0.9
+        },
+        {
+          "word": "is",
+          "start": 22.59,
+          "end": 22.73,
+          "confidence": 0.9
+        },
+        {
+          "word": "now",
+          "start": 22.73,
+          "end": 22.93,
+          "confidence": 0.9
+        },
+        {
+          "word": "the",
+          "start": 22.93,
+          "end": 23.13,
+          "confidence": 0.9
+        },
+        {
+          "word": "production",
+          "start": 23.13,
+          "end": 23.81,
+          "confidence": 0.9
+        },
+        {
+          "word": "standard",
+          "start": 23.81,
+          "end": 24.35,
+          "confidence": 0.9
+        },
+        {
+          "word": "for",
+          "start": 24.35,
+          "end": 24.55,
+          "confidence": 0.9
+        },
+        {
+          "word": "enterprise",
+          "start": 24.55,
+          "end": 25.23,
+          "confidence": 0.9
+        },
+        {
+          "word": "generative",
+          "start": 25.23,
+          "end": 25.91,
+          "confidence": 0.9
+        },
+        {
+          "word": "AI",
+          "start": 25.91,
+          "end": 26.05,
+          "confidence": 0.9
+        },
+        {
+          "word": "applications.",
+          "start": 26.05,
+          "end": 26.93,
+          "confidence": 0.9
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-1",
+      "sceneNumber": 1,
+      "startTime": 0,
+      "endTime": 5.61,
+      "duration": 5.61,
+      "startFrame": 0,
+      "durationInFrames": 168,
+      "spokenSegment": "Stop LLM Hallucinations with RAG Architecture Retrieval-Augmented Generation connects private enterprise data to modern LLMs.",
+      "visualConcept": "Editorial Breaking Headline Card with crimson badge",
+      "template": "headline",
+      "mainText": "Stop LLM Hallucinations with RAG Architecture",
+      "supportingText": "Stop LLM Hallucinations with RAG Architecture Retrieval-Augmented Generation connects private enterprise data ...",
+      "categoryTag": "BREAKING TECH",
+      "sourceAttribution": "arxiv.org",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "badge": "BREAKING TECH DISCLOSURE"
+      }
+    },
+    {
+      "id": "scene-2",
+      "sceneNumber": 2,
+      "startTime": 5.61,
+      "endTime": 11.22,
+      "duration": 5.61,
+      "startFrame": 168,
+      "durationInFrames": 168,
+      "spokenSegment": "Documents are transformed into dense vector embeddings and stored in Pinecone and Milvus. Factual accuracy increases by 85% with sub-second 180ms retrieval latency.",
+      "visualConcept": "Official Publication Card with kinetic marker highlight sweep",
+      "template": "article-highlight",
+      "mainText": "Retrieval-Augmented Generation connects private enterprise data t",
+      "supportingText": "Documents are transformed into dense vector embeddings and stored in Pinecone and Milvus. Factual accuracy inc...",
+      "categoryTag": "OVERVIEW",
+      "sourceAttribution": "arxiv.org",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "publication": "ARXIV.ORG",
+        "highlight": "Retrieval-Augmented Generation connects private en"
+      }
+    },
+    {
+      "id": "scene-3",
+      "sceneNumber": 3,
+      "startTime": 11.22,
+      "endTime": 16.84,
+      "duration": 5.62,
+      "startFrame": 337,
+      "durationInFrames": 169,
+      "spokenSegment": "Factual accuracy increases by 85% with sub-second 180ms retrieval latency. Document Chunking,",
+      "visualConcept": "Interconnected Graph Nodes with pulsing data packets",
+      "template": "network-nodes",
+      "mainText": "Documents are transformed into dense vector embeddings and stored",
+      "supportingText": "Factual accuracy increases by 85% with sub-second 180ms retrieval latency. Document Chunking,",
+      "categoryTag": "AI SYSTEM",
+      "sourceAttribution": "arxiv.org",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "nodes": [
+          {
+            "id": "1",
+            "label": "User Query",
+            "x": 140,
+            "y": 160,
+            "type": "input"
+          },
+          {
+            "id": "2",
+            "label": "Vector RAG Index",
+            "x": 420,
+            "y": 100,
+            "type": "context"
+          },
+          {
+            "id": "3",
+            "label": "Reasoning Model",
+            "x": 420,
+            "y": 220,
+            "type": "model"
+          },
+          {
+            "id": "4",
+            "label": "Verified Output",
+            "x": 700,
+            "y": 160,
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-4",
+      "sceneNumber": 4,
+      "startTime": 16.84,
+      "endTime": 22.45,
+      "duration": 5.61,
+      "startFrame": 505,
+      "durationInFrames": 168,
+      "spokenSegment": "Document Chunking, Hybrid Vector Retrieval, and Prompt Context Augmentation. RAG is now the production standard for enterprise generative AI applications.",
+      "visualConcept": "Massive animated stat counter with delta performance badge",
+      "template": "key-statistic",
+      "mainText": "10x Faster Inference Latency",
+      "supportingText": "Document Chunking, Hybrid Vector Retrieval, and Prompt Context Augmentation. RAG is now the production standar...",
+      "categoryTag": "BENCHMARK METRICS",
+      "sourceAttribution": "arxiv.org",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "statValue": "10x",
+        "statLabel": "Reasoning Latency Reduction",
+        "delta": "+85% THROUGHPUT"
+      }
+    },
+    {
+      "id": "scene-5",
+      "sceneNumber": 5,
+      "startTime": 22.45,
+      "endTime": 28.06,
+      "duration": 5.61,
+      "startFrame": 674,
+      "durationInFrames": 168,
+      "spokenSegment": "RAG is now the production standard for enterprise generative AI applications.",
+      "visualConcept": "Three-stage developer workflow with active node highlighting",
+      "template": "process-flow",
+      "mainText": "Document Chunking, Hybrid Vector Retrieval, and Prompt Context Au",
+      "supportingText": "RAG is now the production standard for enterprise generative AI applications.",
+      "categoryTag": "PIPELINE",
+      "sourceAttribution": "arxiv.org",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "steps": [
+          {
+            "num": "01",
+            "title": "Data Ingestion",
+            "text": "Live multi-source ingestion"
+          },
+          {
+            "num": "02",
+            "title": "AI Verification",
+            "text": "Automated benchmark checks"
+          },
+          {
+            "num": "03",
+            "title": "Video Synthesis",
+            "text": "Synchronized Remotion render"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-6",
+      "sceneNumber": 6,
+      "startTime": 28.06,
+      "endTime": 33.67,
+      "duration": 5.61,
+      "startFrame": 842,
+      "durationInFrames": 168,
+      "spokenSegment": "RAG is now the production standard for enterprise generative AI applications.",
+      "visualConcept": "Checklist verdict card with pulsing follow CTA",
+      "template": "conclusion",
+      "mainText": "RAG is now the production standard for enterprise generative AI a",
+      "supportingText": "RAG is now the production standard for enterprise generative AI applications.",
+      "categoryTag": "SUMMARY",
+      "sourceAttribution": "arxiv.org",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "takeaways": [
+          "Sub-second reasoning latency achieved",
+          "Integrated verification reduces errors",
+          "Enterprise APIs available immediately"
+        ],
+        "cta": "FOLLOW FOR TECH EXPLAINERS"
+      }
+    }
+  ],
+  "themeId": "editorial-crimson",
+  "subtitleSettings": {
+    "enabled": true,
+    "fontSize": 48,
+    "bottomMargin": 320,
+    "highlightColor": "#C8102E",
+    "textColor": "#18181B",
+    "backgroundColor": "rgba(255, 255, 255, 0.95)",
+    "style": "editorial"
+  },
+  "createdAt": "2026-11-02T09:30:43.904Z",
+  "updatedAt": "2026-11-02T09:31:30.622Z",
+  "socialPackage": {
+    "caption": "🔥 Retrieval-Augmented Generation (RAG) Architecture! Here's everything you need to know in under 60 seconds. What do you think about this breakthrough? Let us know in the comments! 👇\n\n#TamilTech #TechReels #AI #Innovation #TamilCreators #Remotion #Shorts",
+    "hashtags": [
+      "#TamilTech",
+      "#AIArchitecture",
+      "#InstagramReels",
+      "#YouTubeShorts",
+      "#TechNews",
+      "#TamilCreators"
+    ],
+    "description": "Full video analysis and motion graphics breakdown of Retrieval-Augmented Generation (RAG) Architecture. Created with Tamil & English Motion Graphics Reel Studio."
+  },
+  "renderOutput": {
+    "videoPath": "/home/ravichandran/tamil-motion-studio/storage/projects/proj-1793611843904/render.mp4",
+    "videoUrl": "/storage/projects/proj-1793611843904/render.mp4",
+    "thumbnailUrl": "/storage/projects/proj-1793611843904/thumbnail.png",
+    "renderedAt": "2026-11-02T09:31:30.622Z",
+    "fileSize": 3374410
+  }
+}

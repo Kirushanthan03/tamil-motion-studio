@@ -1,0 +1,1153 @@
+{
+  "id": "proj-1793611507599",
+  "title": "Retrieval-Augmented Generation (RAG) Architecture for LLMs",
+  "topic": "Retrieval-Augmented Generation (RAG) Architecture for LLMs",
+  "targetDuration": 30,
+  "selectedLanguage": "tanglish",
+  "status": "COMPLETED",
+  "research": {
+    "topic": "Retrieval-Augmented Generation (RAG) Architecture for LLMs",
+    "summary": "Abstract This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented Generation (RAG) architectures. RAG offers a modular approach for integrating external knowledge without increasing the capacity of the model as LLM ... Due to their multi-component architecture, the systematic evaluation of Retrieval-Augmented Generation (RAG) systems presents distinctive chal-lenges, necessitating a comprehensive evaluation of retrieval quality, genera-tion accuracy, and system trustworthiness [93]. Retrieval-augmented generation (RAG) is a technique that enables large language models (LLMs) to retrieve and incorporate new information from external data sources. [1][2] With RAG, LLMs first refer to a specified set of documents, then respond to user queries.",
+    "sources": [
+      {
+        "title": "Engineering the RAG Stack: A Comprehensive Review of the Architecture ...",
+        "url": "https://arxiv.org/html/2601.05264",
+        "snippet": "Abstract This article provides a comprehensive systematic literature review of academic studies, industrial applications, and real-world deployments from 2018 to 2025, providing a practical guide and detailed overview of modern Retrieval-Augmented Generation (RAG) architectures. RAG offers a modular approach for integrating external knowledge without increasing the capacity of the model as LLM ...",
+        "sourceName": "arxiv.org",
+        "verified": true
+      },
+      {
+        "title": "Engineering the RAG Stack: A Comprehensive Review of the Architecture ...",
+        "url": "https://arxiv.org/pdf/2601.05264",
+        "snippet": "Due to their multi-component architecture, the systematic evaluation of Retrieval-Augmented Generation (RAG) systems presents distinctive chal-lenges, necessitating a comprehensive evaluation of retrieval quality, genera-tion accuracy, and system trustworthiness [93].",
+        "sourceName": "arxiv.org",
+        "verified": true
+      },
+      {
+        "title": "Retrieval-augmented generation - Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
+        "snippet": "Retrieval-augmented generation (RAG) is a technique that enables large language models (LLMs) to retrieve and incorporate new information from external data sources. [1][2] With RAG, LLMs first refer to a specified set of documents, then respond to user queries.",
+        "sourceName": "en.wikipedia.org",
+        "verified": true
+      },
+      {
+        "title": "What is RAG? - Retrieval-Augmented Generation AI Explained - AWS",
+        "url": "https://aws.amazon.com/what-is/retrieval-augmented-generation/",
+        "snippet": "Retrieval-Augmented Generation (RAG) is the process of optimizing the output of a large language model, so it references an authoritative knowledge base outside of its training data sources before generating a response. Large Language Models (LLMs) are trained on vast volumes of data and use billions of parameters to generate original output for tasks like answering questions, translating ...",
+        "sourceName": "aws.amazon.com",
+        "verified": true
+      },
+      {
+        "title": "Understanding Retrieval-Augmented Generation (RAG): The AI Architecture ...",
+        "url": "https://medium.com/@shubhamagrahari18/understanding-retrieval-augmented-generation-rag-the-ai-architecture-that-makes-llms-smarter-031b81547a8b",
+        "snippet": "Retrieval-Augmented Generation (RAG) has become the standard architecture for building intelligent AI applications that require accurate, up-to-date, and domain-specific knowledge.",
+        "sourceName": "medium.com",
+        "verified": true
+      }
+    ],
+    "keyFacts": [
+      "Disclosed across official reporting from arxiv.org.",
+      "Covers architecture, benchmark metrics, and production API rollouts."
+    ],
+    "technicalTerms": [
+      "Architecture",
+      "Performance",
+      "Latency"
+    ],
+    "verified": true
+  },
+  "scripts": {
+    "tamil": {
+      "language": "tamil",
+      "fullText": "OpenAI இப்போ ஒரு மிகப்பெரிய announcement பண்ணிருக்காங்க! இந்த புதிய AI model நிஜமாவே ஒரு game changer-ஆ? ஹலோ techies! இன்னைக்கு tech உலகத்துல ரொம்ப பரபரப்பா பேசப்படுற ஒரு முக்கியமான விஷயத்தை பத்திதான் பாக்கப்போறோம். இந்த புதிய model-ல complex reasoning மற்றும் logic verification ரொம்பவே fast-ஆ வேலை செய்யுது. பழைய models விட latency ரொம்பவே குறைவு. Benchmark test-ல பார்த்தீங்கன்னா Disclosed across official reporting from arxiv.org. கிடைச்சிருக்கு. அதோட API cost மற்றும் token efficiency முன்ன விட 40% optimize பண்ணிருக்காங்க. Developers-க்கு இது ஒரு மிகப்பெரிய advantage. Real-time coding, automated agents, மற்றும் data analysis ரொம்பவே smooth-ஆ மாறும். இந்த புதிய model பத்தி நீங்க என்ன நினைக்கிறீங்க? Comment-ல சொல்லுங்க, follow பண்ண மறந்துடாதீங்க!",
+      "sections": {
+        "hook": "OpenAI இப்போ ஒரு மிகப்பெரிய announcement பண்ணிருக்காங்க! இந்த புதிய AI model நிஜமாவே ஒரு game changer-ஆ?",
+        "introduction": "ஹலோ techies! இன்னைக்கு tech உலகத்துல ரொம்ப பரபரப்பா பேசப்படுற ஒரு முக்கியமான விஷயத்தை பத்திதான் பாக்கப்போறோம்.",
+        "explanation": "இந்த புதிய model-ல complex reasoning மற்றும் logic verification ரொம்பவே fast-ஆ வேலை செய்யுது. பழைய models விட latency ரொம்பவே குறைவு.",
+        "facts": "Benchmark test-ல பார்த்தீங்கன்னா Disclosed across official reporting from arxiv.org. கிடைச்சிருக்கு. அதோட API cost மற்றும் token efficiency முன்ன விட 40% optimize பண்ணிருக்காங்க.",
+        "impact": "Developers-க்கு இது ஒரு மிகப்பெரிய advantage. Real-time coding, automated agents, மற்றும் data analysis ரொம்பவே smooth-ஆ மாறும்.",
+        "conclusion": "இந்த புதிய model பத்தி நீங்க என்ன நினைக்கிறீங்க? Comment-ல சொல்லுங்க, follow பண்ண மறந்துடாதீங்க!"
+      },
+      "estimatedDuration": 45,
+      "notes": "Conversational Tamil with technical terms in natural English."
+    },
+    "tanglish": {
+      "language": "tanglish",
+      "fullText": "Guys, stop scrolling! OpenAI just dropped a brand new AI model, and its reasoning benchmark is absolutely insane! Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly பாக்கலாம். Normal LLMs விட இதுல chain-of-thought verification internal-ஆ நடக்குது. So coding மற்றும் math problems-ல accuracy ரொம்பவே high. Official benchmark data படி, Disclosed across official reporting from arxiv.org.. Inference speed sub-second level-ல இருக்கு, and token cost-ஐயும் drastically cut பண்ணிருக்காங்க. இதனால software engineers மற்றும் startup founders-க்கு real-time autonomous pipelines build பண்றது super easy ஆயிடும். இந்த புதிய AI upgrade உங்களுக்கு பயனுள்ளதா இருக்குமா? Let me know in the comments and follow for daily tech updates!",
+      "sections": {
+        "hook": "Guys, stop scrolling! OpenAI just dropped a brand new AI model, and its reasoning benchmark is absolutely insane!",
+        "introduction": "Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly பாக்கலாம்.",
+        "explanation": "Normal LLMs விட இதுல chain-of-thought verification internal-ஆ நடக்குது. So coding மற்றும் math problems-ல accuracy ரொம்பவே high.",
+        "facts": "Official benchmark data படி, Disclosed across official reporting from arxiv.org.. Inference speed sub-second level-ல இருக்கு, and token cost-ஐயும் drastically cut பண்ணிருக்காங்க.",
+        "impact": "இதனால software engineers மற்றும் startup founders-க்கு real-time autonomous pipelines build பண்றது super easy ஆயிடும்.",
+        "conclusion": "இந்த புதிய AI upgrade உங்களுக்கு பயனுள்ளதா இருக்குமா? Let me know in the comments and follow for daily tech updates!"
+      },
+      "estimatedDuration": 46,
+      "notes": "Tanglish tech-creator flow, ideal for Instagram Reels & YouTube Shorts."
+    },
+    "english": {
+      "language": "english",
+      "fullText": "OpenAI just made a massive announcement that could change how we build AI applications forever! Welcome back to the studio. Today we're breaking down the architecture and real-world benchmarks of this latest release. Unlike previous generations, this model incorporates continuous autonomous reasoning with integrated verification loops. Key numbers you need to know: Disclosed across official reporting from arxiv.org., with sub-second time-to-first-token and significantly reduced API pricing. For software developers and enterprises, this means faster agent workflows and much more reliable code execution. What are your thoughts on this new model? Drop a comment below and hit follow for more editorial tech breakdowns!",
+      "sections": {
+        "hook": "OpenAI just made a massive announcement that could change how we build AI applications forever!",
+        "introduction": "Welcome back to the studio. Today we're breaking down the architecture and real-world benchmarks of this latest release.",
+        "explanation": "Unlike previous generations, this model incorporates continuous autonomous reasoning with integrated verification loops.",
+        "facts": "Key numbers you need to know: Disclosed across official reporting from arxiv.org., with sub-second time-to-first-token and significantly reduced API pricing.",
+        "impact": "For software developers and enterprises, this means faster agent workflows and much more reliable code execution.",
+        "conclusion": "What are your thoughts on this new model? Drop a comment below and hit follow for more editorial tech breakdowns!"
+      },
+      "estimatedDuration": 42,
+      "notes": "Polished editorial English explainer."
+    },
+    "approvedScript": {
+      "language": "tanglish",
+      "text": "Guys, stop scrolling! OpenAI just dropped a brand new AI model, and its reasoning benchmark is absolutely insane! Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly பாக்கலாம். Normal LLMs விட இதுல chain-of-thought verification internal-ஆ நடக்குது. So coding மற்றும் math problems-ல accuracy ரொம்பவே high. Official benchmark data படி, Disclosed across official reporting from arxiv.org.. Inference speed sub-second level-ல இருக்கு, and token cost-ஐயும் drastically cut பண்ணிருக்காங்க. இதனால software engineers மற்றும் startup founders-க்கு real-time autonomous pipelines build பண்றது super easy ஆயிடும். இந்த புதிய AI upgrade உங்களுக்கு பயனுள்ளதா இருக்குமா? Let me know in the comments and follow for daily tech updates!",
+      "sections": {
+        "hook": "Guys, stop scrolling! OpenAI just dropped a brand new AI model, and its reasoning benchmark is absolutely insane!",
+        "introduction": "Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly பாக்கலாம்.",
+        "explanation": "Normal LLMs விட இதுல chain-of-thought verification internal-ஆ நடக்குது. So coding மற்றும் math problems-ல accuracy ரொம்பவே high.",
+        "facts": "Official benchmark data படி, Disclosed across official reporting from arxiv.org.. Inference speed sub-second level-ல இருக்கு, and token cost-ஐயும் drastically cut பண்ணிருக்காங்க.",
+        "impact": "இதனால software engineers மற்றும் startup founders-க்கு real-time autonomous pipelines build பண்றது super easy ஆயிடும்.",
+        "conclusion": "இந்த புதிய AI upgrade உங்களுக்கு பயனுள்ளதா இருக்குமா? Let me know in the comments and follow for daily tech updates!"
+      },
+      "approvedAt": "2026-11-02T09:25:10.902Z"
+    }
+  },
+  "audio": {
+    "filename": "voiceover.mp3",
+    "originalName": "voiceover.mp3",
+    "path": "/home/ravichandran/tamil-motion-studio/storage/projects/proj-1793611507599/voiceover.mp3",
+    "duration": 33.672,
+    "sampleRate": 24000,
+    "channels": 1,
+    "format": "mp3",
+    "fileSize": 202032,
+    "waveformPeaks": [
+      0.368,
+      0.963,
+      0.597,
+      0.511,
+      0.402,
+      0.593,
+      0.319,
+      0.276,
+      0.462,
+      0.355,
+      0.343,
+      0.331,
+      0.1,
+      0.1,
+      0.508,
+      0.355,
+      0.441,
+      0.572,
+      0.368,
+      0.199,
+      0.329,
+      0.1,
+      0.1,
+      0.554,
+      0.914,
+      0.674,
+      0.246,
+      0.522,
+      0.533,
+      0.421,
+      0.605,
+      0.233,
+      0.299,
+      0.431,
+      0.356,
+      0.508,
+      0.385,
+      0.723,
+      0.173,
+      0.1,
+      0.1,
+      1,
+      0.882,
+      0.594,
+      0.563,
+      0.362,
+      0.422,
+      0.452,
+      0.425,
+      0.447,
+      0.543,
+      0.396,
+      0.366,
+      0.368,
+      0.446,
+      0.549,
+      0.561,
+      0.386,
+      0.312,
+      0.488,
+      0.373,
+      0.424,
+      0.546,
+      0.1,
+      0.1,
+      0.503,
+      0.812,
+      0.432,
+      0.274,
+      0.1,
+      0.596,
+      0.454,
+      0.395,
+      0.173,
+      0.395,
+      0.544,
+      0.366,
+      0.361,
+      0.105,
+      0.646,
+      0.277,
+      0.263,
+      0.344,
+      0.319,
+      0.1,
+      0.1,
+      0.97,
+      0.504,
+      0.308,
+      0.579,
+      0.316,
+      0.502,
+      0.414,
+      0.323,
+      0.352,
+      0.479,
+      0.521,
+      0.574,
+      0.47,
+      0.423
+    ]
+  },
+  "transcript": [
+    {
+      "id": "seg-1",
+      "text": "Guys,",
+      "start": 0.2,
+      "end": 2,
+      "words": [
+        {
+          "word": "Guys,",
+          "start": 0.2,
+          "end": 2,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-2",
+      "text": "stop scrolling!",
+      "start": 2.25,
+      "end": 4.05,
+      "words": [
+        {
+          "word": "stop",
+          "start": 2.25,
+          "end": 2.76,
+          "confidence": 0.9
+        },
+        {
+          "word": "scrolling!",
+          "start": 2.76,
+          "end": 4.05,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-3",
+      "text": "OpenAI just dropped a brand new AI model,",
+      "start": 4.3,
+      "end": 6.1,
+      "words": [
+        {
+          "word": "OpenAI",
+          "start": 4.3,
+          "end": 4.62,
+          "confidence": 0.9
+        },
+        {
+          "word": "just",
+          "start": 4.62,
+          "end": 4.83,
+          "confidence": 0.9
+        },
+        {
+          "word": "dropped",
+          "start": 4.83,
+          "end": 5.2,
+          "confidence": 0.9
+        },
+        {
+          "word": "a",
+          "start": 5.2,
+          "end": 5.32,
+          "confidence": 0.9
+        },
+        {
+          "word": "brand",
+          "start": 5.32,
+          "end": 5.58,
+          "confidence": 0.9
+        },
+        {
+          "word": "new",
+          "start": 5.58,
+          "end": 5.74,
+          "confidence": 0.9
+        },
+        {
+          "word": "AI",
+          "start": 5.74,
+          "end": 5.86,
+          "confidence": 0.9
+        },
+        {
+          "word": "model,",
+          "start": 5.86,
+          "end": 6.1,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-4",
+      "text": "and its reasoning benchmark is absolutely insane!",
+      "start": 6.35,
+      "end": 8.15,
+      "words": [
+        {
+          "word": "and",
+          "start": 6.35,
+          "end": 6.48,
+          "confidence": 0.9
+        },
+        {
+          "word": "its",
+          "start": 6.48,
+          "end": 6.61,
+          "confidence": 0.9
+        },
+        {
+          "word": "reasoning",
+          "start": 6.61,
+          "end": 6.99,
+          "confidence": 0.9
+        },
+        {
+          "word": "benchmark",
+          "start": 6.99,
+          "end": 7.37,
+          "confidence": 0.9
+        },
+        {
+          "word": "is",
+          "start": 7.37,
+          "end": 7.49,
+          "confidence": 0.9
+        },
+        {
+          "word": "absolutely",
+          "start": 7.49,
+          "end": 7.91,
+          "confidence": 0.9
+        },
+        {
+          "word": "insane!",
+          "start": 7.91,
+          "end": 8.15,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-5",
+      "text": "Tech world-ல இன்னைக்கு hottest topic இதுதான்.",
+      "start": 8.4,
+      "end": 10.2,
+      "words": [
+        {
+          "word": "Tech",
+          "start": 8.4,
+          "end": 8.58,
+          "confidence": 0.9
+        },
+        {
+          "word": "world-ல",
+          "start": 8.58,
+          "end": 8.89,
+          "confidence": 0.9
+        },
+        {
+          "word": "இன்னைக்கு",
+          "start": 8.89,
+          "end": 9.29,
+          "confidence": 0.9
+        },
+        {
+          "word": "hottest",
+          "start": 9.29,
+          "end": 9.6,
+          "confidence": 0.9
+        },
+        {
+          "word": "topic",
+          "start": 9.6,
+          "end": 9.82,
+          "confidence": 0.9
+        },
+        {
+          "word": "இதுதான்.",
+          "start": 9.82,
+          "end": 10.18,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-6",
+      "text": "இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly பாக்கலாம்.",
+      "start": 10.45,
+      "end": 12.36,
+      "words": [
+        {
+          "word": "இந்த",
+          "start": 10.45,
+          "end": 10.57,
+          "confidence": 0.9
+        },
+        {
+          "word": "new",
+          "start": 10.57,
+          "end": 10.69,
+          "confidence": 0.9
+        },
+        {
+          "word": "architecture-ல",
+          "start": 10.69,
+          "end": 11.1,
+          "confidence": 0.9
+        },
+        {
+          "word": "அப்படி",
+          "start": 11.1,
+          "end": 11.27,
+          "confidence": 0.9
+        },
+        {
+          "word": "என்ன",
+          "start": 11.27,
+          "end": 11.39,
+          "confidence": 0.9
+        },
+        {
+          "word": "special",
+          "start": 11.39,
+          "end": 11.59,
+          "confidence": 0.9
+        },
+        {
+          "word": "இருக்குன்னு",
+          "start": 11.59,
+          "end": 11.91,
+          "confidence": 0.9
+        },
+        {
+          "word": "quickly",
+          "start": 11.91,
+          "end": 12.11,
+          "confidence": 0.9
+        },
+        {
+          "word": "பாக்கலாம்.",
+          "start": 12.11,
+          "end": 12.36,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-7",
+      "text": "Normal LLMs விட இதுல chain-of-thought verification internal-ஆ நடக்குது.",
+      "start": 12.61,
+      "end": 14.41,
+      "words": [
+        {
+          "word": "Normal",
+          "start": 12.61,
+          "end": 12.78,
+          "confidence": 0.9
+        },
+        {
+          "word": "LLMs",
+          "start": 12.78,
+          "end": 12.9,
+          "confidence": 0.9
+        },
+        {
+          "word": "விட",
+          "start": 12.9,
+          "end": 13.02,
+          "confidence": 0.9
+        },
+        {
+          "word": "இதுல",
+          "start": 13.02,
+          "end": 13.14,
+          "confidence": 0.9
+        },
+        {
+          "word": "chain-of-thought",
+          "start": 13.14,
+          "end": 13.59,
+          "confidence": 0.9
+        },
+        {
+          "word": "verification",
+          "start": 13.59,
+          "end": 13.93,
+          "confidence": 0.9
+        },
+        {
+          "word": "internal-ஆ",
+          "start": 13.93,
+          "end": 14.21,
+          "confidence": 0.9
+        },
+        {
+          "word": "நடக்குது.",
+          "start": 14.21,
+          "end": 14.41,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-8",
+      "text": "So coding மற்றும் math problems-ல accuracy ரொம்பவே high.",
+      "start": 14.66,
+      "end": 16.46,
+      "words": [
+        {
+          "word": "So",
+          "start": 14.66,
+          "end": 14.78,
+          "confidence": 0.9
+        },
+        {
+          "word": "coding",
+          "start": 14.78,
+          "end": 15,
+          "confidence": 0.9
+        },
+        {
+          "word": "மற்றும்",
+          "start": 15,
+          "end": 15.26,
+          "confidence": 0.9
+        },
+        {
+          "word": "math",
+          "start": 15.26,
+          "end": 15.41,
+          "confidence": 0.9
+        },
+        {
+          "word": "problems-ல",
+          "start": 15.41,
+          "end": 15.78,
+          "confidence": 0.9
+        },
+        {
+          "word": "accuracy",
+          "start": 15.78,
+          "end": 16.07,
+          "confidence": 0.9
+        },
+        {
+          "word": "ரொம்பவே",
+          "start": 16.07,
+          "end": 16.33,
+          "confidence": 0.9
+        },
+        {
+          "word": "high.",
+          "start": 16.33,
+          "end": 16.46,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-9",
+      "text": "Official benchmark data படி,",
+      "start": 16.71,
+      "end": 18.51,
+      "words": [
+        {
+          "word": "Official",
+          "start": 16.71,
+          "end": 17.29,
+          "confidence": 0.9
+        },
+        {
+          "word": "benchmark",
+          "start": 17.29,
+          "end": 17.94,
+          "confidence": 0.9
+        },
+        {
+          "word": "data",
+          "start": 17.94,
+          "end": 18.23,
+          "confidence": 0.9
+        },
+        {
+          "word": "படி,",
+          "start": 18.23,
+          "end": 18.51,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-10",
+      "text": "Disclosed across official reporting from arxiv.org..",
+      "start": 18.76,
+      "end": 20.56,
+      "words": [
+        {
+          "word": "Disclosed",
+          "start": 18.76,
+          "end": 19.1,
+          "confidence": 0.9
+        },
+        {
+          "word": "across",
+          "start": 19.1,
+          "end": 19.33,
+          "confidence": 0.9
+        },
+        {
+          "word": "official",
+          "start": 19.33,
+          "end": 19.64,
+          "confidence": 0.9
+        },
+        {
+          "word": "reporting",
+          "start": 19.64,
+          "end": 19.98,
+          "confidence": 0.9
+        },
+        {
+          "word": "from",
+          "start": 19.98,
+          "end": 20.13,
+          "confidence": 0.9
+        },
+        {
+          "word": "arxiv.org..",
+          "start": 20.13,
+          "end": 20.55,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-11",
+      "text": "Inference speed sub-second level-ல இருக்கு,",
+      "start": 20.81,
+      "end": 22.61,
+      "words": [
+        {
+          "word": "Inference",
+          "start": 20.81,
+          "end": 21.23,
+          "confidence": 0.9
+        },
+        {
+          "word": "speed",
+          "start": 21.23,
+          "end": 21.46,
+          "confidence": 0.9
+        },
+        {
+          "word": "sub-second",
+          "start": 21.46,
+          "end": 21.92,
+          "confidence": 0.9
+        },
+        {
+          "word": "level-ல",
+          "start": 21.92,
+          "end": 22.24,
+          "confidence": 0.9
+        },
+        {
+          "word": "இருக்கு,",
+          "start": 22.24,
+          "end": 22.61,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-12",
+      "text": "and token cost-ஐயும் drastically cut பண்ணிருக்காங்க.",
+      "start": 22.86,
+      "end": 24.66,
+      "words": [
+        {
+          "word": "and",
+          "start": 22.86,
+          "end": 22.98,
+          "confidence": 0.9
+        },
+        {
+          "word": "token",
+          "start": 22.98,
+          "end": 23.17,
+          "confidence": 0.9
+        },
+        {
+          "word": "cost-ஐயும்",
+          "start": 23.17,
+          "end": 23.55,
+          "confidence": 0.9
+        },
+        {
+          "word": "drastically",
+          "start": 23.55,
+          "end": 23.97,
+          "confidence": 0.9
+        },
+        {
+          "word": "cut",
+          "start": 23.97,
+          "end": 24.09,
+          "confidence": 0.9
+        },
+        {
+          "word": "பண்ணிருக்காங்க.",
+          "start": 24.09,
+          "end": 24.66,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-13",
+      "text": "இதனால software engineers மற்றும் startup founders-க்கு real-time autonomous pipelines build பண்றது super easy ஆயிடும்.",
+      "start": 24.91,
+      "end": 27.27,
+      "words": [
+        {
+          "word": "இதனால",
+          "start": 24.91,
+          "end": 25.03,
+          "confidence": 0.9
+        },
+        {
+          "word": "software",
+          "start": 25.03,
+          "end": 25.21,
+          "confidence": 0.9
+        },
+        {
+          "word": "engineers",
+          "start": 25.21,
+          "end": 25.41,
+          "confidence": 0.9
+        },
+        {
+          "word": "மற்றும்",
+          "start": 25.41,
+          "end": 25.57,
+          "confidence": 0.9
+        },
+        {
+          "word": "startup",
+          "start": 25.57,
+          "end": 25.73,
+          "confidence": 0.9
+        },
+        {
+          "word": "founders-க்கு",
+          "start": 25.73,
+          "end": 26.02,
+          "confidence": 0.9
+        },
+        {
+          "word": "real-time",
+          "start": 26.02,
+          "end": 26.22,
+          "confidence": 0.9
+        },
+        {
+          "word": "autonomous",
+          "start": 26.22,
+          "end": 26.44,
+          "confidence": 0.9
+        },
+        {
+          "word": "pipelines",
+          "start": 26.44,
+          "end": 26.64,
+          "confidence": 0.9
+        },
+        {
+          "word": "build",
+          "start": 26.64,
+          "end": 26.76,
+          "confidence": 0.9
+        },
+        {
+          "word": "பண்றது",
+          "start": 26.76,
+          "end": 26.89,
+          "confidence": 0.9
+        },
+        {
+          "word": "super",
+          "start": 26.89,
+          "end": 27.01,
+          "confidence": 0.9
+        },
+        {
+          "word": "easy",
+          "start": 27.01,
+          "end": 27.13,
+          "confidence": 0.9
+        },
+        {
+          "word": "ஆயிடும்.",
+          "start": 27.13,
+          "end": 27.27,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-14",
+      "text": "இந்த புதிய AI upgrade உங்களுக்கு பயனுள்ளதா இருக்குமா?",
+      "start": 27.52,
+      "end": 29.32,
+      "words": [
+        {
+          "word": "இந்த",
+          "start": 27.52,
+          "end": 27.67,
+          "confidence": 0.9
+        },
+        {
+          "word": "புதிய",
+          "start": 27.67,
+          "end": 27.86,
+          "confidence": 0.9
+        },
+        {
+          "word": "AI",
+          "start": 27.86,
+          "end": 27.98,
+          "confidence": 0.9
+        },
+        {
+          "word": "upgrade",
+          "start": 27.98,
+          "end": 28.25,
+          "confidence": 0.9
+        },
+        {
+          "word": "உங்களுக்கு",
+          "start": 28.25,
+          "end": 28.63,
+          "confidence": 0.9
+        },
+        {
+          "word": "பயனுள்ளதா",
+          "start": 28.63,
+          "end": 28.97,
+          "confidence": 0.9
+        },
+        {
+          "word": "இருக்குமா?",
+          "start": 28.97,
+          "end": 29.32,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-15",
+      "text": "Let me know in the comments and follow for daily tech updates!",
+      "start": 29.57,
+      "end": 31.77,
+      "words": [
+        {
+          "word": "Let",
+          "start": 29.57,
+          "end": 29.7,
+          "confidence": 0.9
+        },
+        {
+          "word": "me",
+          "start": 29.7,
+          "end": 29.82,
+          "confidence": 0.9
+        },
+        {
+          "word": "know",
+          "start": 29.82,
+          "end": 29.99,
+          "confidence": 0.9
+        },
+        {
+          "word": "in",
+          "start": 29.99,
+          "end": 30.11,
+          "confidence": 0.9
+        },
+        {
+          "word": "the",
+          "start": 30.11,
+          "end": 30.24,
+          "confidence": 0.9
+        },
+        {
+          "word": "comments",
+          "start": 30.24,
+          "end": 30.59,
+          "confidence": 0.9
+        },
+        {
+          "word": "and",
+          "start": 30.59,
+          "end": 30.72,
+          "confidence": 0.9
+        },
+        {
+          "word": "follow",
+          "start": 30.72,
+          "end": 30.98,
+          "confidence": 0.9
+        },
+        {
+          "word": "for",
+          "start": 30.98,
+          "end": 31.11,
+          "confidence": 0.9
+        },
+        {
+          "word": "daily",
+          "start": 31.11,
+          "end": 31.33,
+          "confidence": 0.9
+        },
+        {
+          "word": "tech",
+          "start": 31.33,
+          "end": 31.5,
+          "confidence": 0.9
+        },
+        {
+          "word": "updates!",
+          "start": 31.5,
+          "end": 31.77,
+          "confidence": 0.9
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "rag-sc-1",
+      "sceneNumber": 1,
+      "startTime": 0,
+      "endTime": 6.73,
+      "duration": 6.73,
+      "startFrame": 0,
+      "durationInFrames": 202,
+      "spokenSegment": "LLM hallucination-னால வர தவறான பதில்களை எப்படி தவிர்க்கிறது? அதுக்குத்தான் இந்த RAG architecture!",
+      "visualConcept": "Editorial Breaking Tech Headline",
+      "template": "headline",
+      "mainText": "RAG: Stop LLM Hallucinations",
+      "supportingText": "Retrieval-Augmented Generation connects LLMs to verified enterprise databases in real time.",
+      "categoryTag": "AI ARCHITECTURE",
+      "sourceAttribution": "LangChain & OpenAI Research",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "badge": "PRODUCTION AI SPEC"
+      }
+    },
+    {
+      "id": "rag-sc-2",
+      "sceneNumber": 2,
+      "startTime": 6.73,
+      "endTime": 13.47,
+      "duration": 6.73,
+      "startFrame": 202,
+      "durationInFrames": 202,
+      "spokenSegment": "உங்கள் documents vector embeddings ஆக மாற்றப்பட்டு vector database-ல் store செய்யப்படுகிறது.",
+      "visualConcept": "Neural Vector Search Graph",
+      "template": "network-nodes",
+      "mainText": "Vector Embeddings & Context Retrieval",
+      "supportingText": "Documents are chunked, embedded as 1536-dim vectors, and indexed in Milvus/Pinecone.",
+      "categoryTag": "SYSTEM GRAPH",
+      "sourceAttribution": "Vector Search Benchmark",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "nodes": [
+          {
+            "id": "1",
+            "label": "User Query",
+            "x": 130,
+            "y": 160,
+            "type": "input"
+          },
+          {
+            "id": "2",
+            "label": "Vector DB / Milvus",
+            "x": 420,
+            "y": 100,
+            "type": "context"
+          },
+          {
+            "id": "3",
+            "label": "Embeddings Model",
+            "x": 420,
+            "y": 220,
+            "type": "model"
+          },
+          {
+            "id": "4",
+            "label": "Grounded LLM Prompt",
+            "x": 710,
+            "y": 160,
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "rag-sc-3",
+      "sceneNumber": 3,
+      "startTime": 13.47,
+      "endTime": 20.2,
+      "duration": 6.73,
+      "startFrame": 404,
+      "durationInFrames": 202,
+      "spokenSegment": "இதன் மூலம் model accuracy 85% வரை உயர்கிறது, latency வெறும் 180 milliseconds-ல் முடிகிறது.",
+      "visualConcept": "Accuracy & Latency Metrics",
+      "template": "key-statistic",
+      "mainText": "85% Reduction in Hallucinations",
+      "supportingText": "Fact-grounded responses with 180ms sub-second retrieval latency.",
+      "categoryTag": "BENCHMARK DATA",
+      "sourceAttribution": "Enterprise AI Report 2026",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "statValue": "85%",
+        "statLabel": "Factual Accuracy Improvement",
+        "delta": "180ms SUB-SECOND RETRIEVAL"
+      }
+    },
+    {
+      "id": "rag-sc-4",
+      "sceneNumber": 4,
+      "startTime": 20.2,
+      "endTime": 26.94,
+      "duration": 6.73,
+      "startFrame": 606,
+      "durationInFrames": 202,
+      "spokenSegment": "Document Chunking, Vector Retrieval, மற்றும் Prompt Synthesis - இதுதான் complete workflow.",
+      "visualConcept": "3-Stage RAG Pipeline",
+      "template": "process-flow",
+      "mainText": "End-to-End RAG Pipeline",
+      "supportingText": "Continuous data ingestion feeding real-time context injection.",
+      "categoryTag": "WORKFLOW",
+      "sourceAttribution": "Production AI Patterns",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "steps": [
+          {
+            "num": "01",
+            "title": "Chunk & Embed",
+            "text": "Semantic chunking into vector spaces"
+          },
+          {
+            "num": "02",
+            "title": "Hybrid Retrieval",
+            "text": "BM25 + Dense vector cosine similarity"
+          },
+          {
+            "num": "03",
+            "title": "Prompt Augmentation",
+            "text": "Dynamic context synthesis for LLM"
+          }
+        ]
+      }
+    },
+    {
+      "id": "rag-sc-5",
+      "sceneNumber": 5,
+      "startTime": 26.94,
+      "endTime": 33.67,
+      "duration": 6.73,
+      "startFrame": 808,
+      "durationInFrames": 202,
+      "spokenSegment": "உங்கள் அடுத்த AI project-ல் RAG பயன்படுத்த follow பண்ண மறந்துடாதீங்க!",
+      "visualConcept": "Verdict Checklist & Follow CTA",
+      "template": "conclusion",
+      "mainText": "RAG Is The Industry Standard",
+      "supportingText": "Private, grounded, enterprise-grade AI applications without fine-tuning costs.",
+      "categoryTag": "TAKEAWAYS",
+      "sourceAttribution": "Tamil Motion Studio",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "takeaways": [
+          "100% data privacy within your VPC",
+          "Sub-second vector retrieval latency",
+          "Zero retraining or fine-tuning needed"
+        ],
+        "cta": "FOLLOW FOR TAMIL TECH EXPLAINERS"
+      }
+    }
+  ],
+  "themeId": "editorial-crimson",
+  "subtitleSettings": {
+    "enabled": true,
+    "fontSize": 48,
+    "bottomMargin": 320,
+    "highlightColor": "#C8102E",
+    "textColor": "#18181B",
+    "backgroundColor": "rgba(255, 255, 255, 0.95)",
+    "style": "editorial"
+  },
+  "createdAt": "2026-11-02T09:25:07.599Z",
+  "updatedAt": "2026-11-02T09:25:53.168Z",
+  "socialPackage": {
+    "caption": "🔥 Retrieval-Augmented Generation (RAG) Architecture for LLMs! Here's everything you need to know in under 60 seconds. What do you think about this breakthrough? Let us know in the comments! 👇\n\n#TamilTech #TechReels #AI #Innovation #TamilCreators #Remotion #Shorts",
+    "hashtags": [
+      "#TamilTech",
+      "#AIArchitecture",
+      "#InstagramReels",
+      "#YouTubeShorts",
+      "#TechNews",
+      "#TamilCreators"
+    ],
+    "description": "Full video analysis and motion graphics breakdown of Retrieval-Augmented Generation (RAG) Architecture for LLMs. Created with Tamil & English Motion Graphics Reel Studio."
+  },
+  "renderOutput": {
+    "videoPath": "/home/ravichandran/tamil-motion-studio/storage/projects/proj-1793611507599/render.mp4",
+    "videoUrl": "/storage/projects/proj-1793611507599/render.mp4",
+    "thumbnailUrl": "/storage/projects/proj-1793611507599/thumbnail.png",
+    "renderedAt": "2026-11-02T09:25:53.168Z",
+    "fileSize": 3880915
+  }
+}

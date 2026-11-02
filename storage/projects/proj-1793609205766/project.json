@@ -1,0 +1,1174 @@
+{
+  "id": "proj-1793609205766",
+  "title": "OpenAI launches a new AI model",
+  "topic": "OpenAI launches a new AI model",
+  "targetDuration": 60,
+  "selectedLanguage": "tanglish",
+  "status": "COMPLETED",
+  "research": {
+    "topic": "OpenAI launches a new AI model",
+    "summary": "Introducing GPT-6 Astra, our most intelligent and aligned model yet, with state-of-the-art capabilities across computer use, coding, cybersecurity, and science. Meet GPT-6 Sol and Luna, two models that bring frontier intelligence to everyday work with different balances of capability and cost. OpenAI released Astra on Thursday, its latest AI model and — according to the company — its most powerful and capable one yet. OpenAI claims that Astra represents \"a new frontier on computer ...",
+    "sources": [
+      {
+        "title": "GPT-6 Astra: A new generation of intelligence | OpenAI",
+        "url": "https://openai.com/index/gpt-6-astra/",
+        "snippet": "Introducing GPT-6 Astra, our most intelligent and aligned model yet, with state-of-the-art capabilities across computer use, coding, cybersecurity, and science.",
+        "sourceName": "openai.com",
+        "verified": true
+      },
+      {
+        "title": "Introducing GPT‑6 Sol and Luna - OpenAI",
+        "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+        "snippet": "Meet GPT-6 Sol and Luna, two models that bring frontier intelligence to everyday work with different balances of capability and cost.",
+        "sourceName": "openai.com",
+        "verified": true
+      },
+      {
+        "title": "OpenAI launches Astra, its powerful (and controversial) new model",
+        "url": "https://techcrunch.com/2026/09/03/openai-launches-astra-its-powerful-and-controversial-new-model/",
+        "snippet": "OpenAI released Astra on Thursday, its latest AI model and — according to the company — its most powerful and capable one yet. OpenAI claims that Astra represents \"a new frontier on computer ...",
+        "sourceName": "techcrunch.com",
+        "verified": true
+      },
+      {
+        "title": "OpenAI announces rollout of GPT-6 Astra model - CNBC",
+        "url": "https://www.cnbc.com/2026/09/03/open-ai-astra-gpt-6-cyber.html",
+        "snippet": "OpenAI will begin rolling out GPT-6 Astra, its latest AI model. The model is launching in phases, and OpenAI said companies participating in its application-based cybersecurity program will be the ...",
+        "sourceName": "cnbc.com",
+        "verified": true
+      },
+      {
+        "title": "OpenAI hails 'new era of artificial general intelligence' with Astra ...",
+        "url": "https://www.theguardian.com/technology/2026/sep/03/openai-artificial-general-intelligence-astra-release",
+        "snippet": "The president of OpenAI, Greg Brockman, has claimed the world has entered a new era of artificial general intelligence after the release of his company's latest model, Astra, which it described ...",
+        "sourceName": "theguardian.com",
+        "verified": true
+      }
+    ],
+    "keyFacts": [
+      "Disclosed across official reporting from openai.com.",
+      "Covers architecture, benchmark metrics, and production API rollouts."
+    ],
+    "technicalTerms": [
+      "Architecture",
+      "Performance",
+      "Latency"
+    ],
+    "verified": true
+  },
+  "scripts": {
+    "tamil": {
+      "language": "tamil",
+      "fullText": "OpenAI இப்போ ஒரு மிகப்பெரிய announcement பண்ணிருக்காங்க! இந்த புதிய AI model நிஜமாவே ஒரு game changer-ஆ? ஹலோ techies! இன்னைக்கு tech உலகத்துல ரொம்ப பரபரப்பா பேசப்படுற ஒரு முக்கியமான விஷயத்தை பத்திதான் பாக்கப்போறோம். இந்த புதிய model-ல complex reasoning மற்றும் logic verification ரொம்பவே fast-ஆ வேலை செய்யுது. பழைய models விட latency ரொம்பவே குறைவு. Benchmark test-ல பார்த்தீங்கன்னா Disclosed across official reporting from openai.com. கிடைச்சிருக்கு. அதோட API cost மற்றும் token efficiency முன்ன விட 40% optimize பண்ணிருக்காங்க. Developers-க்கு இது ஒரு மிகப்பெரிய advantage. Real-time coding, automated agents, மற்றும் data analysis ரொம்பவே smooth-ஆ மாறும். இந்த புதிய model பத்தி நீங்க என்ன நினைக்கிறீங்க? Comment-ல சொல்லுங்க, follow பண்ண மறந்துடாதீங்க!",
+      "sections": {
+        "hook": "OpenAI இப்போ ஒரு மிகப்பெரிய announcement பண்ணிருக்காங்க! இந்த புதிய AI model நிஜமாவே ஒரு game changer-ஆ?",
+        "introduction": "ஹலோ techies! இன்னைக்கு tech உலகத்துல ரொம்ப பரபரப்பா பேசப்படுற ஒரு முக்கியமான விஷயத்தை பத்திதான் பாக்கப்போறோம்.",
+        "explanation": "இந்த புதிய model-ல complex reasoning மற்றும் logic verification ரொம்பவே fast-ஆ வேலை செய்யுது. பழைய models விட latency ரொம்பவே குறைவு.",
+        "facts": "Benchmark test-ல பார்த்தீங்கன்னா Disclosed across official reporting from openai.com. கிடைச்சிருக்கு. அதோட API cost மற்றும் token efficiency முன்ன விட 40% optimize பண்ணிருக்காங்க.",
+        "impact": "Developers-க்கு இது ஒரு மிகப்பெரிய advantage. Real-time coding, automated agents, மற்றும் data analysis ரொம்பவே smooth-ஆ மாறும்.",
+        "conclusion": "இந்த புதிய model பத்தி நீங்க என்ன நினைக்கிறீங்க? Comment-ல சொல்லுங்க, follow பண்ண மறந்துடாதீங்க!"
+      },
+      "estimatedDuration": 45,
+      "notes": "Conversational Tamil with technical terms in natural English."
+    },
+    "tanglish": {
+      "language": "tanglish",
+      "fullText": "Guys, stop scrolling! OpenAI just dropped a brand new AI model, and its reasoning benchmark is absolutely insane! Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly பாக்கலாம். Normal LLMs விட இதுல chain-of-thought verification internal-ஆ நடக்குது. So coding மற்றும் math problems-ல accuracy ரொம்பவே high. Official benchmark data படி, Disclosed across official reporting from openai.com.. Inference speed sub-second level-ல இருக்கு, and token cost-ஐயும் drastically cut பண்ணிருக்காங்க. இதனால software engineers மற்றும் startup founders-க்கு real-time autonomous pipelines build பண்றது super easy ஆயிடும். இந்த புதிய AI upgrade உங்களுக்கு பயனுள்ளதா இருக்குமா? Let me know in the comments and follow for daily tech updates!",
+      "sections": {
+        "hook": "Guys, stop scrolling! OpenAI just dropped a brand new AI model, and its reasoning benchmark is absolutely insane!",
+        "introduction": "Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly பாக்கலாம்.",
+        "explanation": "Normal LLMs விட இதுல chain-of-thought verification internal-ஆ நடக்குது. So coding மற்றும் math problems-ல accuracy ரொம்பவே high.",
+        "facts": "Official benchmark data படி, Disclosed across official reporting from openai.com.. Inference speed sub-second level-ல இருக்கு, and token cost-ஐயும் drastically cut பண்ணிருக்காங்க.",
+        "impact": "இதனால software engineers மற்றும் startup founders-க்கு real-time autonomous pipelines build பண்றது super easy ஆயிடும்.",
+        "conclusion": "இந்த புதிய AI upgrade உங்களுக்கு பயனுள்ளதா இருக்குமா? Let me know in the comments and follow for daily tech updates!"
+      },
+      "estimatedDuration": 46,
+      "notes": "Tanglish tech-creator flow, ideal for Instagram Reels & YouTube Shorts."
+    },
+    "english": {
+      "language": "english",
+      "fullText": "OpenAI just made a massive announcement that could change how we build AI applications forever! Welcome back to the studio. Today we're breaking down the architecture and real-world benchmarks of this latest release. Unlike previous generations, this model incorporates continuous autonomous reasoning with integrated verification loops. Key numbers you need to know: Disclosed across official reporting from openai.com., with sub-second time-to-first-token and significantly reduced API pricing. For software developers and enterprises, this means faster agent workflows and much more reliable code execution. What are your thoughts on this new model? Drop a comment below and hit follow for more editorial tech breakdowns!",
+      "sections": {
+        "hook": "OpenAI just made a massive announcement that could change how we build AI applications forever!",
+        "introduction": "Welcome back to the studio. Today we're breaking down the architecture and real-world benchmarks of this latest release.",
+        "explanation": "Unlike previous generations, this model incorporates continuous autonomous reasoning with integrated verification loops.",
+        "facts": "Key numbers you need to know: Disclosed across official reporting from openai.com., with sub-second time-to-first-token and significantly reduced API pricing.",
+        "impact": "For software developers and enterprises, this means faster agent workflows and much more reliable code execution.",
+        "conclusion": "What are your thoughts on this new model? Drop a comment below and hit follow for more editorial tech breakdowns!"
+      },
+      "estimatedDuration": 42,
+      "notes": "Polished editorial English explainer."
+    },
+    "approvedScript": {
+      "language": "tanglish",
+      "text": "Guys, stop scrolling! OpenAI just dropped a brand new AI model, and its reasoning benchmark is absolutely insane! Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly பாக்கலாம். Normal LLMs விட இதுல chain-of-thought verification internal-ஆ நடக்குது. So coding மற்றும் math problems-ல accuracy ரொம்பவே high. Official benchmark data படி, Disclosed across official reporting from openai.com.. Inference speed sub-second level-ல இருக்கு, and token cost-ஐயும் drastically cut பண்ணிருக்காங்க. இதனால software engineers மற்றும் startup founders-க்கு real-time autonomous pipelines build பண்றது super easy ஆயிடும். இந்த புதிய AI upgrade உங்களுக்கு பயனுள்ளதா இருக்குமா? Let me know in the comments and follow for daily tech updates!",
+      "sections": {
+        "hook": "Guys, stop scrolling! OpenAI just dropped a brand new AI model, and its reasoning benchmark is absolutely insane!",
+        "introduction": "Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly பாக்கலாம்.",
+        "explanation": "Normal LLMs விட இதுல chain-of-thought verification internal-ஆ நடக்குது. So coding மற்றும் math problems-ல accuracy ரொம்பவே high.",
+        "facts": "Official benchmark data படி, Disclosed across official reporting from openai.com.. Inference speed sub-second level-ல இருக்கு, and token cost-ஐயும் drastically cut பண்ணிருக்காங்க.",
+        "impact": "இதனால software engineers மற்றும் startup founders-க்கு real-time autonomous pipelines build பண்றது super easy ஆயிடும்.",
+        "conclusion": "இந்த புதிய AI upgrade உங்களுக்கு பயனுள்ளதா இருக்குமா? Let me know in the comments and follow for daily tech updates!"
+      },
+      "approvedAt": "2026-11-02T08:46:46.998Z"
+    }
+  },
+  "audio": {
+    "filename": "voiceover.mp3",
+    "originalName": "voiceover.mp3",
+    "path": "/home/ravichandran/tamil-motion-studio/storage/projects/proj-1793609205766/voiceover.mp3",
+    "duration": 5.041633,
+    "sampleRate": 44100,
+    "channels": 1,
+    "format": "mp3",
+    "fileSize": 40560,
+    "waveformPeaks": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0.999,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "transcript": [
+    {
+      "id": "seg-1",
+      "text": "Guys,",
+      "start": 0.2,
+      "end": 2,
+      "words": [
+        {
+          "word": "Guys,",
+          "start": 0.2,
+          "end": 2,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-2",
+      "text": "stop scrolling!",
+      "start": 2.25,
+      "end": 4.05,
+      "words": [
+        {
+          "word": "stop",
+          "start": 2.25,
+          "end": 2.76,
+          "confidence": 0.9
+        },
+        {
+          "word": "scrolling!",
+          "start": 2.76,
+          "end": 4.05,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-3",
+      "text": "OpenAI just dropped a brand new AI model,",
+      "start": 4.3,
+      "end": 5.04,
+      "words": [
+        {
+          "word": "OpenAI",
+          "start": 4.3,
+          "end": 4.43,
+          "confidence": 0.9
+        },
+        {
+          "word": "just",
+          "start": 4.43,
+          "end": 4.55,
+          "confidence": 0.9
+        },
+        {
+          "word": "dropped",
+          "start": 4.55,
+          "end": 4.7,
+          "confidence": 0.9
+        },
+        {
+          "word": "a",
+          "start": 4.7,
+          "end": 4.82,
+          "confidence": 0.9
+        },
+        {
+          "word": "brand",
+          "start": 4.82,
+          "end": 4.94,
+          "confidence": 0.9
+        },
+        {
+          "word": "new",
+          "start": 4.94,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "AI",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "model,",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-4",
+      "text": "and its reasoning benchmark is absolutely insane!",
+      "start": 4.84,
+      "end": 5.04,
+      "words": [
+        {
+          "word": "and",
+          "start": 4.84,
+          "end": 4.96,
+          "confidence": 0.9
+        },
+        {
+          "word": "its",
+          "start": 4.96,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "reasoning",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "benchmark",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "is",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "absolutely",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "insane!",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-5",
+      "text": "Tech world-ல இன்னைக்கு hottest topic இதுதான்.",
+      "start": 4.84,
+      "end": 5.04,
+      "words": [
+        {
+          "word": "Tech",
+          "start": 4.84,
+          "end": 4.96,
+          "confidence": 0.9
+        },
+        {
+          "word": "world-ல",
+          "start": 4.96,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "இன்னைக்கு",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "hottest",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "topic",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "இதுதான்.",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-6",
+      "text": "இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly பாக்கலாம்.",
+      "start": 4.84,
+      "end": 5.04,
+      "words": [
+        {
+          "word": "இந்த",
+          "start": 4.84,
+          "end": 4.96,
+          "confidence": 0.9
+        },
+        {
+          "word": "new",
+          "start": 4.96,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "architecture-ல",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "அப்படி",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "என்ன",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "special",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "இருக்குன்னு",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "quickly",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "பாக்கலாம்.",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-7",
+      "text": "Normal LLMs விட இதுல chain-of-thought verification internal-ஆ நடக்குது.",
+      "start": 4.84,
+      "end": 5.04,
+      "words": [
+        {
+          "word": "Normal",
+          "start": 4.84,
+          "end": 4.96,
+          "confidence": 0.9
+        },
+        {
+          "word": "LLMs",
+          "start": 4.96,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "விட",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "இதுல",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "chain-of-thought",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "verification",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "internal-ஆ",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "நடக்குது.",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-8",
+      "text": "So coding மற்றும் math problems-ல accuracy ரொம்பவே high.",
+      "start": 4.84,
+      "end": 5.04,
+      "words": [
+        {
+          "word": "So",
+          "start": 4.84,
+          "end": 4.96,
+          "confidence": 0.9
+        },
+        {
+          "word": "coding",
+          "start": 4.96,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "மற்றும்",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "math",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "problems-ல",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "accuracy",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "ரொம்பவே",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "high.",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-9",
+      "text": "Official benchmark data படி,",
+      "start": 4.84,
+      "end": 5.04,
+      "words": [
+        {
+          "word": "Official",
+          "start": 4.84,
+          "end": 4.96,
+          "confidence": 0.9
+        },
+        {
+          "word": "benchmark",
+          "start": 4.96,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "data",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "படி,",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-10",
+      "text": "Disclosed across official reporting from openai.com..",
+      "start": 4.84,
+      "end": 5.04,
+      "words": [
+        {
+          "word": "Disclosed",
+          "start": 4.84,
+          "end": 4.96,
+          "confidence": 0.9
+        },
+        {
+          "word": "across",
+          "start": 4.96,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "official",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "reporting",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "from",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "openai.com..",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-11",
+      "text": "Inference speed sub-second level-ல இருக்கு,",
+      "start": 4.84,
+      "end": 5.04,
+      "words": [
+        {
+          "word": "Inference",
+          "start": 4.84,
+          "end": 4.96,
+          "confidence": 0.9
+        },
+        {
+          "word": "speed",
+          "start": 4.96,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "sub-second",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "level-ல",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "இருக்கு,",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-12",
+      "text": "and token cost-ஐயும் drastically cut பண்ணிருக்காங்க.",
+      "start": 4.84,
+      "end": 5.04,
+      "words": [
+        {
+          "word": "and",
+          "start": 4.84,
+          "end": 4.96,
+          "confidence": 0.9
+        },
+        {
+          "word": "token",
+          "start": 4.96,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "cost-ஐயும்",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "drastically",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "cut",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "பண்ணிருக்காங்க.",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-13",
+      "text": "இதனால software engineers மற்றும் startup founders-க்கு real-time autonomous pipelines build பண்றது super easy ஆயிடும்.",
+      "start": 4.84,
+      "end": 5.04,
+      "words": [
+        {
+          "word": "இதனால",
+          "start": 4.84,
+          "end": 4.96,
+          "confidence": 0.9
+        },
+        {
+          "word": "software",
+          "start": 4.96,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "engineers",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "மற்றும்",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "startup",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "founders-க்கு",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "real-time",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "autonomous",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "pipelines",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "build",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "பண்றது",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "super",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "easy",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "ஆயிடும்.",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-14",
+      "text": "இந்த புதிய AI upgrade உங்களுக்கு பயனுள்ளதா இருக்குமா?",
+      "start": 4.84,
+      "end": 5.04,
+      "words": [
+        {
+          "word": "இந்த",
+          "start": 4.84,
+          "end": 4.96,
+          "confidence": 0.9
+        },
+        {
+          "word": "புதிய",
+          "start": 4.96,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "AI",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "upgrade",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "உங்களுக்கு",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "பயனுள்ளதா",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "இருக்குமா?",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        }
+      ]
+    },
+    {
+      "id": "seg-15",
+      "text": "Let me know in the comments and follow for daily tech updates!",
+      "start": 4.84,
+      "end": 5.04,
+      "words": [
+        {
+          "word": "Let",
+          "start": 4.84,
+          "end": 4.96,
+          "confidence": 0.9
+        },
+        {
+          "word": "me",
+          "start": 4.96,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "know",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "in",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "the",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "comments",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "and",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "follow",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "for",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "daily",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "tech",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        },
+        {
+          "word": "updates!",
+          "start": 5.04,
+          "end": 5.04,
+          "confidence": 0.9
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-1",
+      "sceneNumber": 1,
+      "startTime": 0,
+      "endTime": 0.84,
+      "duration": 0.84,
+      "startFrame": 0,
+      "durationInFrames": 25,
+      "spokenSegment": "Guys,",
+      "visualConcept": "Editorial Breaking Headline Card with crimson badge",
+      "template": "headline",
+      "mainText": "OpenAI just dropped a brand new AI model, and its reasoning benchmark is ab",
+      "supportingText": "Guys, stop scrolling! OpenAI just dropped a brand new AI model, and its reasoning benchmark is absol",
+      "categoryTag": "BREAKING TECH",
+      "sourceAttribution": "openai.com",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "badge": "BREAKING TECH DISCLOSURE"
+      }
+    },
+    {
+      "id": "scene-2",
+      "sceneNumber": 2,
+      "startTime": 0.84,
+      "endTime": 1.68,
+      "duration": 0.84,
+      "startFrame": 25,
+      "durationInFrames": 25,
+      "spokenSegment": "Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly பாக்கலாம்.",
+      "visualConcept": "Official Publication Card with kinetic marker highlight sweep",
+      "template": "article-highlight",
+      "mainText": "Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த new architectu",
+      "supportingText": "Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly ...",
+      "categoryTag": "OVERVIEW",
+      "sourceAttribution": "openai.com",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "publication": "OPENAI.COM",
+        "highlight": "Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த"
+      }
+    },
+    {
+      "id": "scene-3",
+      "sceneNumber": 3,
+      "startTime": 1.68,
+      "endTime": 2.52,
+      "duration": 0.84,
+      "startFrame": 50,
+      "durationInFrames": 25,
+      "spokenSegment": "Guys, stop scrolling!",
+      "visualConcept": "Interconnected Graph Nodes with pulsing data packets",
+      "template": "network-nodes",
+      "mainText": "Normal LLMs விட இதுல chain-of-thought verification internal-ஆ நடக",
+      "supportingText": "Guys, stop scrolling!",
+      "categoryTag": "AI SYSTEM",
+      "sourceAttribution": "openai.com",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "nodes": [
+          {
+            "id": "1",
+            "label": "Input Prompt",
+            "x": 140,
+            "y": 160,
+            "type": "input"
+          },
+          {
+            "id": "2",
+            "label": "Vector RAG Index",
+            "x": 420,
+            "y": 100,
+            "type": "context"
+          },
+          {
+            "id": "3",
+            "label": "Reasoning Model",
+            "x": 420,
+            "y": 220,
+            "type": "model"
+          },
+          {
+            "id": "4",
+            "label": "Verified Output",
+            "x": 700,
+            "y": 160,
+            "type": "output"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-4",
+      "sceneNumber": 4,
+      "startTime": 2.52,
+      "endTime": 3.36,
+      "duration": 0.84,
+      "startFrame": 76,
+      "durationInFrames": 25,
+      "spokenSegment": "Official benchmark data படி, Disclosed across official reporting from openai.com.. Inference speed sub-second level-ல இருக்கு, and token cost-ஐயும் drastically cut பண்ணிருக்காங்க.",
+      "visualConcept": "Massive animated stat counter with delta performance badge",
+      "template": "key-statistic",
+      "mainText": "10x Faster Inference Latency",
+      "supportingText": "Official benchmark data படி, Disclosed across official reporting from openai.com.. Inference speed sub-second ...",
+      "categoryTag": "BENCHMARK METRICS",
+      "sourceAttribution": "openai.com",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "statValue": "10x",
+        "statLabel": "Reasoning Latency Reduction",
+        "delta": "+85% THROUGHPUT"
+      }
+    },
+    {
+      "id": "scene-5",
+      "sceneNumber": 5,
+      "startTime": 3.36,
+      "endTime": 4.2,
+      "duration": 0.84,
+      "startFrame": 101,
+      "durationInFrames": 25,
+      "spokenSegment": "stop scrolling!",
+      "visualConcept": "Three-stage developer workflow with active node highlighting",
+      "template": "process-flow",
+      "mainText": "இதனால software engineers மற்றும் startup founders-க்கு real-time ",
+      "supportingText": "இதனால software engineers மற்றும் startup founders-க்கு real-time autonomous pipelines build பண்றது s",
+      "categoryTag": "PIPELINE",
+      "sourceAttribution": "openai.com",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "steps": [
+          {
+            "num": "01",
+            "title": "Data Ingestion",
+            "text": "Live multi-source ingestion"
+          },
+          {
+            "num": "02",
+            "title": "AI Verification",
+            "text": "Automated benchmark checks"
+          },
+          {
+            "num": "03",
+            "title": "Video Synthesis",
+            "text": "Synchronized Remotion render"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-6",
+      "sceneNumber": 6,
+      "startTime": 4.2,
+      "endTime": 5.04,
+      "duration": 0.84,
+      "startFrame": 126,
+      "durationInFrames": 25,
+      "spokenSegment": "OpenAI just dropped a brand new AI model, and its reasoning benchmark is absolutely insane! Tech world-ல இன்னைக்கு hottest topic இதுதான். இந்த new architecture-ல அப்படி என்ன special இருக்குன்னு quickly பாக்கலாம். Normal LLMs விட இதுல chain-of-thought verification internal-ஆ நடக்குது. So coding மற்றும் math problems-ல accuracy ரொம்பவே high. Official benchmark data படி, Disclosed across official reporting from openai.com.. Inference speed sub-second level-ல இருக்கு, and token cost-ஐயும் drastically cut பண்ணிருக்காங்க. இதனால software engineers மற்றும் startup founders-க்கு real-time autonomous pipelines build பண்றது super easy ஆயிடும். இந்த புதிய AI upgrade உங்களுக்கு பயனுள்ளதா இருக்குமா? Let me know in the comments and follow for daily tech updates!",
+      "visualConcept": "Checklist verdict card with pulsing follow CTA",
+      "template": "conclusion",
+      "mainText": "இந்த புதிய AI upgrade உங்களுக்கு பயனுள்ளதா இருக்குமா? Let me know",
+      "supportingText": "OpenAI just dropped a brand new AI model, and its reasoning benchmark is absolutely insane! Tech world-ல இன்னை...",
+      "categoryTag": "SUMMARY",
+      "sourceAttribution": "openai.com",
+      "animationPreset": "editorial-spring",
+      "visualData": {
+        "takeaways": [
+          "Sub-second reasoning latency achieved",
+          "Integrated verification reduces errors",
+          "Enterprise APIs available immediately"
+        ],
+        "cta": "FOLLOW FOR TAMIL TECH EXPLAINERS"
+      }
+    }
+  ],
+  "themeId": "editorial-crimson",
+  "subtitleSettings": {
+    "enabled": true,
+    "fontSize": 48,
+    "bottomMargin": 320,
+    "highlightColor": "#C8102E",
+    "textColor": "#18181B",
+    "backgroundColor": "rgba(255, 255, 255, 0.95)",
+    "style": "editorial"
+  },
+  "createdAt": "2026-11-02T08:46:45.766Z",
+  "updatedAt": "2026-11-02T08:47:16.469Z",
+  "socialPackage": {
+    "caption": "🔥 OpenAI launches a new AI model! Here's everything you need to know in under 60 seconds. What do you think about this breakthrough? Let us know in the comments! 👇\n\n#TamilTech #TechReels #AI #Innovation #TamilCreators #Remotion #Shorts",
+    "hashtags": [
+      "#TamilTech",
+      "#AIArchitecture",
+      "#InstagramReels",
+      "#YouTubeShorts",
+      "#TechNews",
+      "#TamilCreators"
+    ],
+    "description": "Full video analysis and motion graphics breakdown of OpenAI launches a new AI model. Created with Tamil & English Motion Graphics Reel Studio."
+  },
+  "renderOutput": {
+    "videoPath": "/home/ravichandran/tamil-motion-studio/storage/projects/proj-1793609205766/render.mp4",
+    "videoUrl": "/storage/projects/proj-1793609205766/render.mp4",
+    "thumbnailUrl": "/storage/projects/proj-1793609205766/thumbnail.png",
+    "renderedAt": "2026-11-02T08:47:16.469Z",
+    "fileSize": 877028
+  }
+}

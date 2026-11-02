@@ -1,0 +1,20 @@
+{
+  "id": "proj-1793611476881",
+  "title": "Retrieval-Augmented Generation (RAG) Architecture for LLMs",
+  "topic": "Retrieval-Augmented Generation (RAG) Architecture for LLMs",
+  "targetDuration": 30,
+  "selectedLanguage": "tanglish",
+  "status": "DRAFT_TOPIC",
+  "themeId": "editorial-crimson",
+  "subtitleSettings": {
+    "enabled": true,
+    "fontSize": 48,
+    "bottomMargin": 320,
+    "highlightColor": "#C8102E",
+    "textColor": "#18181B",
+    "backgroundColor": "rgba(255, 255, 255, 0.95)",
+    "style": "editorial"
+  },
+  "createdAt": "2026-11-02T09:24:36.881Z",
+  "updatedAt": "2026-11-02T09:24:36.881Z"
+}
