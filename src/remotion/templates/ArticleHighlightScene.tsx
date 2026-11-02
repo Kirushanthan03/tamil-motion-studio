@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from 'remotion';
 import { SceneDefinition, VideoTheme } from '@/types';
+import { SceneImageOverlay } from '../components/SceneImageOverlay';
 
 interface Props {
   scene: SceneDefinition;
@@ -101,6 +102,16 @@ export const ArticleHighlightScene: React.FC<Props> = ({ scene, theme }) => {
             {highlightedPhrase}
           </span>
         </h2>
+
+        {/* Custom Uploaded Article / Screenshot Attachment */}
+        {visualData.imageUrl && (
+          <SceneImageOverlay
+            imageUrl={visualData.imageUrl}
+            theme={theme}
+            maxHeight={360}
+            caption={visualData.caption}
+          />
+        )}
 
         {scene.supportingText && (
           <p

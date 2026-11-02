@@ -21,6 +21,8 @@ storage/projects/*/*.mp3
 storage/projects/*/*.wav
 storage/projects/*/*.m4a
 storage/projects/*/*.aac
+storage/projects/*/*.png
+storage/projects/*/carousel/
 
 # Logs
 npm-debug.log*

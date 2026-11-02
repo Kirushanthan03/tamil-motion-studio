@@ -14,7 +14,7 @@ export class ScenePlanner {
 
     // We plan 5 to 7 varied scenes depending on the narrative structure (strictly English on-screen)
     const sceneConfigs: Array<{
-      key: keyof typeof sections;
+      key: string;
       fallbackText: string;
       preferredTemplates: SceneTemplateType[];
       category: string;

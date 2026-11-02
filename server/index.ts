@@ -11,7 +11,7 @@ import { llmService } from './modules/script-generation/llmProvider';
 import { validateAudio, normalizeAudio } from './modules/audio-processing/audioValidator';
 import { transcribeAndAlign } from './modules/transcription/speechAlignment';
 import { scenePlanner } from './modules/scene-planning/scenePlanner';
-import { renderProjectVideo, getRenderProgress } from './modules/rendering/remotionRenderer';
+import { renderProjectVideo, getRenderProgress, exportCarouselSlides } from './modules/rendering/remotionRenderer';
 import { Project, ProjectSchema } from '../src/types';
 
 const app = express();
@@ -36,6 +36,26 @@ const upload = multer({
     },
   }),
   limits: { fileSize: 100 * 1024 * 1024 }, // 100MB
+});
+
+// Configure multer storage for scene image uploads (diagrams, mockups, screenshots)
+const imageUpload = multer({
+  storage: multer.diskStorage({
+    destination: (req, file, cb) => {
+      const projectId = req.params.id as string;
+      const assetsDir = path.join(projectStore.getProjectDir(projectId), 'assets');
+      if (!fs.existsSync(assetsDir)) {
+        fs.mkdirSync(assetsDir, { recursive: true });
+      }
+      cb(null, assetsDir);
+    },
+    filename: (req, file, cb) => {
+      const sceneId = (req.params.sceneId as string) || 'scene';
+      const ext = path.extname(file.originalname) || '.png';
+      cb(null, `${sceneId}_${Date.now()}${ext}`);
+    },
+  }),
+  limits: { fileSize: 25 * 1024 * 1024 }, // 25MB
 });
 
 // --- API ROUTES ---
@@ -289,6 +309,66 @@ app.put('/api/projects/:id/scenes', (req, res) => {
   }
 });
 
+// 12b. Upload Scene Frame Image / Diagram / Screenshot
+app.post('/api/projects/:id/scenes/:sceneId/image', imageUpload.single('image'), (req, res) => {
+  try {
+    const projectId = req.params.id as string;
+    const sceneId = req.params.sceneId as string;
+    const project = projectStore.getProject(projectId);
+    if (!project) return res.status(404).json({ error: 'Project not found' });
+    if (!req.file) return res.status(400).json({ error: 'No image uploaded' });
+
+    const imageUrl = `/storage/projects/${projectId}/assets/${req.file.filename}`;
+    if (project.scenes) {
+      project.scenes = project.scenes.map((s) => {
+        if (s.id === sceneId) {
+          return {
+            ...s,
+            visualData: {
+              ...(s.visualData || {}),
+              imageUrl,
+            },
+          };
+        }
+        return s;
+      });
+      projectStore.saveProject(project);
+    }
+
+    res.json({ project, imageUrl });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// 12c. Remove Scene Frame Image
+app.delete('/api/projects/:id/scenes/:sceneId/image', (req, res) => {
+  try {
+    const projectId = req.params.id as string;
+    const sceneId = req.params.sceneId as string;
+    const project = projectStore.getProject(projectId);
+    if (!project) return res.status(404).json({ error: 'Project not found' });
+
+    if (project.scenes) {
+      project.scenes = project.scenes.map((s) => {
+        if (s.id === sceneId && s.visualData) {
+          const { imageUrl, ...restVisualData } = s.visualData;
+          return {
+            ...s,
+            visualData: restVisualData,
+          };
+        }
+        return s;
+      });
+      projectStore.saveProject(project);
+    }
+
+    res.json(project);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // 13. Trigger Remotion Video Render
 app.post('/api/projects/:id/render', async (req, res) => {
   try {
@@ -328,6 +408,22 @@ app.get('/api/projects/:id/render/progress', (req, res) => {
     },
     project,
   });
+});
+
+// 15. Export Carousel Slides for Instagram & LinkedIn
+app.post('/api/projects/:id/export/carousel', async (req, res) => {
+  try {
+    const project = projectStore.getProject(req.params.id as string);
+    if (!project) return res.status(404).json({ error: 'Project not found' });
+    if (!project.scenes || project.scenes.length === 0) {
+      return res.status(400).json({ error: 'Scenes must be planned before exporting carousel' });
+    }
+
+    const slideUrls = await exportCarouselSlides(project);
+    res.json({ slideUrls, count: slideUrls.length });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 app.listen(CONFIG.PORT, CONFIG.HOST, () => {

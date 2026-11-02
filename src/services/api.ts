@@ -154,4 +154,40 @@ export const api = {
     if (!res.ok) throw new Error('Failed to fetch render progress');
     return res.json();
   },
+
+  async uploadSceneImage(projectId: string, sceneId: string, file: File): Promise<{ project: Project; imageUrl: string }> {
+    const formData = new FormData();
+    formData.append('image', file);
+    const res = await fetch(`${API_BASE}/projects/${projectId}/scenes/${sceneId}/image`, {
+      method: 'POST',
+      body: formData,
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'Failed to upload scene image');
+    }
+    return res.json();
+  },
+
+  async removeSceneImage(projectId: string, sceneId: string): Promise<Project> {
+    const res = await fetch(`${API_BASE}/projects/${projectId}/scenes/${sceneId}/image`, {
+      method: 'DELETE',
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'Failed to remove scene image');
+    }
+    return res.json();
+  },
+
+  async exportCarousel(projectId: string): Promise<{ slideUrls: string[]; count: number }> {
+    const res = await fetch(`${API_BASE}/projects/${projectId}/export/carousel`, {
+      method: 'POST',
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'Failed to export carousel slides');
+    }
+    return res.json();
+  },
 };

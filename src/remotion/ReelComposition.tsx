@@ -13,6 +13,7 @@ import { BackgroundTexture } from './components/BackgroundTexture';
 import { EditorialHeader } from './components/EditorialHeader';
 import { SubtitleOverlay } from './components/SubtitleOverlay';
 import { SceneRenderer } from './SceneRenderer';
+import { WHOOSH_SFX_URI, AMBIENT_BED_URI } from './audio/audioAssets';
 
 export interface ReelCompositionProps {
   project?: Project;
@@ -21,6 +22,8 @@ export interface ReelCompositionProps {
   themeId?: string;
   subtitleSettings?: Project['subtitleSettings'];
   showSafeZones?: boolean;
+  enableBgm?: boolean;
+  enableSfx?: boolean;
 }
 
 export const ReelComposition: React.FC<ReelCompositionProps> = ({
@@ -30,6 +33,8 @@ export const ReelComposition: React.FC<ReelCompositionProps> = ({
   themeId: propsThemeId,
   subtitleSettings: propsSubtitleSettings,
   showSafeZones = false,
+  enableBgm = true,
+  enableSfx = true,
 }) => {
   const frame = useCurrentFrame();
   const { width, height, fps, durationInFrames } = useVideoConfig();
@@ -68,8 +73,40 @@ export const ReelComposition: React.FC<ReelCompositionProps> = ({
       {/* Background paper texture & fine dot grid */}
       <BackgroundTexture theme={theme} width={width} height={height} />
 
-      {/* Voiceover Audio */}
+      {/* Voiceover Master Audio */}
       {audioUrl && <Audio src={audioUrl} />}
+
+      {/* Ambient Lo-Fi / Editorial Background Bed with Dynamic Speech Ducking */}
+      {enableBgm && (
+        <Audio
+          src={AMBIENT_BED_URI}
+          loop
+          volume={(f) => {
+            const hasSpeech = project?.transcript?.some((seg) => {
+              const startF = Math.round(seg.start * fps);
+              const endF = Math.round(seg.end * fps);
+              return f >= startF - 6 && f <= endF + 6;
+            });
+            // Duck volume down to 3.5% during speech; swell up to 16% in pauses
+            return hasSpeech ? 0.035 : 0.16;
+          }}
+        />
+      )}
+
+      {/* Editorial Scene Transition Whoosh SFX */}
+      {enableSfx &&
+        scenes.map((scene, idx) => {
+          if (idx === 0) return null;
+          return (
+            <Sequence
+              key={`whoosh-${scene.id || idx}`}
+              from={scene.startFrame}
+              durationInFrames={15}
+            >
+              <Audio src={WHOOSH_SFX_URI} volume={0.25} />
+            </Sequence>
+          );
+        })}
 
       {/* Editorial Top Header */}
       <EditorialHeader

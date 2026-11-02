@@ -107,38 +107,50 @@ export const DeviceMockupScene: React.FC<Props> = ({ scene, theme }) => {
             {appTitle}
           </div>
 
-          {/* User message */}
-          <div
-            style={{
-              alignSelf: 'flex-end',
-              backgroundColor: theme.accent,
-              color: '#FFFFFF',
-              padding: '10px 14px',
-              borderRadius: '14px 14px 2px 14px',
-              fontSize: 16,
-              maxWidth: '85%',
-              lineHeight: 1.3,
-            }}
-          >
-            {chatBubble1}
-          </div>
+          {visualData.imageUrl ? (
+            <div style={{ flex: 1, borderRadius: 16, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <img
+                src={visualData.imageUrl}
+                alt="Device Frame Attachment"
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
+            </div>
+          ) : (
+            <>
+              {/* User message */}
+              <div
+                style={{
+                  alignSelf: 'flex-end',
+                  backgroundColor: theme.accent,
+                  color: '#FFFFFF',
+                  padding: '10px 14px',
+                  borderRadius: '14px 14px 2px 14px',
+                  fontSize: 16,
+                  maxWidth: '85%',
+                  lineHeight: 1.3,
+                }}
+              >
+                {chatBubble1}
+              </div>
 
-          {/* AI Response message */}
-          <div
-            style={{
-              alignSelf: 'flex-start',
-              backgroundColor: '#1E293B',
-              color: '#E2E8F0',
-              padding: '10px 14px',
-              borderRadius: '14px 14px 14px 2px',
-              fontSize: 16,
-              maxWidth: '88%',
-              lineHeight: 1.3,
-              border: '1px solid #334155',
-            }}
-          >
-            {chatBubble2}
-          </div>
+              {/* AI Response message */}
+              <div
+                style={{
+                  alignSelf: 'flex-start',
+                  backgroundColor: '#1E293B',
+                  color: '#E2E8F0',
+                  padding: '10px 14px',
+                  borderRadius: '14px 14px 14px 2px',
+                  fontSize: 16,
+                  maxWidth: '88%',
+                  lineHeight: 1.3,
+                  border: '1px solid #334155',
+                }}
+              >
+                {chatBubble2}
+              </div>
+            </>
+          )}
         </div>
 
         {scene.supportingText && (

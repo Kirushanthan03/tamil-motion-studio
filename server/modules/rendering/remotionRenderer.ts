@@ -4,6 +4,7 @@ import { bundle } from '@remotion/bundler';
 import { renderMedia, renderStill, selectComposition } from '@remotion/renderer';
 import { Project } from '@/types';
 import { projectStore } from '../project-management/projectStore';
+import { CONFIG } from '../../config';
 
 let bundleLocationPromise: Promise<string> | null = null;
 
@@ -77,14 +78,36 @@ export async function renderProjectVideo(project: Project): Promise<{ videoPath:
       audioDataUri = `data:audio/mp3;base64,${buffer.toString('base64')}`;
     }
 
+    // Convert any scene images to base64 data URIs for deterministic headless Chrome rendering
+    const processedScenes = (project.scenes || []).map((scene) => {
+      if (scene.visualData?.imageUrl && scene.visualData.imageUrl.startsWith('/storage/')) {
+        const localRelPath = scene.visualData.imageUrl.replace(/^\/storage\//, '');
+        const absoluteImagePath = path.join(CONFIG.STORAGE_DIR, localRelPath);
+        if (fs.existsSync(absoluteImagePath)) {
+          const imgBuffer = fs.readFileSync(absoluteImagePath);
+          const ext = path.extname(absoluteImagePath).replace('.', '') || 'png';
+          return {
+            ...scene,
+            visualData: {
+              ...scene.visualData,
+              imageUrl: `data:image/${ext};base64,${imgBuffer.toString('base64')}`,
+            },
+          };
+        }
+      }
+      return scene;
+    });
+
     // Prepare composition inputProps
     const inputProps = {
       project,
-      scenes: project.scenes,
+      scenes: processedScenes,
       audioUrl: audioDataUri,
       themeId: project.themeId,
       subtitleSettings: project.subtitleSettings,
       showSafeZones: false,
+      enableBgm: true,
+      enableSfx: true,
     };
 
     const composition = await selectComposition({
@@ -168,4 +191,69 @@ function generateSocialPackage(project: Project) {
     hashtags: ['#TamilTech', '#AIArchitecture', '#InstagramReels', '#YouTubeShorts', '#TechNews', '#TamilCreators'],
     description: `Full video analysis and motion graphics breakdown of ${topic}. Created with Tamil & English Motion Graphics Reel Studio.`,
   };
+}
+
+export async function exportCarouselSlides(project: Project): Promise<string[]> {
+  const serveUrl = await getOrBuildBundle();
+  const projectDir = projectStore.getProjectDir(project.id);
+  const carouselDir = path.join(projectDir, 'carousel');
+  if (!fs.existsSync(carouselDir)) {
+    fs.mkdirSync(carouselDir, { recursive: true });
+  }
+
+  const processedScenes = (project.scenes || []).map((scene) => {
+    if (scene.visualData?.imageUrl && scene.visualData.imageUrl.startsWith('/storage/')) {
+      const localRelPath = scene.visualData.imageUrl.replace(/^\/storage\//, '');
+      const absoluteImagePath = path.join(CONFIG.STORAGE_DIR, localRelPath);
+      if (fs.existsSync(absoluteImagePath)) {
+        const imgBuffer = fs.readFileSync(absoluteImagePath);
+        const ext = path.extname(absoluteImagePath).replace('.', '') || 'png';
+        return {
+          ...scene,
+          visualData: {
+            ...scene.visualData,
+            imageUrl: `data:image/${ext};base64,${imgBuffer.toString('base64')}`,
+          },
+        };
+      }
+    }
+    return scene;
+  });
+
+  const totalFrames = Math.max(90, Math.round((project.audio?.duration || 30) * 30));
+  const inputProps = {
+    project,
+    scenes: processedScenes,
+    themeId: project.themeId,
+    subtitleSettings: project.subtitleSettings,
+    showSafeZones: false,
+  };
+
+  const composition = await selectComposition({
+    serveUrl,
+    id: 'TamilReel',
+    inputProps,
+  });
+
+  const slideUrls: string[] = [];
+  for (let i = 0; i < processedScenes.length; i++) {
+    const s = processedScenes[i];
+    const frame = Math.round(s.startFrame + Math.min(30, s.durationInFrames / 2));
+    const filename = `slide_${String(i + 1).padStart(2, '0')}.png`;
+    const slidePath = path.join(carouselDir, filename);
+
+    await renderStill({
+      composition: {
+        ...composition,
+        durationInFrames: totalFrames,
+      },
+      serveUrl,
+      output: slidePath,
+      frame,
+      inputProps,
+    });
+    slideUrls.push(`/storage/projects/${project.id}/carousel/${filename}`);
+  }
+
+  return slideUrls;
 }

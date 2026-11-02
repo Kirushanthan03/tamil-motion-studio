@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCurrentFrame, useVideoConfig, spring, interpolate } from 'remotion';
 import { SceneDefinition, VideoTheme } from '@/types';
+import { SceneImageOverlay } from '../components/SceneImageOverlay';
 
 interface Props {
   scene: SceneDefinition;
@@ -142,6 +143,16 @@ export const HeadlineScene: React.FC<Props> = ({ scene, theme }) => {
           >
             {scene.supportingText}
           </p>
+        )}
+
+        {/* Custom Uploaded Image / Diagram Overlay */}
+        {visualData.imageUrl && (
+          <SceneImageOverlay
+            imageUrl={visualData.imageUrl}
+            theme={theme}
+            maxHeight={380}
+            caption={visualData.caption}
+          />
         )}
 
         {/* Bottom Editorial Footnote */}

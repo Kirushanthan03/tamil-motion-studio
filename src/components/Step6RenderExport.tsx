@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Project } from '@/types';
-import { Download, Sparkles, CheckCircle2, Copy, Check, FileVideo, Image as ImageIcon, Share2, AlertCircle } from 'lucide-react';
+import { api } from '@/services/api';
+import { Download, Sparkles, CheckCircle2, Copy, Check, FileVideo, Image as ImageIcon, Share2, AlertCircle, Layers, RefreshCw, ExternalLink } from 'lucide-react';
 
 interface Props {
   project: Project;
@@ -14,6 +15,8 @@ export const Step6RenderExport: React.FC<Props> = ({
   onTriggerRender,
 }) => {
   const [copiedCaption, setCopiedCaption] = useState(false);
+  const [carouselSlides, setCarouselSlides] = useState<string[]>([]);
+  const [isExportingCarousel, setIsExportingCarousel] = useState(false);
 
   const isRendering = project.status === 'RENDERING' || renderProgress?.status === 'RENDERING' || renderProgress?.status === 'BUNDLING';
   const isCompleted = project.status === 'COMPLETED' || renderProgress?.status === 'COMPLETED';
@@ -31,19 +34,31 @@ export const Step6RenderExport: React.FC<Props> = ({
     }
   };
 
+  const handleExportCarousel = async () => {
+    try {
+      setIsExportingCarousel(true);
+      const res = await api.exportCarousel(project.id);
+      setCarouselSlides(res.slideUrls);
+    } catch (err: any) {
+      alert(`Carousel export error: ${err.message}`);
+    } finally {
+      setIsExportingCarousel(false);
+    }
+  };
+
   return (
     <div className="max-w-5xl mx-auto space-y-8">
       {/* Editorial Header */}
       <div className="bg-paper-pure rounded-2xl border border-paper-border p-8 shadow-editorial">
         <div className="pb-6 border-b border-paper-border">
           <span className="text-xs font-bold tracking-widest text-crimson-accent uppercase bg-crimson-50 px-3 py-1 rounded">
-            STEP 06 // PRODUCTION EXPORT
+            STEP 06 // MULTI-PLATFORM PRODUCTION EXPORT
           </span>
           <h1 className="text-3xl font-serif font-bold text-charcoal mt-2">
-            Final Render & Social Media Package
+            Final Render & Multi-Platform Package
           </h1>
           <p className="text-charcoal-muted text-sm mt-1">
-            Export ready-to-post 1080x1920 MP4 for Instagram Reels, YouTube Shorts, and TikTok with synchronized captions and metadata.
+            Export ready-to-post 1080x1920 MP4 for Instagram Reels, YouTube Shorts, and TikTok with synchronized captions, plus carousel slides for LinkedIn.
           </p>
         </div>
 
@@ -73,7 +88,7 @@ export const Step6RenderExport: React.FC<Props> = ({
         {/* Render Completed State */}
         {isCompleted && (
           <div className="mt-8 space-y-8">
-            <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 flex items-center justify-between">
+            <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center">
                   <CheckCircle2 className="w-6 h-6" />
@@ -83,7 +98,7 @@ export const Step6RenderExport: React.FC<Props> = ({
                     Production Render Completed!
                   </h3>
                   <span className="text-xs text-emerald-800">
-                    Resolution: 1080x1920 (9:16) • FPS: 30 • Codec: H.264 / AAC
+                    Resolution: 1080x1920 (9:16) • FPS: 30 • Codec: H.264 / AAC • English Visuals
                   </span>
                 </div>
               </div>
@@ -171,6 +186,78 @@ export const Step6RenderExport: React.FC<Props> = ({
                   </div>
                 )}
               </div>
+            </div>
+
+            {/* Multi-Platform Carousel Exporter Suite */}
+            <div className="bg-paper rounded-2xl border border-paper-border p-6 space-y-6">
+              <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-paper-border">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-charcoal text-white flex items-center justify-center font-bold">
+                    <Layers className="w-5 h-5 text-crimson-accent" />
+                  </div>
+                  <div>
+                    <h3 className="font-serif font-bold text-lg text-charcoal">
+                      Multi-Platform Carousel Pack (LinkedIn & Instagram)
+                    </h3>
+                    <p className="text-xs text-charcoal-muted">
+                      Convert each editorial scene into high-resolution PNG slides ready for document and multi-image posts.
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={handleExportCarousel}
+                  disabled={isExportingCarousel}
+                  className="bg-charcoal hover:bg-black text-white px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 shadow-sm transition-all"
+                >
+                  <RefreshCw className={`w-3.5 h-3.5 ${isExportingCarousel ? 'animate-spin' : ''}`} />
+                  <span>{carouselSlides.length > 0 ? 'Re-export Carousel Slides' : 'Export Carousel Slides'}</span>
+                </button>
+              </div>
+
+              {/* Rendered Slide Previews */}
+              {carouselSlides.length > 0 ? (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between text-xs text-charcoal-muted">
+                    <span>Generated {carouselSlides.length} Editorial Slides</span>
+                    <span>Click any slide to open or download</span>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                    {carouselSlides.map((slideUrl, idx) => (
+                      <div
+                        key={idx}
+                        className="group relative rounded-xl overflow-hidden border border-paper-border bg-black aspect-[9/16] shadow-sm hover:shadow-md transition-all"
+                      >
+                        <img
+                          src={slideUrl}
+                          alt={`Slide ${idx + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 p-2">
+                          <span className="text-white text-xs font-bold font-mono">
+                            Slide {idx + 1}
+                          </span>
+                          <a
+                            href={slideUrl}
+                            download={`slide_${idx + 1}.png`}
+                            className="bg-crimson-accent hover:bg-crimson-deep text-white px-3 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1 shadow"
+                          >
+                            <Download className="w-3 h-3" />
+                            <span>Save</span>
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center py-6 bg-paper-pure rounded-xl border border-dashed border-paper-border space-y-2">
+                  <p className="text-xs text-charcoal-muted">
+                    Click "Export Carousel Slides" to render all scenes into standalone slide graphics for LinkedIn PDF carousels or Instagram swipe posts.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         )}

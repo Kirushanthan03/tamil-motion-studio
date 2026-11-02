@@ -344,6 +344,12 @@ export const App: React.FC = () => {
               project={currentProject}
               onPlanScenes={handlePlanScenes}
               onUpdateScenes={handleUpdateScenes}
+              onProjectRefresh={async () => {
+                if (currentProject) {
+                  const updated = await api.getProject(currentProject.id);
+                  setCurrentProject(updated);
+                }
+              }}
               onNext={() => setActiveStep(4)}
               isLoading={isLoading}
             />
