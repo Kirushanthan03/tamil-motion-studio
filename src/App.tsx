@@ -226,6 +226,37 @@ export const App: React.FC = () => {
     }
   };
 
+  const handleGenerateTTS = async (voice?: string, speed?: string) => {
+    if (!currentProject) return;
+    try {
+      setIsLoading(true);
+      setError(null);
+      const updated = await api.generateTTS(currentProject.id, { voice, speed });
+      setCurrentProject(updated);
+      setActiveStep(3); // Advance to Step 4 (Scene Planner)
+    } catch (err: any) {
+      console.error('TTS error:', err);
+      setError(err.message || 'Automated TTS audio generation failed');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleTrimAudio = async (start: number, end: number) => {
+    if (!currentProject) return;
+    try {
+      setIsLoading(true);
+      setError(null);
+      const updated = await api.trimAudio(currentProject.id, start, end);
+      setCurrentProject(updated);
+    } catch (err: any) {
+      console.error('Audio trim error:', err);
+      setError(err.message || 'Audio trimming failed');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleUpdateTranscript = async (transcript: TranscriptSegment[]) => {
     if (!currentProject) return;
     try {
@@ -354,6 +385,8 @@ export const App: React.FC = () => {
             <Step3Voiceover
               project={currentProject}
               onUploadAudio={handleUploadAudio}
+              onGenerateTTS={handleGenerateTTS}
+              onTrimAudio={handleTrimAudio}
               onRunAlignment={handleRunAlignment}
               onUpdateTranscript={handleUpdateTranscript}
               onNext={handlePlanScenes}

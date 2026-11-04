@@ -9,6 +9,7 @@ import { extractFromUrl } from './modules/research/urlExtractor';
 import { searchTopic } from './modules/research/webSearch';
 import { llmService } from './modules/script-generation/llmProvider';
 import { validateAudio, normalizeAudio } from './modules/audio-processing/audioValidator';
+import { generateTTS, trimAudioFile, SUPPORTED_TTS_VOICES } from './modules/audio-processing/ttsAndTrimEngine';
 import { transcribeAndAlign } from './modules/transcription/speechAlignment';
 import { scenePlanner } from './modules/scene-planning/scenePlanner';
 import { renderProjectVideo, getRenderProgress, exportCarouselSlides } from './modules/rendering/remotionRenderer';
@@ -229,6 +230,131 @@ app.post('/api/projects/:id/audio/upload', upload.single('audio'), async (req, r
 
     res.json(project);
   } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// 8b. Get Supported TTS Voices
+app.get('/api/tts/voices', (_req, res) => {
+  res.json(SUPPORTED_TTS_VOICES);
+});
+
+// 8c. Automated Neural TTS Generation (Testing & Quick Preview)
+app.post('/api/projects/:id/audio/tts', async (req, res) => {
+  try {
+    const projectId = req.params.id as string;
+    const project = projectStore.getProject(projectId);
+    if (!project) return res.status(404).json({ error: 'Project not found' });
+
+    const { voice, speed, customText } = req.body;
+    const defaultVoice =
+      project.selectedLanguage === 'tamil'
+        ? 'ta-IN-ValluvarNeural'
+        : project.selectedLanguage === 'tanglish'
+        ? 'en-IN-PrabhatNeural'
+        : 'en-US-ChristopherNeural';
+
+    const selectedVoice = voice || defaultVoice;
+    const projectDir = projectStore.getProjectDir(projectId);
+
+    // Text to synthesize
+    const approved = project.scripts?.approvedScript;
+    const textToSpeak =
+      customText ||
+      approved?.text ||
+      project.scripts?.[project.selectedLanguage]?.fullText ||
+      project.topic;
+
+    const rawTtsPath = path.join(projectDir, `tts_raw_${Date.now()}.mp3`);
+    const normalizedPath = path.join(projectDir, `tts_voiceover_${Date.now()}.mp3`);
+
+    // Generate with edge-tts
+    await generateTTS(textToSpeak, rawTtsPath, { voice: selectedVoice, rate: speed });
+
+    // Normalize audio (EBU R128)
+    await normalizeAudio(rawTtsPath, normalizedPath);
+    if (fs.existsSync(rawTtsPath)) {
+      try {
+        fs.unlinkSync(rawTtsPath);
+      } catch {}
+    }
+
+    const audioMeta = await validateAudio(normalizedPath);
+    project.audio = audioMeta;
+
+    // Immediately transcribe & align timestamps
+    const englishText = project.scripts?.english?.fullText;
+    const textToAlign = englishText || textToSpeak;
+    const transcript = await transcribeAndAlign(
+      normalizedPath,
+      textToAlign,
+      'english',
+      audioMeta.duration
+    );
+
+    project.transcript = transcript;
+    project.status = 'AUDIO_ALIGNED';
+
+    // Auto-plan scenes
+    const scenes = scenePlanner.planScenes(project);
+    project.scenes = scenes;
+    project.status = 'PREVIEW_READY';
+
+    projectStore.saveProject(project);
+    res.json(project);
+  } catch (err: any) {
+    console.error('TTS generation error:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// 8d. Audio Trimming Engine
+app.post('/api/projects/:id/audio/trim', async (req, res) => {
+  try {
+    const projectId = req.params.id as string;
+    const project = projectStore.getProject(projectId);
+    if (!project) return res.status(404).json({ error: 'Project not found' });
+    if (!project.audio) return res.status(400).json({ error: 'No audio to trim' });
+
+    const { start = 0, end } = req.body;
+    const startSec = Math.max(0, Number(start) || 0);
+    const endSec = Math.min(project.audio.duration, Number(end) || project.audio.duration);
+
+    if (endSec <= startSec) {
+      return res.status(400).json({ error: 'End time must be greater than start time' });
+    }
+
+    const projectDir = projectStore.getProjectDir(projectId);
+    const trimmedPath = path.join(projectDir, `trimmed_${Date.now()}.mp3`);
+
+    await trimAudioFile(project.audio.path, trimmedPath, startSec, endSec);
+
+    const audioMeta = await validateAudio(trimmedPath);
+    project.audio = audioMeta;
+
+    // Re-align speech to new audio duration
+    const englishText = project.scripts?.english?.fullText;
+    const textToAlign =
+      englishText ||
+      project.scripts?.approvedScript?.text ||
+      project.scripts?.[project.selectedLanguage]?.fullText ||
+      project.topic;
+
+    const transcript = await transcribeAndAlign(
+      trimmedPath,
+      textToAlign,
+      'english',
+      audioMeta.duration
+    );
+
+    project.transcript = transcript;
+    project.scenes = scenePlanner.planScenes(project);
+    project.status = 'PREVIEW_READY';
+
+    projectStore.saveProject(project);
+    res.json(project);
+  } catch (err: any) {
+    console.error('Audio trim error:', err);
     res.status(500).json({ error: err.message });
   }
 });

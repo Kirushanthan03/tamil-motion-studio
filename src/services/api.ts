@@ -92,6 +92,38 @@ export const api = {
     return res.json();
   },
 
+  async getTTSVoices(): Promise<any[]> {
+    const res = await fetch(`${API_BASE}/tts/voices`);
+    if (!res.ok) return [];
+    return res.json();
+  },
+
+  async generateTTS(id: string, options?: { voice?: string; speed?: string; customText?: string }): Promise<Project> {
+    const res = await fetch(`${API_BASE}/projects/${id}/audio/tts`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(options || {}),
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'TTS audio generation failed');
+    }
+    return res.json();
+  },
+
+  async trimAudio(id: string, start: number, end: number): Promise<Project> {
+    const res = await fetch(`${API_BASE}/projects/${id}/audio/trim`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ start, end }),
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.error || 'Audio trim failed');
+    }
+    return res.json();
+  },
+
   async alignAudio(id: string): Promise<Project> {
     const res = await fetch(`${API_BASE}/projects/${id}/audio/align`, {
       method: 'POST',
