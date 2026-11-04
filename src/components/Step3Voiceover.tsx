@@ -30,10 +30,16 @@ export const Step3Voiceover: React.FC<Props> = ({
   const audio = project.audio;
   const transcript = project.transcript;
 
+  const scriptVariant = project.scripts?.[project.selectedLanguage];
+  const approved = project.scripts?.approvedScript;
   const scriptText =
-    project.scripts?.approvedScript?.text ||
-    project.scripts?.[project.selectedLanguage]?.fullText ||
+    approved?.text ||
+    scriptVariant?.fullText ||
     project.topic;
+
+  const sections = approved?.sections || scriptVariant?.sections;
+  const targetDuration = project.targetDuration || scriptVariant?.estimatedDuration || 60;
+  const estimatedDuration = scriptVariant?.estimatedDuration || targetDuration;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -133,6 +139,9 @@ export const Step3Voiceover: React.FC<Props> = ({
           <div className="mt-6">
             <StudioTeleprompterRecorder
               scriptText={scriptText}
+              sections={sections}
+              targetDuration={targetDuration}
+              estimatedDuration={estimatedDuration}
               onRecordingComplete={handleTeleprompterComplete}
               isLoading={isLoading}
             />
