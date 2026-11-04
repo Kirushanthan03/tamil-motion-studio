@@ -26,7 +26,9 @@ export class ProjectStore {
   }
 
   saveProject(project: Project): Project {
-    project.updatedAt = new Date().toISOString();
+    const now = new Date().toISOString();
+    project.updatedAt = now;
+    if (!project.createdAt) project.createdAt = now;
     const filePath = this.getProjectPath(project.id);
     fs.writeFileSync(filePath, JSON.stringify(project, null, 2), 'utf-8');
     return project;
@@ -39,6 +41,9 @@ export class ProjectStore {
     }
     try {
       const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+      const now = new Date().toISOString();
+      if (!data.createdAt) data.createdAt = now;
+      if (!data.updatedAt) data.updatedAt = now;
       return ProjectSchema.parse(data);
     } catch (err) {
       console.error(`Error loading project ${projectId}:`, err);
