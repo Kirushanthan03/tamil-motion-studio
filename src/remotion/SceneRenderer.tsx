@@ -64,7 +64,7 @@ export const SceneRenderer: React.FC<Props> = ({ scene, theme }) => {
         <div
           style={{
             position: 'absolute',
-            top: isLandscape ? 30 : 200,
+            top: isLandscape ? 30 : 190,
             left: 0,
             right: 0,
             display: 'flex',

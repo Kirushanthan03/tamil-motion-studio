@@ -54,29 +54,29 @@ export const EntitySpotlight: React.FC<Props> = ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: 18,
-          padding: compact ? '8px 16px' : '14px 24px',
-          backgroundColor: theme.cardBg || 'rgba(15, 23, 42, 0.9)',
-          border: `2px solid ${theme.cardBorder || 'rgba(255, 255, 255, 0.15)'}`,
-          borderRadius: 20,
-          boxShadow: `0 12px 35px -8px ${theme.accent}30, 0 4px 12px rgba(0,0,0,0.25)`,
+          gap: compact ? 16 : 24,
+          padding: compact ? '10px 22px' : '18px 36px',
+          backgroundColor: theme.cardBg || 'rgba(15, 23, 42, 0.94)',
+          border: `${compact ? 2 : 3}px solid ${theme.cardBorder || 'rgba(255, 255, 255, 0.2)'}`,
+          borderRadius: compact ? 20 : 32,
+          boxShadow: `0 16px 40px -10px ${theme.accent}40, 0 8px 20px rgba(0,0,0,0.3)`,
           transform: `translateY(${translateY + floatY}px) scale(${scale})`,
           opacity,
-          maxWidth: '90%',
+          maxWidth: '92%',
           margin: position === 'inline' ? '0 auto 20px auto' : '0',
-          backdropFilter: 'blur(10px)',
+          backdropFilter: 'blur(12px)',
           zIndex: 15,
         }}
       >
         {/* Glowing Circular Avatar */}
         <div
           style={{
-            width: compact ? 60 : 76,
-            height: compact ? 60 : 76,
+            width: compact ? 70 : 124,
+            height: compact ? 70 : 124,
             borderRadius: '50%',
             overflow: 'hidden',
-            border: `3px solid ${theme.accent}`,
-            boxShadow: `0 0 20px ${theme.accent}60`,
+            border: `${compact ? 3 : 4}px solid ${theme.accent}`,
+            boxShadow: `0 0 28px ${theme.accent}70`,
             flexShrink: 0,
             backgroundColor: '#0F172A',
             display: 'flex',
@@ -101,13 +101,13 @@ export const EntitySpotlight: React.FC<Props> = ({
           {entity.badge && (
             <span
               style={{
-                fontSize: 11,
+                fontSize: compact ? 11 : 14,
                 fontFamily: theme.sansFont,
                 fontWeight: 800,
-                letterSpacing: 2,
+                letterSpacing: 2.5,
                 color: theme.accent,
                 textTransform: 'uppercase',
-                marginBottom: 2,
+                marginBottom: 4,
               }}
             >
               {entity.badge}
@@ -116,11 +116,11 @@ export const EntitySpotlight: React.FC<Props> = ({
 
           <span
             style={{
-              fontSize: compact ? 18 : 22,
+              fontSize: compact ? 20 : 32,
               fontFamily: theme.serifFont,
               fontWeight: 800,
               color: theme.textPrimary,
-              lineHeight: 1.2,
+              lineHeight: 1.15,
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
@@ -132,11 +132,12 @@ export const EntitySpotlight: React.FC<Props> = ({
           {entity.roleOrSubtitle && (
             <span
               style={{
-                fontSize: compact ? 12 : 14,
+                fontSize: compact ? 13 : 20,
                 fontFamily: theme.sansFont,
                 color: theme.textSecondary,
-                marginTop: 2,
+                marginTop: 4,
                 lineHeight: 1.3,
+                fontWeight: 500,
               }}
             >
               {entity.roleOrSubtitle}
@@ -155,16 +156,16 @@ export const EntitySpotlight: React.FC<Props> = ({
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 16,
-        padding: compact ? '8px 18px' : '12px 24px',
-        backgroundColor: theme.cardBg || 'rgba(15, 23, 42, 0.9)',
-        border: `2px solid ${theme.cardBorder || 'rgba(255, 255, 255, 0.15)'}`,
-        borderRadius: 18,
-        boxShadow: `0 12px 30px -8px ${theme.accent}25, 0 4px 10px rgba(0,0,0,0.2)`,
+        gap: compact ? 16 : 24,
+        padding: compact ? '10px 22px' : '18px 36px',
+        backgroundColor: theme.cardBg || 'rgba(15, 23, 42, 0.94)',
+        border: `${compact ? 2 : 3}px solid ${theme.cardBorder || 'rgba(255, 255, 255, 0.2)'}`,
+        borderRadius: compact ? 18 : 28,
+        boxShadow: `0 16px 40px -10px ${theme.accent}35, 0 6px 18px rgba(0,0,0,0.25)`,
         transform: `translateY(${translateY + floatY}px) scale(${scale})`,
         opacity,
         margin: position === 'inline' ? '0 auto 20px auto' : '0',
-        backdropFilter: 'blur(10px)',
+        backdropFilter: 'blur(12px)',
         zIndex: 15,
       }}
     >
@@ -172,12 +173,12 @@ export const EntitySpotlight: React.FC<Props> = ({
       {brandImg && (
         <div
           style={{
-            width: compact ? 42 : 52,
-            height: compact ? 42 : 52,
-            borderRadius: 12,
-            padding: 6,
-            backgroundColor: 'rgba(255, 255, 255, 0.95)',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+            width: compact ? 56 : 96,
+            height: compact ? 56 : 96,
+            borderRadius: compact ? 14 : 20,
+            padding: compact ? 8 : 14,
+            backgroundColor: 'rgba(255, 255, 255, 0.98)',
+            boxShadow: '0 6px 18px rgba(0,0,0,0.18)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -201,12 +202,13 @@ export const EntitySpotlight: React.FC<Props> = ({
         {entity.badge && (
           <span
             style={{
-              fontSize: 10,
+              fontSize: compact ? 11 : 14,
               fontFamily: theme.sansFont,
               fontWeight: 800,
-              letterSpacing: 2,
+              letterSpacing: 2.5,
               color: theme.accent,
               textTransform: 'uppercase',
+              marginBottom: 4,
             }}
           >
             {entity.badge}
@@ -215,11 +217,11 @@ export const EntitySpotlight: React.FC<Props> = ({
 
         <span
           style={{
-            fontSize: compact ? 17 : 20,
+            fontSize: compact ? 20 : 34,
             fontFamily: theme.serifFont,
             fontWeight: 800,
             color: theme.textPrimary,
-            lineHeight: 1.2,
+            lineHeight: 1.15,
           }}
         >
           {entity.name}
@@ -228,10 +230,11 @@ export const EntitySpotlight: React.FC<Props> = ({
         {entity.roleOrSubtitle && (
           <span
             style={{
-              fontSize: 12,
+              fontSize: compact ? 13 : 20,
               fontFamily: theme.sansFont,
               color: theme.textSecondary,
-              marginTop: 2,
+              marginTop: 4,
+              fontWeight: 500,
             }}
           >
             {entity.roleOrSubtitle}
