@@ -12,6 +12,7 @@ export const api = {
   async createProject(data: {
     topic?: string;
     url?: string;
+    aspectRatio?: '9:16' | '16:9';
     targetDuration?: number;
     selectedLanguage?: 'tamil' | 'tanglish' | 'english';
   }): Promise<Project> {

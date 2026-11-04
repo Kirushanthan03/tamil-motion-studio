@@ -73,7 +73,7 @@ app.get('/api/projects', (req, res) => {
 // 2. Create Project
 app.post('/api/projects', (req, res) => {
   try {
-    const { topic, url, targetDuration = 60, selectedLanguage = 'tanglish' } = req.body;
+    const { topic, url, targetDuration = 60, selectedLanguage = 'tanglish', aspectRatio = '9:16' } = req.body;
     if (!topic && !url) {
       return res.status(400).json({ error: 'Either topic or url is required' });
     }
@@ -84,6 +84,7 @@ app.post('/api/projects', (req, res) => {
       title: topic || (url ? `Web: ${new URL(url).hostname}` : 'New Video Project'),
       topic: topic || url,
       url,
+      aspectRatio: aspectRatio || '9:16',
       targetDuration,
       selectedLanguage,
       status: 'DRAFT_TOPIC',

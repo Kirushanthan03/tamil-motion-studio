@@ -60,21 +60,74 @@ export const Step1Research: React.FC<Props> = ({
               Input a headline, trending subject, or article URL. Our engine retrieves official sources and builds fact-checked briefs for scriptwriting.
             </p>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-charcoal-muted">Target Duration:</span>
-            {[30, 45, 60, 90, 120].map((sec) => (
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            {/* Format / Aspect Ratio Selector */}
+            <div className="flex items-center gap-1.5 bg-paper p-1 rounded-xl border border-paper-border">
               <button
-                key={sec}
-                onClick={() => onUpdateProject({ ...project, targetDuration: sec })}
+                type="button"
+                onClick={() => onUpdateProject({
+                  ...project,
+                  aspectRatio: '9:16',
+                  targetDuration: project.targetDuration > 120 ? 60 : project.targetDuration
+                })}
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                  project.targetDuration === sec
+                  (project.aspectRatio || '9:16') === '9:16'
                     ? 'bg-crimson-accent text-white shadow-sm'
-                    : 'bg-paper-subtle text-charcoal hover:bg-paper-border'
+                    : 'text-charcoal-muted hover:text-charcoal'
                 }`}
               >
-                {sec}s
+                📱 9:16 Vertical Reel
               </button>
-            ))}
+              <button
+                type="button"
+                onClick={() => onUpdateProject({
+                  ...project,
+                  aspectRatio: '16:9',
+                  targetDuration: project.targetDuration <= 120 ? 300 : project.targetDuration
+                })}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  project.aspectRatio === '16:9'
+                    ? 'bg-crimson-accent text-white shadow-sm'
+                    : 'text-charcoal-muted hover:text-charcoal'
+                }`}
+              >
+                🖥️ 16:9 Landscape (up to 15m)
+              </button>
+            </div>
+
+            {/* Target Duration Selector */}
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs font-semibold text-charcoal-muted">Target Duration:</span>
+              {((project.aspectRatio === '16:9')
+                ? [
+                    { sec: 180, label: '3m' },
+                    { sec: 300, label: '5m' },
+                    { sec: 480, label: '8m' },
+                    { sec: 600, label: '10m' },
+                    { sec: 900, label: '15m' },
+                  ]
+                : [
+                    { sec: 30, label: '30s' },
+                    { sec: 45, label: '45s' },
+                    { sec: 60, label: '60s' },
+                    { sec: 90, label: '90s' },
+                    { sec: 120, label: '120s' },
+                  ]
+              ).map(({ sec, label }) => (
+                <button
+                  key={sec}
+                  type="button"
+                  onClick={() => onUpdateProject({ ...project, targetDuration: sec })}
+                  className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    project.targetDuration === sec
+                      ? 'bg-charcoal text-white shadow-sm'
+                      : 'bg-paper-subtle text-charcoal hover:bg-paper-border'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

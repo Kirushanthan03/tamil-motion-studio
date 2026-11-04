@@ -162,6 +162,8 @@ export const VideoThemeSchema = z.object({
 });
 export type VideoTheme = z.infer<typeof VideoThemeSchema>;
 
+export type AspectRatioType = '9:16' | '16:9';
+
 export const SubtitleSettingsSchema = z.object({
   enabled: z.boolean(),
   fontSize: z.number(),
@@ -178,6 +180,7 @@ export const ProjectSchema = z.object({
   title: z.string(),
   topic: z.string(),
   url: z.string().optional(),
+  aspectRatio: z.enum(['9:16', '16:9']).default('9:16'),
   targetDuration: z.number().default(60),
   selectedLanguage: z.enum(['tamil', 'tanglish', 'english']).default('tanglish'),
   status: z.enum([
@@ -220,6 +223,10 @@ export const ProjectSchema = z.object({
     caption: z.string(),
     hashtags: z.array(z.string()),
     description: z.string(),
+    chapters: z.array(z.object({
+      time: z.string(),
+      title: z.string(),
+    })).optional(),
   }).optional(),
   error: z.string().optional(),
   createdAt: z.string(),

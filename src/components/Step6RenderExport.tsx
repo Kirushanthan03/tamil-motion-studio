@@ -15,9 +15,11 @@ export const Step6RenderExport: React.FC<Props> = ({
   onTriggerRender,
 }) => {
   const [copiedCaption, setCopiedCaption] = useState(false);
+  const [copiedChapters, setCopiedChapters] = useState(false);
   const [carouselSlides, setCarouselSlides] = useState<string[]>([]);
   const [isExportingCarousel, setIsExportingCarousel] = useState(false);
 
+  const isLandscape = project.aspectRatio === '16:9';
   const isRendering = project.status === 'RENDERING' || renderProgress?.status === 'RENDERING' || renderProgress?.status === 'BUNDLING';
   const isCompleted = project.status === 'COMPLETED' || renderProgress?.status === 'COMPLETED';
   const progressPercent = Math.round((renderProgress?.progress || 0) * 100);
@@ -31,6 +33,15 @@ export const Step6RenderExport: React.FC<Props> = ({
       navigator.clipboard.writeText(social.caption);
       setCopiedCaption(true);
       setTimeout(() => setCopiedCaption(false), 2000);
+    }
+  };
+
+  const handleCopyChapters = () => {
+    if (social?.chapters) {
+      const text = social.chapters.map(c => `${c.time} - ${c.title}`).join('\n');
+      navigator.clipboard.writeText(text);
+      setCopiedChapters(true);
+      setTimeout(() => setCopiedChapters(false), 2000);
     }
   };
 
@@ -98,7 +109,7 @@ export const Step6RenderExport: React.FC<Props> = ({
                     Production Render Completed!
                   </h3>
                   <span className="text-xs text-emerald-800">
-                    Resolution: 1080x1920 (9:16) • FPS: 30 • Codec: H.264 / AAC • English Visuals
+                    Resolution: {isLandscape ? '1920x1080 (16:9 Landscape) • YouTube Masterclass' : '1080x1920 (9:16 Vertical) • Shorts & Reels'} • FPS: 30 • Codec: H.264 / AAC • English Visuals
                   </span>
                 </div>
               </div>
@@ -106,7 +117,7 @@ export const Step6RenderExport: React.FC<Props> = ({
               {videoUrl && (
                 <a
                   href={videoUrl}
-                  download="reel.mp4"
+                  download={isLandscape ? 'youtube_deepdive.mp4' : 'reel.mp4'}
                   className="bg-crimson-accent hover:bg-crimson-deep text-white px-6 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 shadow-crimson-glow transition-all"
                 >
                   <Download className="w-4 h-4" />
@@ -116,15 +127,17 @@ export const Step6RenderExport: React.FC<Props> = ({
             </div>
 
             {/* Video Preview & Cover Still */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            <div className={`grid grid-cols-1 ${isLandscape ? 'lg:grid-cols-12' : 'md:grid-cols-2'} gap-8 items-start`}>
               {/* MP4 Player */}
-              <div className="bg-paper rounded-2xl border border-paper-border p-4 space-y-3">
+              <div className={`${isLandscape ? 'lg:col-span-7' : ''} bg-paper rounded-2xl border border-paper-border p-4 space-y-3`}>
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-charcoal">
                   <FileVideo className="w-4 h-4 text-crimson-accent" />
-                  <span>Rendered Video Player</span>
+                  <span>Rendered Video Player ({isLandscape ? '16:9 Landscape' : '9:16 Vertical'})</span>
                 </div>
                 {videoUrl && (
-                  <div className="rounded-xl overflow-hidden shadow-lg border border-paper-border bg-black aspect-[9/16] max-h-[500px] flex items-center justify-center mx-auto">
+                  <div className={`rounded-xl overflow-hidden shadow-lg border border-paper-border bg-black flex items-center justify-center mx-auto ${
+                    isLandscape ? 'w-full aspect-video' : 'aspect-[9/16] max-h-[500px]'
+                  }`}>
                     <video
                       src={videoUrl}
                       controls
@@ -135,7 +148,7 @@ export const Step6RenderExport: React.FC<Props> = ({
               </div>
 
               {/* Cover Thumbnail & Social Media Box */}
-              <div className="space-y-6">
+              <div className={`${isLandscape ? 'lg:col-span-5' : ''} space-y-6`}>
                 {thumbnailUrl && (
                   <div className="bg-paper rounded-2xl border border-paper-border p-4 space-y-3">
                     <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-charcoal">
@@ -181,6 +194,34 @@ export const Step6RenderExport: React.FC<Props> = ({
                         >
                           {tag}
                         </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* YouTube Video Chapters Box for 16:9 */}
+                {social?.chapters && social.chapters.length > 0 && (
+                  <div className="bg-paper rounded-2xl border border-paper-border p-6 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-charcoal">
+                        <Layers className="w-4 h-4 text-crimson-accent" />
+                        <span>YouTube Video Chapters</span>
+                      </div>
+                      <button
+                        onClick={handleCopyChapters}
+                        className="text-xs bg-paper-pure hover:bg-paper-border border border-paper-border px-3 py-1 rounded-lg font-semibold flex items-center gap-1.5 text-charcoal"
+                      >
+                        {copiedChapters ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                        <span>{copiedChapters ? 'Copied Chapters' : 'Copy Chapters'}</span>
+                      </button>
+                    </div>
+
+                    <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+                      {social.chapters.map((ch, idx) => (
+                        <div key={idx} className="flex items-center justify-between text-xs bg-paper-pure p-2 rounded-lg border border-paper-border">
+                          <span className="font-semibold text-charcoal truncate pr-2">{ch.title}</span>
+                          <span className="font-mono text-crimson-accent font-bold flex-shrink-0">{ch.time}</span>
+                        </div>
                       ))}
                     </div>
                   </div>

@@ -65,6 +65,7 @@ export async function testEndToEndRender() {
     id: 'test-e2e-project',
     title: 'OpenAI Launches New Reasoning Model',
     topic: 'OpenAI launches a new AI model',
+    aspectRatio: '9:16',
     targetDuration: 3,
     selectedLanguage: 'tanglish',
     status: 'PREVIEW_READY',

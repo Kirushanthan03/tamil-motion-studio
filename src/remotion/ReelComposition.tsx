@@ -134,79 +134,136 @@ export const ReelComposition: React.FC<ReelCompositionProps> = ({
       {/* Subtitles Overlay */}
       <SubtitleOverlay
         transcript={project?.transcript}
-        settings={subtitleSettings}
+        settings={{
+          ...subtitleSettings,
+          bottomMargin: (width > height)
+            ? Math.min(subtitleSettings.bottomMargin, 95)
+            : subtitleSettings.bottomMargin,
+        }}
         theme={theme}
       />
 
-      {/* Instagram Reels / TikTok Safe Zone Guide for Studio Preview */}
+      {/* Safe Zone Guides for Studio Preview */}
       {showSafeZones && (
         <AbsoluteFill style={{ pointerEvents: 'none', zIndex: 999 }}>
-          {/* Top Reels Overlay: Avatar & Header */}
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              height: 140,
-              borderBottom: '2px dashed rgba(239, 68, 68, 0.6)',
-              backgroundColor: 'rgba(239, 68, 68, 0.08)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#EF4444',
-              fontFamily: 'monospace',
-              fontSize: 22,
-              fontWeight: 700,
-            }}
-          >
-            ⚠️ TOP SAFE ZONE (REELS HEADER / STATUS BAR)
-          </div>
+          {width > height ? (
+            /* 16:9 YouTube Landscape Safe Zones */
+            <>
+              {/* Top YouTube Header */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: 90,
+                  borderBottom: '2px dashed rgba(239, 68, 68, 0.6)',
+                  backgroundColor: 'rgba(239, 68, 68, 0.08)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#EF4444',
+                  fontFamily: 'monospace',
+                  fontSize: 20,
+                  fontWeight: 700,
+                }}
+              >
+                ⚠️ YOUTUBE TITLE & BRANDING SAFE ZONE (TOP 90PX)
+              </div>
 
-          {/* Right Action Buttons (Like, Comment, Share) */}
-          <div
-            style={{
-              position: 'absolute',
-              top: 200,
-              right: 0,
-              width: 140,
-              bottom: 340,
-              borderLeft: '2px dashed rgba(239, 68, 68, 0.6)',
-              backgroundColor: 'rgba(239, 68, 68, 0.08)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              writingMode: 'vertical-rl',
-              color: '#EF4444',
-              fontFamily: 'monospace',
-              fontSize: 20,
-              fontWeight: 700,
-            }}
-          >
-            ⚠️ RIGHT ACTION BUTTONS SAFE ZONE
-          </div>
+              {/* Bottom YouTube Scrubber */}
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: 110,
+                  borderTop: '2px dashed rgba(239, 68, 68, 0.6)',
+                  backgroundColor: 'rgba(239, 68, 68, 0.08)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#EF4444',
+                  fontFamily: 'monospace',
+                  fontSize: 20,
+                  fontWeight: 700,
+                }}
+              >
+                ⚠️ YOUTUBE CONTROLS & TIMELINE SCRUBBER SAFE ZONE (BOTTOM 110PX)
+              </div>
+            </>
+          ) : (
+            /* 9:16 Vertical Reel Safe Zones */
+            <>
+              {/* Top Reels Overlay: Avatar & Header */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: 140,
+                  borderBottom: '2px dashed rgba(239, 68, 68, 0.6)',
+                  backgroundColor: 'rgba(239, 68, 68, 0.08)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#EF4444',
+                  fontFamily: 'monospace',
+                  fontSize: 22,
+                  fontWeight: 700,
+                }}
+              >
+                ⚠️ TOP SAFE ZONE (REELS HEADER / STATUS BAR)
+              </div>
 
-          {/* Bottom Caption & Audio Bar */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: 320,
-              borderTop: '2px dashed rgba(239, 68, 68, 0.6)',
-              backgroundColor: 'rgba(239, 68, 68, 0.08)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#EF4444',
-              fontFamily: 'monospace',
-              fontSize: 22,
-              fontWeight: 700,
-            }}
-          >
-            ⚠️ BOTTOM CAPTION / MUSIC SAFE ZONE
-          </div>
+              {/* Right Action Buttons (Like, Comment, Share) */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 200,
+                  right: 0,
+                  width: 140,
+                  bottom: 340,
+                  borderLeft: '2px dashed rgba(239, 68, 68, 0.6)',
+                  backgroundColor: 'rgba(239, 68, 68, 0.08)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  writingMode: 'vertical-rl',
+                  color: '#EF4444',
+                  fontFamily: 'monospace',
+                  fontSize: 20,
+                  fontWeight: 700,
+                }}
+              >
+                ⚠️ RIGHT ACTION BUTTONS SAFE ZONE
+              </div>
+
+              {/* Bottom Caption & Audio Bar */}
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: 320,
+                  borderTop: '2px dashed rgba(239, 68, 68, 0.6)',
+                  backgroundColor: 'rgba(239, 68, 68, 0.08)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#EF4444',
+                  fontFamily: 'monospace',
+                  fontSize: 22,
+                  fontWeight: 700,
+                }}
+              >
+                ⚠️ BOTTOM CAPTION / MUSIC SAFE ZONE
+              </div>
+            </>
+          )}
         </AbsoluteFill>
       )}
     </AbsoluteFill>

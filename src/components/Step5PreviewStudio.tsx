@@ -34,8 +34,11 @@ export const Step5PreviewStudio: React.FC<Props> = ({
     }
   );
 
+  const isLandscape = project.aspectRatio === '16:9';
+  const compWidth = isLandscape ? 1920 : 1080;
+  const compHeight = isLandscape ? 1080 : 1920;
   const scenes = project.scenes || [];
-  const durationInFrames = Math.max(90, Math.round((project.audio?.duration || 30) * 30));
+  const durationInFrames = Math.max(90, Math.round((project.audio?.duration || project.targetDuration || 30) * 30));
 
   const handleThemeChange = (tId: string) => {
     setSelectedTheme(tId);
@@ -77,10 +80,14 @@ export const Step5PreviewStudio: React.FC<Props> = ({
         </div>
 
         {/* Studio Layout: Left Player, Right Controls */}
-        <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Remotion 9:16 Vertical Player */}
-          <div className="lg:col-span-5 flex flex-col items-center">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-charcoal bg-black w-[340px] h-[604px]">
+        <div className={`mt-8 grid grid-cols-1 ${isLandscape ? 'lg:grid-cols-12' : 'lg:grid-cols-12'} gap-8 items-start`}>
+          {/* Remotion Player Container */}
+          <div className={`${isLandscape ? 'lg:col-span-6' : 'lg:col-span-5'} flex flex-col items-center`}>
+            <div
+              className={`relative rounded-3xl overflow-hidden shadow-2xl border-4 border-charcoal bg-black ${
+                isLandscape ? 'w-full aspect-video max-h-[380px]' : 'w-[340px] h-[604px]'
+              }`}
+            >
               <Player
                 component={ReelComposition}
                 inputProps={{
@@ -95,8 +102,8 @@ export const Step5PreviewStudio: React.FC<Props> = ({
                 }}
                 durationInFrames={durationInFrames}
                 fps={30}
-                compositionWidth={1080}
-                compositionHeight={1920}
+                compositionWidth={compWidth}
+                compositionHeight={compHeight}
                 style={{
                   width: '100%',
                   height: '100%',
@@ -109,6 +116,10 @@ export const Step5PreviewStudio: React.FC<Props> = ({
 
             {/* Quick Guide Overlay Button */}
             <div className="mt-4 flex items-center gap-3">
+              <span className="text-xs font-mono font-bold px-2.5 py-1 rounded bg-paper-subtle border border-paper-border text-charcoal">
+                {isLandscape ? '🖥️ 16:9 Landscape (1920x1080)' : '📱 9:16 Vertical Reel (1080x1920)'}
+              </span>
+
               <button
                 onClick={() => setShowSafeZones(!showSafeZones)}
                 className={`text-xs px-4 py-2 rounded-xl font-semibold flex items-center gap-2 border transition-all ${
@@ -118,13 +129,13 @@ export const Step5PreviewStudio: React.FC<Props> = ({
                 }`}
               >
                 <Eye className="w-4 h-4" />
-                <span>{showSafeZones ? 'Hide Safe Zone Guides' : 'Show Reels / TikTok Safe Guides'}</span>
+                <span>{showSafeZones ? 'Hide Safe Guides' : isLandscape ? 'Show YouTube Safe Guides' : 'Show Reels / TikTok Safe Guides'}</span>
               </button>
             </div>
           </div>
 
           {/* Right Styling & Settings Panel */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className={`${isLandscape ? 'lg:col-span-6' : 'lg:col-span-7'} space-y-6`}>
             {/* Audio Polish & Sensory Sound Suite */}
             <div className="bg-paper rounded-2xl border border-paper-border p-6 space-y-4">
               <div className="flex items-center gap-2">

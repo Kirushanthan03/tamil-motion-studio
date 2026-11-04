@@ -12,57 +12,81 @@ export class ScenePlanner {
     const totalAudioDuration = project.audio?.duration || 30;
     const fps = 30;
 
-    // We plan 5 to 7 varied scenes depending on the narrative structure (strictly English on-screen)
-    const sceneConfigs: Array<{
-      key: string;
-      fallbackText: string;
-      preferredTemplates: SceneTemplateType[];
-      category: string;
-      visualConcept: string;
-    }> = [
+    // Base scene configurations
+    const baseSceneConfigs = [
       {
         key: 'hook',
         fallbackText: sections?.hook || project.topic,
-        preferredTemplates: ['headline'],
+        preferredTemplates: ['headline' as SceneTemplateType],
         category: 'BREAKING TECH',
         visualConcept: 'Editorial Breaking Headline Card with crimson badge',
       },
       {
         key: 'introduction',
         fallbackText: sections?.introduction || 'Tech Architecture Deep Dive',
-        preferredTemplates: ['article-highlight', 'device-mockup'],
+        preferredTemplates: ['article-highlight' as SceneTemplateType, 'device-mockup' as SceneTemplateType],
         category: 'OVERVIEW',
         visualConcept: 'Official Publication Card with kinetic marker highlight sweep',
       },
       {
         key: 'explanation',
         fallbackText: sections?.explanation || 'Neural Reasoning and Latency Architecture',
-        preferredTemplates: ['network-nodes', 'architecture'],
+        preferredTemplates: ['network-nodes' as SceneTemplateType, 'architecture' as SceneTemplateType],
         category: 'AI SYSTEM',
         visualConcept: 'Interconnected Graph Nodes with pulsing data packets',
       },
       {
         key: 'facts',
         fallbackText: sections?.facts || '10x Faster Inference Benchmarks',
-        preferredTemplates: ['key-statistic', 'comparison'],
+        preferredTemplates: ['key-statistic' as SceneTemplateType, 'comparison' as SceneTemplateType],
         category: 'BENCHMARK METRICS',
         visualConcept: 'Massive animated stat counter with delta performance badge',
       },
       {
         key: 'impact',
         fallbackText: sections?.impact || 'Streamlined Developer Pipelines',
-        preferredTemplates: ['process-flow', 'code-snippet', 'timeline'],
+        preferredTemplates: ['process-flow' as SceneTemplateType, 'code-snippet' as SceneTemplateType, 'timeline' as SceneTemplateType],
         category: 'PIPELINE',
         visualConcept: 'Three-stage developer workflow with active node highlighting',
       },
       {
         key: 'conclusion',
         fallbackText: sections?.conclusion || 'Follow for Daily Tech Breakdowns',
-        preferredTemplates: ['conclusion'],
+        preferredTemplates: ['conclusion' as SceneTemplateType],
         category: 'SUMMARY',
         visualConcept: 'Checklist verdict card with pulsing follow CTA',
       },
     ];
+
+    // Long-form deep dive chapters for videos > 2 minutes (up to 15 minutes)
+    const longFormChapters = [
+      { key: 'hook', fallbackText: sections?.hook || project.topic, preferredTemplates: ['headline' as SceneTemplateType], category: 'EXECUTIVE BRIEF', visualConcept: 'Breaking Tech Disclosure Card' },
+      { key: 'introduction', fallbackText: 'System Context and Market Need', preferredTemplates: ['article-highlight' as SceneTemplateType], category: 'CONTEXT', visualConcept: 'Source Documentation Sweep' },
+      { key: 'explanation', fallbackText: 'High-Level System Architecture', preferredTemplates: ['architecture' as SceneTemplateType], category: 'SYSTEM ARCHITECTURE', visualConcept: 'Multi-Tier Stack Architecture' },
+      { key: 'explanation', fallbackText: 'Neural Flow & Autonomous Nodes', preferredTemplates: ['network-nodes' as SceneTemplateType], category: 'NEURAL PIPELINE', visualConcept: 'Directed Graph Nodes' },
+      { key: 'facts', fallbackText: 'Historical Milestone Evolution', preferredTemplates: ['timeline' as SceneTemplateType], category: 'CHRONOLOGY', visualConcept: 'Milestone Timeline Reveal' },
+      { key: 'facts', fallbackText: 'Inference Throughput & Latency Scaling', preferredTemplates: ['key-statistic' as SceneTemplateType], category: 'BENCHMARKS', visualConcept: 'Metric Counter with Delta Badge' },
+      { key: 'facts', fallbackText: 'Architecture vs Traditional Baseline', preferredTemplates: ['comparison' as SceneTemplateType], category: 'HEAD-TO-HEAD', visualConcept: 'Side-by-Side System Comparison' },
+      { key: 'impact', fallbackText: 'End-to-End Orchestration Flow', preferredTemplates: ['process-flow' as SceneTemplateType], category: 'ORCHESTRATION', visualConcept: 'Continuous Workflow Steps' },
+      { key: 'impact', fallbackText: 'SDK Setup and Code Integration', preferredTemplates: ['code-snippet' as SceneTemplateType], category: 'IMPLEMENTATION', visualConcept: 'Production Terminal Code' },
+      { key: 'impact', fallbackText: 'Enterprise Dashboard & Monitoring', preferredTemplates: ['device-mockup' as SceneTemplateType], category: 'INTERACTION', visualConcept: 'Desktop Interface Mockup' },
+      { key: 'impact', fallbackText: 'Industry Consensus & Core Research', preferredTemplates: ['quote' as SceneTemplateType], category: 'CONSENSUS', visualConcept: 'Editorial Quote Card' },
+      { key: 'conclusion', fallbackText: 'Strategic Verdict & Architecture Roadmap', preferredTemplates: ['conclusion' as SceneTemplateType], category: 'VERDICT', visualConcept: 'Summary Checklist Card' },
+    ];
+
+    let sceneConfigs = baseSceneConfigs;
+    if (totalAudioDuration > 120) {
+      // Calculate how many scenes are ideal (around 25-30 seconds per scene for high retention)
+      const targetCount = Math.min(30, Math.max(6, Math.round(totalAudioDuration / 28)));
+      sceneConfigs = [];
+      for (let i = 0; i < targetCount; i++) {
+        const templateItem = longFormChapters[i % longFormChapters.length];
+        sceneConfigs.push({
+          ...templateItem,
+          fallbackText: `${templateItem.fallbackText} (Part ${Math.floor(i / longFormChapters.length) + 1})`,
+        });
+      }
+    }
 
     const numScenes = sceneConfigs.length;
     const sceneDuration = totalAudioDuration / numScenes;

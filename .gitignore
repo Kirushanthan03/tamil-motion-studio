@@ -15,14 +15,8 @@ build/
 .env.test.local
 .env.production.local
 
-# Rendered media & large binary recordings
-storage/projects/*/*.mp4
-storage/projects/*/*.mp3
-storage/projects/*/*.wav
-storage/projects/*/*.m4a
-storage/projects/*/*.aac
-storage/projects/*/*.png
-storage/projects/*/carousel/
+# Local storage & runtime project files
+storage/projects/
 
 # Logs
 npm-debug.log*

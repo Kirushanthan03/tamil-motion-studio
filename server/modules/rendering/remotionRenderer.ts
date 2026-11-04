@@ -110,24 +110,32 @@ export async function renderProjectVideo(project: Project): Promise<{ videoPath:
       enableSfx: true,
     };
 
+    const isLandscape = project.aspectRatio === '16:9';
+    const compId = isLandscape ? 'TamilLandscape' : 'TamilReel';
+    const compWidth = isLandscape ? 1920 : 1080;
+    const compHeight = isLandscape ? 1080 : 1920;
+
     const composition = await selectComposition({
       serveUrl,
-      id: 'TamilReel',
+      id: compId,
       inputProps,
     });
 
-    console.log(`Starting media render for project ${project.id} (${totalFrames} frames) -> ${outputVideoPath}`);
+    console.log(`Starting media render for project ${project.id} (${totalFrames} frames, ${compWidth}x${compHeight}) -> ${outputVideoPath}`);
 
     // Render MP4 video
     await renderMedia({
       composition: {
         ...composition,
+        width: compWidth,
+        height: compHeight,
         durationInFrames: totalFrames,
       },
       serveUrl,
       codec: 'h264',
       outputLocation: outputVideoPath,
       inputProps,
+      concurrency: 4,
       onProgress: ({ renderedFrames, progress }) => {
         job.renderedFrames = renderedFrames;
         job.progress = Number((0.15 + progress * 0.8).toFixed(2));
@@ -140,6 +148,8 @@ export async function renderProjectVideo(project: Project): Promise<{ videoPath:
     await renderStill({
       composition: {
         ...composition,
+        width: compWidth,
+        height: compHeight,
         durationInFrames: totalFrames,
       },
       serveUrl,
@@ -186,6 +196,32 @@ export async function renderProjectVideo(project: Project): Promise<{ videoPath:
 
 function generateSocialPackage(project: Project) {
   const topic = project.topic;
+  const isLandscape = project.aspectRatio === '16:9';
+
+  // Format chapters for YouTube timestamps (00:00 - Intro, 01:20 - System Architecture, etc.)
+  const chapters = (project.scenes || []).map((s) => {
+    const mins = Math.floor(s.startTime / 60);
+    const secs = Math.floor(s.startTime % 60);
+    const timeFormatted = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return {
+      time: timeFormatted,
+      title: s.mainText || s.categoryTag || `Chapter ${s.sceneNumber}`,
+    };
+  });
+
+  const chapterText = chapters.length > 0
+    ? `\n\n📌 VIDEO CHAPTERS / TIMESTAMPS:\n` + chapters.map(c => `${c.time} - ${c.title}`).join('\n')
+    : '';
+
+  if (isLandscape) {
+    return {
+      caption: `🔥 ${topic} — Comprehensive 16:9 Technical Deep Dive.\n\nIn this complete masterclass, we break down the architecture, engineering principles, benchmarks, and real-world system implications.${chapterText}\n\n#TechExplainer #SystemArchitecture #AI #TamilTech #DeepDive #YouTubeEngineering`,
+      hashtags: ['#TechExplainer', '#SystemArchitecture', '#AI', '#Engineering', '#TamilTech', '#SoftwareArchitecture'],
+      description: `Complete 16:9 technical deep dive into ${topic}.${chapterText}`,
+      chapters,
+    };
+  }
+
   return {
     caption: `🔥 ${topic}! Here's everything you need to know in under 60 seconds. What do you think about this breakthrough? Let us know in the comments! 👇\n\n#TamilTech #TechReels #AI #Innovation #TamilCreators #Remotion #Shorts`,
     hashtags: ['#TamilTech', '#AIArchitecture', '#InstagramReels', '#YouTubeShorts', '#TechNews', '#TamilCreators'],
