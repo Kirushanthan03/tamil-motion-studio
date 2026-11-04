@@ -183,10 +183,24 @@ export const App: React.FC = () => {
     try {
       setIsLoading(true);
       setError(null);
-      const updated = await api.uploadAudio(currentProject.id, file, normalize);
-      setCurrentProject(updated);
+
+      // 1. Upload audio file (with optional EBU R128 normalization)
+      const afterUpload = await api.uploadAudio(currentProject.id, file, normalize);
+      setCurrentProject(afterUpload);
+
+      // 2. Transcribe and align speech timestamps
+      const afterAlign = await api.alignAudio(currentProject.id);
+      setCurrentProject(afterAlign);
+
+      // 3. Auto-plan scenes for the storyboard
+      const afterScenes = await api.planScenes(currentProject.id);
+      setCurrentProject(afterScenes);
+
+      // 4. Automatically advance to Step 4 (Scene Planner)
+      setActiveStep(3);
     } catch (err: any) {
-      setError(err.message);
+      console.error('Upload and alignment error:', err);
+      setError(err.message || 'Audio upload or speech alignment failed');
     } finally {
       setIsLoading(false);
     }
@@ -199,8 +213,14 @@ export const App: React.FC = () => {
       setError(null);
       const updated = await api.alignAudio(currentProject.id);
       setCurrentProject(updated);
+
+      // Auto-plan scenes and advance to Step 4 (Scene Planner)
+      const afterScenes = await api.planScenes(currentProject.id);
+      setCurrentProject(afterScenes);
+      setActiveStep(3);
     } catch (err: any) {
-      setError(err.message);
+      console.error('Alignment error:', err);
+      setError(err.message || 'Speech alignment failed');
     } finally {
       setIsLoading(false);
     }

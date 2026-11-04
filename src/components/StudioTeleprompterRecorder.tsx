@@ -6,6 +6,7 @@ import {
   Pause,
   RotateCcw,
   Check,
+  RefreshCw,
   Volume2,
   ArrowDown,
   Clock,
@@ -464,12 +465,19 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
 
   const handleConfirmAndUpload = () => {
     if (micSource === 'external') {
-      if (!externalAudioFile) return;
+      if (!externalAudioFile) {
+        externalFileInputRef.current?.click();
+        return;
+      }
       onRecordingComplete(externalAudioFile);
       return;
     }
 
-    if (!audioBlob) return;
+    if (!audioBlob) {
+      alert('No recorded audio found. Please take another recording.');
+      return;
+    }
+
     const file = new File([audioBlob], `teleprompter_take_${Date.now()}.webm`, {
       type: 'audio/webm',
     });
@@ -969,11 +977,24 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
 
                   <button
                     onClick={handleConfirmAndUpload}
-                    disabled={isLoading || (micSource === 'external' && !externalAudioFile)}
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-sm transition-all disabled:opacity-50"
+                    disabled={isLoading}
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-sm transition-all disabled:opacity-60"
                   >
-                    <Check className="w-4 h-4" />
-                    <span>Accept & Align Speech</span>
+                    {isLoading ? (
+                      <>
+                        <RefreshCw className="w-4 h-4 animate-spin" />
+                        <span>Uploading & Aligning Speech...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Check className="w-4 h-4" />
+                        <span>
+                          {micSource === 'external' && !externalAudioFile
+                            ? 'Select Audio File to Align'
+                            : 'Accept & Align Speech'}
+                        </span>
+                      </>
+                    )}
                   </button>
                 </div>
               </div>
