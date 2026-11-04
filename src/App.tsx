@@ -54,8 +54,10 @@ export const App: React.FC = () => {
     // Determine active step from status
     switch (project.status) {
       case 'DRAFT_TOPIC':
+        setActiveStep(0);
+        break;
       case 'RESEARCH_READY':
-        setActiveStep(project.research ? 1 : 0);
+        setActiveStep(project.scripts ? 1 : 0);
         break;
       case 'SCRIPTS_READY':
         setActiveStep(1);
@@ -121,12 +123,12 @@ export const App: React.FC = () => {
   };
 
   // Step 1: Run Research
-  const handleRunResearch = async () => {
+  const handleRunResearch = async (data?: { topic?: string; url?: string; targetDuration?: number; aspectRatio?: string }) => {
     if (!currentProject) return;
     try {
       setIsLoading(true);
       setError(null);
-      const updated = await api.runResearch(currentProject.id);
+      const updated = await api.runResearch(currentProject.id, data);
       setCurrentProject(updated);
     } catch (err: any) {
       setError(err.message);

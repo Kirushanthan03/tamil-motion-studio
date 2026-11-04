@@ -122,6 +122,11 @@ app.post('/api/projects/:id/research', async (req, res) => {
     const project = projectStore.getProject(req.params.id);
     if (!project) return res.status(404).json({ error: 'Project not found' });
 
+    if (req.body?.topic) project.topic = req.body.topic;
+    if (req.body?.url !== undefined) project.url = req.body.url;
+    if (req.body?.targetDuration) project.targetDuration = req.body.targetDuration;
+    if (req.body?.aspectRatio) project.aspectRatio = req.body.aspectRatio;
+
     let researchResult;
     if (project.url) {
       researchResult = await extractFromUrl(project.url);

@@ -7,7 +7,7 @@ interface Props {
   onUpdateProject: (p: Project) => void;
   onNext: () => void;
   isLoading: boolean;
-  onRunResearch: () => void;
+  onRunResearch: (data?: { topic?: string; url?: string; targetDuration?: number; aspectRatio?: string }) => void;
 }
 
 const TRENDING_TOPICS = [
@@ -40,6 +40,20 @@ export const Step1Research: React.FC<Props> = ({
       topic: topicInput,
       url: inputType === 'url' ? urlInput : undefined,
     });
+  };
+
+  const handleTriggerResearch = () => {
+    const payload = {
+      topic: topicInput,
+      url: inputType === 'url' ? urlInput : undefined,
+      targetDuration: project.targetDuration,
+      aspectRatio: project.aspectRatio,
+    };
+    onUpdateProject({
+      ...project,
+      ...payload,
+    });
+    onRunResearch(payload);
   };
 
   const research = project.research;
@@ -172,7 +186,7 @@ export const Step1Research: React.FC<Props> = ({
                   className="flex-1 bg-paper px-4 py-3 rounded-xl border border-paper-border font-serif text-lg text-charcoal placeholder-charcoal-light focus:outline-none focus:ring-2 focus:ring-crimson-accent"
                 />
                 <button
-                  onClick={onRunResearch}
+                  onClick={handleTriggerResearch}
                   disabled={isLoading || !topicInput.trim()}
                   className="bg-crimson-accent hover:bg-crimson-deep text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition-all disabled:opacity-50"
                 >
@@ -218,7 +232,7 @@ export const Step1Research: React.FC<Props> = ({
                   className="flex-1 bg-paper px-4 py-3 rounded-xl border border-paper-border font-mono text-sm text-charcoal placeholder-charcoal-light focus:outline-none focus:ring-2 focus:ring-crimson-accent"
                 />
                 <button
-                  onClick={onRunResearch}
+                  onClick={handleTriggerResearch}
                   disabled={isLoading || !urlInput.trim()}
                   className="bg-crimson-accent hover:bg-crimson-deep text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition-all disabled:opacity-50"
                 >
@@ -258,9 +272,11 @@ export const Step1Research: React.FC<Props> = ({
 
             <button
               onClick={onNext}
-              className="bg-charcoal hover:bg-black text-white px-6 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 transition-all"
+              disabled={isLoading}
+              className="bg-charcoal hover:bg-black text-white px-6 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 transition-all disabled:opacity-50"
             >
-              <span>Advance to Script Studio</span>
+              {isLoading && <Sparkles className="w-4 h-4 animate-spin" />}
+              <span>{isLoading ? 'Generating Scripts...' : 'Advance to Script Studio'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

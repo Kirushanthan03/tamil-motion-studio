@@ -34,9 +34,11 @@ export const api = {
     return res.json();
   },
 
-  async runResearch(id: string): Promise<Project> {
+  async runResearch(id: string, data?: { topic?: string; url?: string; targetDuration?: number; aspectRatio?: string }): Promise<Project> {
     const res = await fetch(`${API_BASE}/projects/${id}/research`, {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data || {}),
     });
     if (!res.ok) {
       const err = await res.json();
