@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCurrentFrame, useVideoConfig, spring, interpolate, Img } from 'remotion';
+import { useCurrentFrame, useVideoConfig, spring, interpolate, Img, staticFile } from 'remotion';
 import { VideoTheme } from '@/types';
 
 export interface EntityData {
@@ -10,6 +10,14 @@ export interface EntityData {
   logoUrl?: string;
   badge?: string;
 }
+
+const resolveMediaSrc = (src?: string) => {
+  if (!src) return undefined;
+  if (src.startsWith('/assets/')) {
+    return staticFile(src.replace(/^\//, ''));
+  }
+  return src;
+};
 
 interface Props {
   entity?: EntityData;
@@ -85,7 +93,7 @@ export const EntitySpotlight: React.FC<Props> = ({
           }}
         >
           <Img
-            src={entity.imageUrl}
+            src={resolveMediaSrc(entity.imageUrl)!}
             alt={entity.name}
             style={{
               width: '100%',
@@ -186,7 +194,7 @@ export const EntitySpotlight: React.FC<Props> = ({
           }}
         >
           <Img
-            src={brandImg}
+            src={resolveMediaSrc(brandImg)!}
             alt={entity.name}
             style={{
               maxWidth: '100%',

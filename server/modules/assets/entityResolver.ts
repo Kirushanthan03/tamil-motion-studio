@@ -9,32 +9,53 @@ export interface ResolvedEntity {
 
 // Curated high-res verified assets for instantaneous 0ms resolution
 const CURATED_ENTITIES: Record<string, ResolvedEntity> = {
+  google: {
+    name: 'Google',
+    type: 'company',
+    roleOrSubtitle: 'AI & Engineering Systems',
+    logoUrl: '/assets/logos/google.png',
+    badge: 'RESEARCH // GOOGLE',
+  },
+  'dave rensin': {
+    name: 'Dave Rensin',
+    type: 'person',
+    roleOrSubtitle: 'Author of EGM, Engineering Leader',
+    imageUrl: '/assets/logos/dave_rensin.jpg',
+    badge: 'ARCHITECT // CREATOR',
+  },
+  egm: {
+    name: 'Elephant-Goldfish Model',
+    type: 'tech',
+    roleOrSubtitle: 'Spec-Driven AI Development Framework',
+    logoUrl: '/assets/logos/google.png',
+    badge: 'FRAMEWORK // SDD',
+  },
   binance: {
     name: 'Binance',
     type: 'company',
     roleOrSubtitle: 'Global Cryptocurrency Exchange',
-    logoUrl: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Binance-BNB-Icon-Logo.wine.svg/330px-Binance-BNB-Icon-Logo.wine.svg.png',
+    logoUrl: '/assets/logos/binance.png',
     badge: 'EXCHANGE // CRYPTO',
   },
   cz: {
     name: 'Changpeng Zhao (CZ)',
     type: 'person',
     roleOrSubtitle: 'Founder & Former CEO, Binance',
-    imageUrl: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Changpeng_Zhao_in_2022.jpg/330px-Changpeng_Zhao_in_2022.jpg',
+    imageUrl: '/assets/logos/cz.jpg',
     badge: 'KEY FIGURE // FOUNDER',
   },
   'changpeng zhao': {
     name: 'Changpeng Zhao (CZ)',
     type: 'person',
     roleOrSubtitle: 'Founder & Former CEO, Binance',
-    imageUrl: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Changpeng_Zhao_in_2022.jpg/330px-Changpeng_Zhao_in_2022.jpg',
+    imageUrl: '/assets/logos/cz.jpg',
     badge: 'KEY FIGURE // FOUNDER',
   },
   'richard teng': {
     name: 'Richard Teng',
     type: 'person',
     roleOrSubtitle: 'CEO, Binance (2023–Present)',
-    imageUrl: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/RichardTeng_BBW2023_Istanbul1.jpg/330px-RichardTeng_BBW2023_Istanbul1.jpg',
+    imageUrl: '/assets/logos/richard_teng.jpg',
     badge: 'BINANCE CEO // LEADERSHIP',
   },
   'tradertraitor': {
