@@ -1,4 +1,4 @@
-import { ResearchResult, ScriptPackage, ScriptSections } from '@/types';
+import { ResearchResult, ScriptPackage, ScriptSections, PlannedSceneBlueprint } from '@/types';
 
 export class SmartScriptEngine {
   generateScripts(research: ResearchResult, targetDuration: number = 60): ScriptPackage {
@@ -43,6 +43,8 @@ export class SmartScriptEngine {
     // Tamil spoken: ~125 WPM (2.08 words/sec)
     // Tanglish: ~135 WPM (2.25 words/sec)
     // English: ~145 WPM (2.41 words/sec)
+    const visualPlan = this.buildVisualPlan(isBinanceOrCrypto, mode, research, targetDuration);
+
     return {
       tamil: {
         language: 'tamil',
@@ -65,6 +67,7 @@ export class SmartScriptEngine {
         estimatedDuration: Math.round((countWords(englishFullText) / 145) * 60),
         notes: `Editorial English explainer calibrated for ~${targetDuration}s duration.`,
       },
+      visualPlan,
     };
   }
 
@@ -221,6 +224,161 @@ export class SmartScriptEngine {
       impact: `For software developers and enterprises, this unlocks real-time autonomous agent workflows, instant test synthesis, and deterministic logic execution at production scale.`,
       conclusion: `What are your thoughts on this new model? Drop a comment below and hit follow for more editorial tech breakdowns!`,
     };
+  }
+
+  private buildVisualPlan(
+    isBinance: boolean,
+    mode: string,
+    research: ResearchResult,
+    targetDuration: number
+  ): PlannedSceneBlueprint[] {
+    if (isBinance) {
+      return [
+        {
+          sceneNumber: 1,
+          template: 'key-statistic',
+          mainText: '7,000 BITCOIN DRAINED',
+          supportingText: '$40M stolen in single unauthorized transfer from Binance hot wallet',
+          categoryTag: 'BREAKING SECURITY BREACH',
+          entityName: 'Binance',
+          entityType: 'company',
+          visualData: {
+            statValue: '7,000 BTC',
+            statLabel: 'Drained in Single Block',
+            delta: '$40M VALUE AT HEIST',
+          },
+        },
+        {
+          sceneNumber: 2,
+          template: 'process-flow',
+          mainText: 'MULTI-VECTOR COMPROMISE',
+          supportingText: 'Hackers used phishing and malware to harvest API keys & 2FA codes',
+          categoryTag: 'ATTACK TIMELINE',
+          visualData: {
+            steps: [
+              { num: '01', title: 'Spear Phishing', text: 'Credential harvesting' },
+              { num: '02', title: 'API Key Exploit', text: 'High-tier trading keys breached' },
+              { num: '03', title: 'Hot Wallet Drain', text: '7,000 BTC swept to mixer' },
+            ],
+          },
+        },
+        {
+          sceneNumber: 3,
+          template: 'quote',
+          mainText: 'FUNDS ARE SAFU',
+          supportingText: 'Binance CEO announced 100% loss coverage via emergency SAFU reserve',
+          categoryTag: 'EXECUTIVE RESPONSE',
+          entityName: 'Changpeng Zhao',
+          entityType: 'person',
+          visualData: {
+            author: 'Changpeng Zhao (CZ)',
+            role: 'Founder & CEO, Binance',
+            quote: 'All user funds are covered by SAFU. No users will bear any loss.',
+          },
+        },
+        {
+          sceneNumber: 4,
+          template: 'comparison',
+          mainText: 'COLD STORAGE HELD THE LINE',
+          supportingText: '98% of exchange reserves remained secure in air-gapped vaults',
+          categoryTag: 'CUSTODY ARCHITECTURE',
+          visualData: {
+            leftTitle: 'Hot Wallet (Compromised)',
+            rightTitle: 'Cold Vaults (Safe)',
+            leftPoints: ['Single transaction drained', '7,000 BTC lost', 'Covered by SAFU'],
+            rightPoints: ['98% of total client assets', 'Air-gapped multi-sig', 'Completely untouched'],
+          },
+        },
+        {
+          sceneNumber: 5,
+          template: 'architecture',
+          mainText: 'INDUSTRY SECURITY OVERHAUL',
+          supportingText: 'Mandated hardware FIDO2 keys and withdrawal address whitelisting',
+          categoryTag: 'NEW STANDARDS',
+          visualData: {
+            layers: [
+              { title: 'Hardware FIDO2 Authentication', desc: 'YubiKeys required for withdrawals' },
+              { title: 'Address Whitelisting', desc: 'Mandatory 24h delay for new destinations' },
+              { title: 'Proof-of-Reserves Audits', desc: 'On-chain cryptographic verification' },
+            ],
+          },
+        },
+        {
+          sceneNumber: 6,
+          template: 'conclusion',
+          mainText: 'CREDIBILITY THROUGH CRISIS',
+          supportingText: 'Emergency reserves and transparent recovery redefine Web3 trust',
+          categoryTag: 'EDITORIAL VERDICT',
+          visualData: {
+            takeaways: [
+              'Zero retail user losses incurred',
+              'SAFU insurance set industry precedent',
+              'Hardware keys now standard for custody',
+            ],
+          },
+        },
+      ];
+    }
+
+    const lowerTopic = research.topic.toLowerCase();
+    const isElon = lowerTopic.includes('elon') || lowerTopic.includes('musk') || lowerTopic.includes('tesla') || lowerTopic.includes('xai');
+    const isNvidia = lowerTopic.includes('nvidia') || lowerTopic.includes('blackwell') || lowerTopic.includes('gpu');
+    const entityName = isElon ? 'Elon Musk' : isNvidia ? 'NVIDIA' : 'OpenAI';
+    const entityType = isElon ? 'person' : 'company';
+
+    return [
+      {
+        sceneNumber: 1,
+        template: 'headline',
+        mainText: (research.topic.toUpperCase() || 'AUTONOMOUS REASONING MILESTONE').slice(0, 75),
+        supportingText: (research.summary.slice(0, 100) || 'Next-generation architecture disclosure'),
+        categoryTag: 'BREAKING TECH',
+        entityName,
+        entityType,
+      },
+      {
+        sceneNumber: 2,
+        template: 'architecture',
+        mainText: 'CONTINUOUS REASONING LOOP',
+        supportingText: 'Integrated multi-step logic verification before token streaming',
+        categoryTag: 'SYSTEM ARCHITECTURE',
+      },
+      {
+        sceneNumber: 3,
+        template: 'quote',
+        mainText: 'THE FRONTIER COMPUTE SHIFT',
+        supportingText: 'Executive roadmap on real-time autonomous agent workflows',
+        categoryTag: 'LEADERSHIP STATEMENT',
+        entityName: isElon ? 'Elon Musk' : isNvidia ? 'Jensen Huang' : 'Sam Altman',
+        entityType: 'person',
+      },
+      {
+        sceneNumber: 4,
+        template: 'key-statistic',
+        mainText: '10x FASTER INFERENCE',
+        supportingText: 'Verified benchmarks demonstrate sub-second latency thresholds',
+        categoryTag: 'PERFORMANCE BENCHMARKS',
+        visualData: {
+          statValue: '10x',
+          statLabel: 'Inference Throughput',
+          delta: '+85% EFFICIENCY',
+        },
+      },
+      {
+        sceneNumber: 5,
+        template: 'process-flow',
+        mainText: 'PRODUCTION DEPLOYMENT',
+        supportingText: 'From local sandboxed execution to distributed agent synthesis',
+        categoryTag: 'ENGINEERING PIPELINE',
+      },
+      {
+        sceneNumber: 6,
+        template: 'conclusion',
+        mainText: 'PRODUCTION READY TODAY',
+        supportingText: 'How are you implementing this in your stack? Comment below!',
+        categoryTag: 'EDITORIAL VERDICT',
+      },
+    ];
   }
 }
 

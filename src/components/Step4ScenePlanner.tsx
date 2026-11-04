@@ -189,6 +189,38 @@ export const Step4ScenePlanner: React.FC<Props> = ({
                     Narration: "{scene.spokenSegment}"
                   </div>
 
+                  {/* Detected Entity Spotlight (Person Portrait or Company Logo) */}
+                  {scene.visualData?.entity && (
+                    <div className="flex items-center gap-2.5 bg-paper-pure border border-paper-border rounded-xl px-3.5 py-2 text-xs">
+                      {scene.visualData.entity.imageUrl ? (
+                        <img
+                          src={scene.visualData.entity.imageUrl}
+                          alt={scene.visualData.entity.name}
+                          className="w-6 h-6 rounded-full object-cover border-2 border-crimson-500 shadow-sm"
+                        />
+                      ) : scene.visualData.entity.logoUrl ? (
+                        <div className="w-6 h-6 rounded-md bg-white p-0.5 border border-paper-border flex items-center justify-center">
+                          <img
+                            src={scene.visualData.entity.logoUrl}
+                            alt={scene.visualData.entity.name}
+                            className="max-w-full max-h-full object-contain"
+                          />
+                        </div>
+                      ) : null}
+                      <div>
+                        <span className="font-bold text-charcoal mr-2">
+                          {scene.visualData.entity.name}
+                        </span>
+                        <span className="text-charcoal-muted text-[11px]">
+                          {scene.visualData.entity.roleOrSubtitle}
+                        </span>
+                      </div>
+                      <span className="ml-auto text-[10px] font-mono uppercase bg-crimson-50 text-crimson-accent border border-crimson-200 px-2 py-0.5 rounded font-bold">
+                        {scene.visualData.entity.badge || (scene.visualData.entity.type === 'person' ? 'PORTRAIT' : 'LOGO')}
+                      </span>
+                    </div>
+                  )}
+
                   {/* Main Headline */}
                   <div>
                     <label className="block text-[11px] font-bold text-charcoal uppercase tracking-wider mb-1">

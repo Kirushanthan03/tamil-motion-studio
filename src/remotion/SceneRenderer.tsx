@@ -1,6 +1,7 @@
 import React from 'react';
 import { useVideoConfig } from 'remotion';
 import { SceneDefinition, VideoTheme } from '@/types';
+import { EntitySpotlight } from './components/EntitySpotlight';
 import { HeadlineScene } from './templates/HeadlineScene';
 import { KeyStatisticScene } from './templates/KeyStatisticScene';
 import { QuoteScene } from './templates/QuoteScene';
@@ -54,6 +55,33 @@ export const SceneRenderer: React.FC<Props> = ({ scene, theme }) => {
     }
   };
 
+  const entity = scene.visualData?.entity;
+
+  const content = (
+    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+      {/* Top Entity Spotlight (Person Avatar or Company Logo) */}
+      {entity && (
+        <div
+          style={{
+            position: 'absolute',
+            top: isLandscape ? 30 : 200,
+            left: 0,
+            right: 0,
+            display: 'flex',
+            justifyContent: 'center',
+            zIndex: 25,
+            pointerEvents: 'none',
+          }}
+        >
+          <EntitySpotlight entity={entity} theme={theme} compact={isLandscape} />
+        </div>
+      )}
+
+      {/* Main Scene Template Content */}
+      {renderTemplateContent()}
+    </div>
+  );
+
   // If in 16:9 Landscape mode (1920x1080), wrap in responsive widescreen frame
   if (isLandscape) {
     return (
@@ -71,11 +99,11 @@ export const SceneRenderer: React.FC<Props> = ({ scene, theme }) => {
         }}
       >
         <div style={{ width: '100%', maxWidth: 1600 }}>
-          {renderTemplateContent()}
+          {content}
         </div>
       </div>
     );
   }
 
-  return renderTemplateContent();
+  return content;
 };

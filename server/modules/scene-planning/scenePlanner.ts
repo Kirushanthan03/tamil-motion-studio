@@ -1,4 +1,5 @@
 import { Project, SceneDefinition, SceneTemplateType } from '@/types';
+import { entityResolver } from '../assets/entityResolver';
 
 export class ScenePlanner {
   planScenes(project: Project): SceneDefinition[] {
@@ -11,6 +12,60 @@ export class ScenePlanner {
 
     const totalAudioDuration = project.audio?.duration || 30;
     const fps = 30;
+
+    // Check if visualPlan was planned during script design
+    const visualPlan = project.scripts?.visualPlan;
+    if (visualPlan && visualPlan.length > 0 && totalAudioDuration <= 130) {
+      const numScenes = visualPlan.length;
+      const sceneDuration = totalAudioDuration / numScenes;
+
+      return visualPlan.map((blueprint, idx) => {
+        const startTime = Number((idx * sceneDuration).toFixed(2));
+        const endTime = Number((idx === numScenes - 1 ? totalAudioDuration : (idx + 1) * sceneDuration).toFixed(2));
+        const duration = Number((endTime - startTime).toFixed(2));
+        const startFrame = Math.round(startTime * fps);
+        const durationInFrames = Math.round(duration * fps);
+
+        const matchingSegments = transcript.filter(
+          (seg: any) => (seg.start >= startTime && seg.start < endTime) || (seg.end > startTime && seg.end <= endTime)
+        );
+        const spokenSegment = matchingSegments.length > 0
+          ? matchingSegments.map((s: any) => s.text).join(' ')
+          : blueprint.mainText;
+
+        const visualData: Record<string, any> = {
+          ...(blueprint.visualData || this.buildVisualData(blueprint.template, blueprint.mainText, project)),
+        };
+
+        // Attach resolved entity (logo / portrait)
+        const entity =
+          (blueprint.entityName ? entityResolver.resolveSync(blueprint.entityName) : null) ||
+          entityResolver.detectInSceneSync(`${blueprint.mainText} ${blueprint.supportingText} ${project.topic}`);
+
+        if (entity) {
+          visualData.entity = entity;
+        }
+
+        return {
+          id: `scene-${idx + 1}`,
+          sceneNumber: idx + 1,
+          startTime,
+          endTime,
+          duration,
+          startFrame,
+          durationInFrames,
+          spokenSegment,
+          visualConcept: `Architected for Remotion ${blueprint.template} with dynamic typography`,
+          template: blueprint.template,
+          mainText: blueprint.mainText,
+          supportingText: blueprint.supportingText,
+          categoryTag: blueprint.categoryTag || 'TECH DISCLOSURE',
+          sourceAttribution: project.research?.sources?.[0]?.sourceName || 'Tech Dispatch',
+          animationPreset: 'editorial-spring',
+          visualData,
+        };
+      });
+    }
 
     // Base scene configurations
     const baseSceneConfigs = [
@@ -123,6 +178,10 @@ export class ScenePlanner {
 
       // Build visual data payload strictly in English
       const visualData = this.buildVisualData(chosenTemplate, englishText, project);
+      const entity = entityResolver.detectInSceneSync(`${englishText} ${project.topic} ${cfg.category}`);
+      if (entity) {
+        visualData.entity = entity;
+      }
 
       return {
         id: `scene-${idx + 1}`,

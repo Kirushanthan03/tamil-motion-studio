@@ -55,10 +55,36 @@ export const ScriptVariantSchema = z.object({
 });
 export type ScriptVariant = z.infer<typeof ScriptVariantSchema>;
 
+export const PlannedSceneBlueprintSchema = z.object({
+  sceneNumber: z.number(),
+  template: z.enum([
+    'headline',
+    'key-statistic',
+    'quote',
+    'timeline',
+    'comparison',
+    'process-flow',
+    'network-nodes',
+    'architecture',
+    'device-mockup',
+    'article-highlight',
+    'code-snippet',
+    'conclusion',
+  ]),
+  mainText: z.string(),
+  supportingText: z.string(),
+  categoryTag: z.string().optional(),
+  entityName: z.string().optional(),
+  entityType: z.enum(['person', 'company', 'crypto', 'tech']).optional(),
+  visualData: z.record(z.string(), z.any()).optional(),
+});
+export type PlannedSceneBlueprint = z.infer<typeof PlannedSceneBlueprintSchema>;
+
 export const ScriptPackageSchema = z.object({
   tamil: ScriptVariantSchema,
   tanglish: ScriptVariantSchema,
   english: ScriptVariantSchema,
+  visualPlan: z.array(PlannedSceneBlueprintSchema).optional(),
   approvedScript: z.object({
     language: z.enum(['tamil', 'tanglish', 'english']),
     text: z.string(),
