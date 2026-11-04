@@ -30,6 +30,25 @@ const CURATED_ENTITIES: Record<string, ResolvedEntity> = {
     imageUrl: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Changpeng_Zhao_in_2022.jpg/330px-Changpeng_Zhao_in_2022.jpg',
     badge: 'KEY FIGURE // FOUNDER',
   },
+  'richard teng': {
+    name: 'Richard Teng',
+    type: 'person',
+    roleOrSubtitle: 'CEO, Binance (2023–Present)',
+    imageUrl: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/RichardTeng_BBW2023_Istanbul1.jpg/330px-RichardTeng_BBW2023_Istanbul1.jpg',
+    badge: 'BINANCE CEO // LEADERSHIP',
+  },
+  'tradertraitor': {
+    name: 'TraderTraitor (Lazarus)',
+    type: 'tech',
+    roleOrSubtitle: 'State-Sponsored Threat Actor (DPRK)',
+    badge: 'THREAT ACTOR // DPRK',
+  },
+  'lazarus': {
+    name: 'Lazarus Group',
+    type: 'tech',
+    roleOrSubtitle: 'State-Sponsored Cyber Unit',
+    badge: 'THREAT ACTOR // DPRK',
+  },
   'elon musk': {
     name: 'Elon Musk',
     type: 'person',
