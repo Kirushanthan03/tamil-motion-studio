@@ -104,7 +104,7 @@ export const Step3Voiceover: React.FC<Props> = ({
               }`}
             >
               <Mic className="w-3.5 h-3.5" />
-              <span>In-Browser Teleprompter</span>
+              <span>Studio Teleprompter (Internal or External Mic)</span>
             </button>
 
             <button

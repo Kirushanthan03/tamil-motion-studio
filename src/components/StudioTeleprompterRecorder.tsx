@@ -8,10 +8,12 @@ import {
   Check,
   Volume2,
   ArrowDown,
-  Gauge,
   Clock,
-  Layers,
+  Radio,
+  Upload,
+  FileAudio,
   Sparkles,
+  HelpCircle,
 } from 'lucide-react';
 import { ScriptSections } from '@/types';
 
@@ -51,6 +53,9 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
   onRecordingComplete,
   isLoading,
 }) => {
+  // Mic Source: 'browser' (in-browser mic) vs 'external' (Audacity, Shure, Rode, Phone)
+  const [micSource, setMicSource] = useState<'browser' | 'external'>('browser');
+
   // Recorder states: 'idle' | 'countdown' | 'recording' | 'paused' | 'review'
   const [recorderState, setRecorderState] = useState<'idle' | 'countdown' | 'recording' | 'paused' | 'review'>('idle');
   const [countdown, setCountdown] = useState<number>(3);
@@ -58,6 +63,11 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [isPlayingReview, setIsPlayingReview] = useState<boolean>(false);
+
+  // External audio file state
+  const [externalAudioFile, setExternalAudioFile] = useState<File | null>(null);
+  const [externalAudioDuration, setExternalAudioDuration] = useState<number | null>(null);
+  const [isDragOver, setIsDragOver] = useState<boolean>(false);
 
   // Teleprompter settings
   const [fontSize, setFontSize] = useState<'normal' | 'large' | 'huge'>('large');
@@ -82,7 +92,7 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
       })).filter((item) => item.text.trim().length > 0);
     }
 
-    // Fallback: split scriptText by double newlines or punctuation
+    // Fallback: split scriptText by double newlines
     if (items.length === 0) {
       const paragraphs = scriptText
         .split('\n\n')
@@ -182,6 +192,7 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const reviewAudioRef = useRef<HTMLAudioElement | null>(null);
   const lastTimeRef = useRef<number | null>(null);
+  const externalFileInputRef = useRef<HTMLInputElement | null>(null);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -203,8 +214,42 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
     }
   };
 
+  // Switch mic source cleanly
+  const handleSelectMicSource = (source: 'browser' | 'external') => {
+    if (recorderState === 'recording' || recorderState === 'paused') {
+      handleStopRecording();
+    }
+    cleanupStreams();
+    setMicSource(source);
+  };
+
   // Start recording workflow with 3s countdown
   const handleStartCountdown = async () => {
+    // Reset scroll to top
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
+    setScrollProgressPct(0);
+
+    if (micSource === 'external') {
+      // External Mic Mode: No browser getUserMedia needed!
+      setRecorderState('countdown');
+      setCountdown(3);
+
+      let count = 3;
+      const countTimer = setInterval(() => {
+        count -= 1;
+        if (count > 0) {
+          setCountdown(count);
+        } else {
+          clearInterval(countTimer);
+          beginPrompterRun();
+        }
+      }, 1000);
+      return;
+    }
+
+    // Browser Mic Mode
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       audioStreamRef.current = stream;
@@ -218,12 +263,6 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
       analyser.fftSize = 64;
       source.connect(analyser);
       analyserRef.current = analyser;
-
-      // Reset scroll to top
-      if (scrollContainerRef.current) {
-        scrollContainerRef.current.scrollTop = 0;
-      }
-      setScrollProgressPct(0);
 
       setRecorderState('countdown');
       setCountdown(3);
@@ -239,11 +278,26 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
         }
       }, 1000);
     } catch (err: any) {
-      alert(`Microphone access error: ${err.message || 'Please grant microphone permissions in your browser.'}`);
+      alert(`Microphone access error: ${err.message || 'Please grant microphone permissions in your browser or switch to External Studio Mic mode.'}`);
       setRecorderState('idle');
     }
   };
 
+  // Begin teleprompter run for External Mic (Prompter guidance only)
+  const beginPrompterRun = () => {
+    setRecorderState('recording');
+    setElapsedSeconds(0);
+
+    // Start elapsed timer
+    timerIntervalRef.current = setInterval(() => {
+      setElapsedSeconds((prev) => prev + 1);
+    }, 1000);
+
+    // Start calibrated auto-scroll loop
+    runActiveRecordingLoop();
+  };
+
+  // Begin browser microphone recording
   const beginActualRecording = (stream: MediaStream) => {
     try {
       audioChunksRef.current = [];
@@ -292,7 +346,7 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
       const dt = Math.min(0.1, (now - last) / 1000); // delta in seconds
       lastTimeRef.current = now;
 
-      // 1. Update VU Meter volume
+      // 1. Update VU Meter volume if browser analyser is present
       if (analyserRef.current) {
         const dataArray = new Uint8Array(analyserRef.current.frequencyBinCount);
         analyserRef.current.getByteFrequencyData(dataArray);
@@ -327,15 +381,18 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
   };
 
   const handlePauseResume = () => {
-    if (!mediaRecorderRef.current) return;
     if (recorderState === 'recording') {
-      mediaRecorderRef.current.pause();
+      if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+        mediaRecorderRef.current.pause();
+      }
       setRecorderState('paused');
       if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
       lastTimeRef.current = null;
     } else if (recorderState === 'paused') {
-      mediaRecorderRef.current.resume();
+      if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'paused') {
+        mediaRecorderRef.current.resume();
+      }
       setRecorderState('recording');
       lastTimeRef.current = performance.now();
       timerIntervalRef.current = setInterval(() => {
@@ -349,8 +406,13 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
     if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
     if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     lastTimeRef.current = null;
-    if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+
+    if (micSource === 'browser' && mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
       mediaRecorderRef.current.stop();
+    } else {
+      // In external mode, proceed directly to review/upload state
+      setRecorderState('review');
+      cleanupStreams();
     }
   };
 
@@ -360,6 +422,8 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
     }
     setAudioBlob(null);
     setAudioUrl(null);
+    setExternalAudioFile(null);
+    setExternalAudioDuration(null);
     setRecorderState('idle');
     setElapsedSeconds(0);
     setScrollProgressPct(0);
@@ -369,7 +433,42 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
     }
   };
 
+  // External audio file selection & drag-and-drop
+  const handleProcessExternalFile = (file: File) => {
+    setExternalAudioFile(file);
+    const url = URL.createObjectURL(file);
+    setAudioUrl(url);
+
+    // Read audio duration
+    const tempAudio = new Audio(url);
+    tempAudio.onloadedmetadata = () => {
+      if (!isNaN(tempAudio.duration) && isFinite(tempAudio.duration)) {
+        setExternalAudioDuration(Math.round(tempAudio.duration));
+      }
+    };
+  };
+
+  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      handleProcessExternalFile(e.target.files[0]);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleProcessExternalFile(e.dataTransfer.files[0]);
+    }
+  };
+
   const handleConfirmAndUpload = () => {
+    if (micSource === 'external') {
+      if (!externalAudioFile) return;
+      onRecordingComplete(externalAudioFile);
+      return;
+    }
+
     if (!audioBlob) return;
     const file = new File([audioBlob], `teleprompter_take_${Date.now()}.webm`, {
       type: 'audio/webm',
@@ -409,12 +508,12 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
       <div className="bg-paper border-b border-paper-border px-6 py-4 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-crimson-accent text-white flex items-center justify-center font-bold">
-            <Mic className="w-5 h-5" />
+            {micSource === 'browser' ? <Mic className="w-5 h-5" /> : <Radio className="w-5 h-5" />}
           </div>
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-base font-bold text-charcoal">
-                In-Browser Studio Teleprompter
+                Studio Teleprompter
               </h2>
               <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-charcoal text-white tracking-widest uppercase">
                 CALIBRATED {effectiveDuration}S
@@ -426,63 +525,109 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
           </div>
         </div>
 
-        {/* Teleprompter controls: Font size, Speed Multiplier, Auto-scroll */}
-        <div className="flex items-center gap-3 bg-paper-pure px-3 py-1.5 rounded-xl border border-paper-border text-xs">
-          <div className="flex items-center gap-1.5">
-            <span className="text-charcoal-muted font-medium">Text:</span>
-            {(['normal', 'large', 'huge'] as const).map((s) => (
-              <button
-                key={s}
-                onClick={() => setFontSize(s)}
-                className={`px-2 py-1 rounded font-semibold transition-all ${
-                  fontSize === s ? 'bg-charcoal text-white' : 'text-charcoal hover:bg-paper-subtle'
-                }`}
-              >
-                {s === 'normal' ? 'M' : s === 'large' ? 'L' : 'XL'}
-              </button>
-            ))}
+        {/* Source Mode Toggle & Prompter Controls */}
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Recording Mode Selector */}
+          <div className="flex items-center bg-paper-pure p-1 rounded-xl border border-paper-border text-xs">
+            <button
+              onClick={() => handleSelectMicSource('browser')}
+              className={`px-3 py-1.5 rounded-lg font-semibold flex items-center gap-1.5 transition-all ${
+                micSource === 'browser'
+                  ? 'bg-crimson-accent text-white shadow-sm'
+                  : 'text-charcoal-muted hover:text-charcoal'
+              }`}
+              title="Record directly using your web browser microphone"
+            >
+              <Mic className="w-3.5 h-3.5" />
+              <span>In-Browser Mic</span>
+            </button>
+
+            <button
+              onClick={() => handleSelectMicSource('external')}
+              className={`px-3 py-1.5 rounded-lg font-semibold flex items-center gap-1.5 transition-all ${
+                micSource === 'external'
+                  ? 'bg-charcoal text-white shadow-sm'
+                  : 'text-charcoal-muted hover:text-charcoal'
+              }`}
+              title="Use prompter on screen with Audacity, Rode, Shure, or your phone, then upload the file"
+            >
+              <Radio className="w-3.5 h-3.5" />
+              <span>External Recorder</span>
+            </button>
           </div>
 
-          <div className="h-4 w-[1px] bg-paper-border mx-1" />
+          {/* Teleprompter Display Controls: Font size, Speed Multiplier, Auto-scroll */}
+          <div className="flex items-center gap-3 bg-paper-pure px-3 py-1.5 rounded-xl border border-paper-border text-xs">
+            <div className="flex items-center gap-1.5">
+              <span className="text-charcoal-muted font-medium">Text:</span>
+              {(['normal', 'large', 'huge'] as const).map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setFontSize(s)}
+                  className={`px-2 py-1 rounded font-semibold transition-all ${
+                    fontSize === s ? 'bg-charcoal text-white' : 'text-charcoal hover:bg-paper-subtle'
+                  }`}
+                >
+                  {s === 'normal' ? 'M' : s === 'large' ? 'L' : 'XL'}
+                </button>
+              ))}
+            </div>
 
-          <div className="flex items-center gap-1.5">
-            <span className="text-charcoal-muted font-medium">Speed:</span>
-            {[
-              { val: 0.8, label: '0.8x' },
-              { val: 1.0, label: '1.0x' },
-              { val: 1.2, label: '1.2x' },
-              { val: 1.5, label: '1.5x' },
-            ].map(({ val, label }) => (
-              <button
-                key={val}
-                onClick={() => setScrollSpeedMultiplier(val)}
-                className={`px-2 py-1 rounded font-semibold transition-all ${
-                  scrollSpeedMultiplier === val
-                    ? 'bg-crimson-accent text-white'
-                    : 'text-charcoal hover:bg-paper-subtle'
-                }`}
-                title={val === 1.0 ? 'Calibrated exactly to target duration' : `${val}x speed`}
-              >
-                {label}
-              </button>
-            ))}
+            <div className="h-4 w-[1px] bg-paper-border mx-1" />
+
+            <div className="flex items-center gap-1.5">
+              <span className="text-charcoal-muted font-medium">Speed:</span>
+              {[
+                { val: 0.8, label: '0.8x' },
+                { val: 1.0, label: '1.0x' },
+                { val: 1.2, label: '1.2x' },
+                { val: 1.5, label: '1.5x' },
+              ].map(({ val, label }) => (
+                <button
+                  key={val}
+                  onClick={() => setScrollSpeedMultiplier(val)}
+                  className={`px-2 py-1 rounded font-semibold transition-all ${
+                    scrollSpeedMultiplier === val
+                      ? 'bg-crimson-accent text-white'
+                      : 'text-charcoal hover:bg-paper-subtle'
+                  }`}
+                  title={val === 1.0 ? 'Calibrated exactly to target duration' : `${val}x speed`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            <div className="h-4 w-[1px] bg-paper-border mx-1" />
+
+            <button
+              onClick={() => setIsAutoScroll(!isAutoScroll)}
+              className={`px-2.5 py-1 rounded-lg font-semibold flex items-center gap-1 transition-all ${
+                isAutoScroll
+                  ? 'bg-crimson-50 text-crimson-accent border border-crimson-200'
+                  : 'text-charcoal-muted hover:bg-paper-subtle'
+              }`}
+            >
+              <ArrowDown className="w-3 h-3" />
+              <span>Auto-Scroll {isAutoScroll ? 'ON' : 'OFF'}</span>
+            </button>
           </div>
-
-          <div className="h-4 w-[1px] bg-paper-border mx-1" />
-
-          <button
-            onClick={() => setIsAutoScroll(!isAutoScroll)}
-            className={`px-2.5 py-1 rounded-lg font-semibold flex items-center gap-1 transition-all ${
-              isAutoScroll
-                ? 'bg-crimson-50 text-crimson-accent border border-crimson-200'
-                : 'text-charcoal-muted hover:bg-paper-subtle'
-            }`}
-          >
-            <ArrowDown className="w-3 h-3" />
-            <span>Auto-Scroll {isAutoScroll ? 'ON' : 'OFF'}</span>
-          </button>
         </div>
       </div>
+
+      {/* External Mic Mode Banner (when active) */}
+      {micSource === 'external' && recorderState === 'idle' && (
+        <div className="bg-slate-900 border-b border-slate-800 px-6 py-2.5 flex items-center justify-between text-xs text-slate-300">
+          <div className="flex items-center gap-2">
+            <Radio className="w-4 h-4 text-emerald-400 animate-pulse" />
+            <span className="font-semibold text-white">External Studio Recorder Mode:</span>
+            <span>Prompter guides your reading without asking for browser mic access. Record on your phone, Audacity, or Rode mic, then upload your audio.</span>
+          </div>
+          <span className="font-mono text-[11px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded">
+            Prompter Guided • Upload on Finish
+          </span>
+        </div>
+      )}
 
       {/* Teleprompter Screen Container */}
       <div className="relative bg-[#0F172A] text-slate-100 h-[420px] overflow-hidden flex flex-col justify-between">
@@ -562,7 +707,7 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
               Get Ready to Read...
             </span>
             <span className="text-xs font-mono text-slate-400">
-              Calibrated pacing: {formatTimer(effectiveDuration)}
+              {micSource === 'external' ? 'External recorder active' : 'Calibrated pacing'}: {formatTimer(effectiveDuration)}
             </span>
           </div>
         )}
@@ -573,7 +718,7 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
             {recorderState === 'recording' ? (
               <span className="flex items-center gap-2 text-crimson-400 font-bold">
                 <span className="w-2.5 h-2.5 rounded-full bg-crimson-500 animate-pulse" />
-                RECORDING LIVE
+                {micSource === 'external' ? 'PROMPTER RUNNING // RECORDING EXTERNALLY' : 'RECORDING LIVE (IN-BROWSER)'}
               </span>
             ) : recorderState === 'paused' ? (
               <span className="flex items-center gap-2 text-amber-400 font-bold">
@@ -583,10 +728,12 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
             ) : recorderState === 'review' ? (
               <span className="flex items-center gap-2 text-emerald-400 font-bold">
                 <Check className="w-3.5 h-3.5" />
-                TAKE CAPTURED
+                {micSource === 'external' ? 'PROMPTER RUN FINISHED' : 'TAKE CAPTURED'}
               </span>
             ) : (
-              <span className="text-slate-400">STANDBY // READY</span>
+              <span className="text-slate-400">
+                STANDBY // {micSource === 'external' ? 'EXTERNAL MIC READY' : 'BROWSER MIC READY'}
+              </span>
             )}
 
             <span className="text-slate-600">|</span>
@@ -622,8 +769,8 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
               </div>
             </div>
 
-            {/* Realtime VU Meter Bar */}
-            {(recorderState === 'recording' || recorderState === 'paused') && (
+            {/* Realtime VU Meter Bar (Browser mic only) */}
+            {micSource === 'browser' && (recorderState === 'recording' || recorderState === 'paused') && (
               <div className="flex items-center gap-2">
                 <Volume2 className="w-3.5 h-3.5 text-slate-400" />
                 <div className="w-28 bg-slate-800 h-2 rounded-full overflow-hidden flex">
@@ -648,24 +795,49 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
 
       {/* Action Footer & Control Buttons */}
       <div className="bg-paper p-6 flex flex-wrap items-center justify-between gap-4">
+        {/* Hidden File Input for External Audio */}
+        <input
+          ref={externalFileInputRef}
+          type="file"
+          accept="audio/mp3,audio/wav,audio/m4a,audio/aac,audio/webm,audio/flac,audio/*"
+          onChange={handleFileInputChange}
+          className="hidden"
+        />
+
         {/* Idle State: Start Button */}
         {recorderState === 'idle' && (
           <div className="w-full flex items-center justify-between">
             <div className="space-y-0.5">
               <span className="text-xs font-semibold text-charcoal block">
-                Synchronized Voiceover Prompter Ready
+                {micSource === 'external'
+                  ? 'External Recorder Prompter Guidance Ready'
+                  : 'Synchronized Voiceover Prompter Ready'}
               </span>
               <span className="text-[11px] text-charcoal-muted">
-                Press record, wait for the 3-second countdown, and read comfortably at ~{targetWPM} WPM.
+                {micSource === 'external'
+                  ? `Press start, start your external recorder, and read along with the auto-scroll. Target: ~${targetWPM} WPM.`
+                  : `Press record, wait for the 3-second countdown, and read comfortably at ~${targetWPM} WPM.`}
               </span>
             </div>
+
             <button
               onClick={handleStartCountdown}
               disabled={isLoading}
-              className="bg-crimson-accent hover:bg-crimson-deep text-white px-6 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 shadow-crimson-glow transition-all"
+              className={`${
+                micSource === 'external' ? 'bg-charcoal hover:bg-black' : 'bg-crimson-accent hover:bg-crimson-deep shadow-crimson-glow'
+              } text-white px-6 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 transition-all`}
             >
-              <Mic className="w-4 h-4" />
-              <span>Record Voiceover</span>
+              {micSource === 'external' ? (
+                <>
+                  <Radio className="w-4 h-4 text-emerald-400" />
+                  <span>Start Prompter (External Mic)</span>
+                </>
+              ) : (
+                <>
+                  <Mic className="w-4 h-4" />
+                  <span>Record Voiceover</span>
+                </>
+              )}
             </button>
           </div>
         )}
@@ -688,61 +860,124 @@ export const StudioTeleprompterRecorder: React.FC<Props> = ({
               className="bg-charcoal hover:bg-black text-white px-6 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 shadow-sm transition-all"
             >
               <Square className="w-4 h-4 fill-white" />
-              <span>Finish & Review Take</span>
+              <span>{micSource === 'external' ? 'Finish Prompter Run & Upload Audio' : 'Finish & Review Take'}</span>
             </button>
           </div>
         )}
 
         {/* Review State */}
-        {recorderState === 'review' && audioUrl && (
+        {recorderState === 'review' && (
           <div className="w-full space-y-4">
-            <div className="flex items-center justify-between bg-paper-pure p-3.5 rounded-xl border border-paper-border">
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={toggleReviewPlay}
-                  className="w-10 h-10 rounded-full bg-crimson-accent text-white flex items-center justify-center shadow"
-                >
-                  {isPlayingReview ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
-                </button>
-                <div>
-                  <span className="text-xs font-bold text-charcoal block">
-                    Recorded Take ({elapsedSeconds}s) • Target was {effectiveDuration}s
-                  </span>
-                  <span className="text-[11px] text-charcoal-muted">
-                    {Math.abs(elapsedSeconds - effectiveDuration) <= 4
-                      ? '🎯 Perfect pacing! Audio closely matches target duration.'
-                      : elapsedSeconds > effectiveDuration
-                      ? `⚠️ Audio is ${elapsedSeconds - effectiveDuration}s longer than target. Alignment will stretch scenes.`
-                      : `ℹ️ Audio is ${effectiveDuration - elapsedSeconds}s shorter than target. Alignment will fit scenes.`}
-                  </span>
+            {/* If External Mic Mode & No Audio File Attached Yet */}
+            {micSource === 'external' && !externalAudioFile ? (
+              <div
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  setIsDragOver(true);
+                }}
+                onDragLeave={() => setIsDragOver(false)}
+                onDrop={handleDrop}
+                onClick={() => externalFileInputRef.current?.click()}
+                className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all ${
+                  isDragOver
+                    ? 'border-crimson-accent bg-crimson-50/40 ring-2 ring-crimson-accent/20'
+                    : 'border-paper-border hover:border-charcoal bg-paper-pure hover:bg-paper'
+                }`}
+              >
+                <div className="w-12 h-12 rounded-full bg-crimson-50 text-crimson-accent flex items-center justify-center mx-auto mb-3 shadow-sm">
+                  <Upload className="w-6 h-6" />
                 </div>
-                <audio
-                  ref={reviewAudioRef}
-                  src={audioUrl}
-                  onEnded={() => setIsPlayingReview(false)}
-                  className="hidden"
-                />
+                <h3 className="text-sm font-bold text-charcoal">
+                  Drop Your External Audio Recording Here
+                </h3>
+                <p className="text-xs text-charcoal-muted mt-1 max-w-md mx-auto">
+                  Your teleprompter narration run took <span className="font-semibold text-charcoal">{elapsedSeconds}s</span> (Target: {effectiveDuration}s).
+                  Select the .wav, .mp3, or .m4a file recorded on your external mic or phone.
+                </p>
+                <div className="mt-4 flex items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    className="bg-charcoal hover:bg-black text-white px-4 py-2 rounded-xl text-xs font-semibold shadow-sm"
+                  >
+                    Browse Audio File
+                  </button>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRetake();
+                    }}
+                    className="bg-paper hover:bg-paper-border text-charcoal border border-paper-border px-4 py-2 rounded-xl text-xs font-semibold"
+                  >
+                    Retake Prompter
+                  </button>
+                </div>
               </div>
+            ) : (
+              /* Audio Preview & Confirmation Bar (Both Browser & Attached External) */
+              <div className="flex flex-wrap items-center justify-between bg-paper-pure p-4 rounded-xl border border-paper-border gap-4">
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={toggleReviewPlay}
+                    className="w-10 h-10 rounded-full bg-crimson-accent text-white flex items-center justify-center shadow"
+                  >
+                    {isPlayingReview ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
+                  </button>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-charcoal">
+                        {externalAudioFile ? externalAudioFile.name : `Recorded Take (${elapsedSeconds}s)`}
+                      </span>
+                      {externalAudioDuration !== null && (
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">
+                          {externalAudioDuration}s AUDIO
+                        </span>
+                      )}
+                    </div>
+                    <span className="text-[11px] text-charcoal-muted block mt-0.5">
+                      {micSource === 'external' ? (
+                        externalAudioDuration && Math.abs(externalAudioDuration - effectiveDuration) <= 4
+                          ? `🎯 Perfect match! External audio (${externalAudioDuration}s) matches target (${effectiveDuration}s).`
+                          : `External audio loaded. Prompter took ${elapsedSeconds}s.`
+                      ) : (
+                        Math.abs(elapsedSeconds - effectiveDuration) <= 4
+                          ? '🎯 Perfect pacing! Audio closely matches target duration.'
+                          : elapsedSeconds > effectiveDuration
+                          ? `⚠️ Audio is ${elapsedSeconds - effectiveDuration}s longer than target.`
+                          : `ℹ️ Audio is ${effectiveDuration - elapsedSeconds}s shorter than target.`
+                      )}
+                    </span>
+                  </div>
+                  {audioUrl && (
+                    <audio
+                      ref={reviewAudioRef}
+                      src={audioUrl}
+                      onEnded={() => setIsPlayingReview(false)}
+                      className="hidden"
+                    />
+                  )}
+                </div>
 
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={handleRetake}
-                  className="bg-paper hover:bg-paper-border text-charcoal border border-paper-border px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5"
-                >
-                  <RotateCcw className="w-3.5 h-3.5" />
-                  <span>Retake</span>
-                </button>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={handleRetake}
+                    className="bg-paper hover:bg-paper-border text-charcoal border border-paper-border px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    <span>Retake</span>
+                  </button>
 
-                <button
-                  onClick={handleConfirmAndUpload}
-                  disabled={isLoading}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-sm transition-all"
-                >
-                  <Check className="w-4 h-4" />
-                  <span>Accept & Align Speech</span>
-                </button>
+                  <button
+                    onClick={handleConfirmAndUpload}
+                    disabled={isLoading || (micSource === 'external' && !externalAudioFile)}
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-sm transition-all disabled:opacity-50"
+                  >
+                    <Check className="w-4 h-4" />
+                    <span>Accept & Align Speech</span>
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         )}
       </div>
