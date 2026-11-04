@@ -415,6 +415,27 @@ app.post('/api/projects/:id/scenes/plan', (req, res) => {
     const scenes = scenePlanner.planScenes(project);
     project.scenes = scenes;
     project.status = 'PREVIEW_READY';
+
+    // If no audio/transcript exists, synthesize subtitle segments so visuals & kinetic text still render in preview
+    if (!project.transcript || project.transcript.length === 0) {
+      project.transcript = scenes.map((s) => {
+        const text = s.mainText || s.spokenSegment;
+        const tokens = text.split(/\s+/).filter(Boolean);
+        const segDur = Math.max(0.1, s.endTime - s.startTime);
+        const words = tokens.map((w, i) => ({
+          word: w,
+          start: Number((s.startTime + (i / Math.max(1, tokens.length)) * segDur).toFixed(2)),
+          end: Number((s.startTime + ((i + 1) / Math.max(1, tokens.length)) * segDur).toFixed(2)),
+        }));
+        return {
+          id: `seg-${s.id}`,
+          start: s.startTime,
+          end: s.endTime,
+          text,
+          words,
+        };
+      });
+    }
     projectStore.saveProject(project);
 
     res.json(project);

@@ -283,6 +283,22 @@ export const App: React.FC = () => {
     }
   };
 
+  const handleSkipToVisuals = async () => {
+    if (!currentProject) return;
+    try {
+      setIsLoading(true);
+      setError(null);
+      const updated = await api.planScenes(currentProject.id);
+      setCurrentProject(updated);
+      setActiveStep(4); // Advance directly to Step 5 (Preview & Styles)
+    } catch (err: any) {
+      console.error('Plan scenes error:', err);
+      setError(err.message || 'Scene planning failed');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleUpdateScenes = async (scenes: SceneDefinition[]) => {
     if (!currentProject) return;
     try {
@@ -390,6 +406,7 @@ export const App: React.FC = () => {
               onRunAlignment={handleRunAlignment}
               onUpdateTranscript={handleUpdateTranscript}
               onNext={handlePlanScenes}
+              onSkipToVisuals={handleSkipToVisuals}
               isLoading={isLoading}
             />
           )}

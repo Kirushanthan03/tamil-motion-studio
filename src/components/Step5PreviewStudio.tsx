@@ -3,7 +3,7 @@ import { Player } from '@remotion/player';
 import { Project, SubtitleSettings, VideoTheme } from '@/types';
 import { ReelComposition } from '@/remotion/ReelComposition';
 import { VIDEO_THEMES } from '@/remotion/styles/theme';
-import { Play, Palette, Type, Shield, Sparkles, ArrowRight, Eye, RefreshCw, Volume2, Music, Zap } from 'lucide-react';
+import { Play, Palette, Type, Shield, Sparkles, ArrowRight, Eye, RefreshCw, Volume2, VolumeX, Music, Zap, Mic, MicOff } from 'lucide-react';
 
 interface Props {
   project: Project;
@@ -19,6 +19,7 @@ export const Step5PreviewStudio: React.FC<Props> = ({
   isLoading,
 }) => {
   const [showSafeZones, setShowSafeZones] = useState(false);
+  const [enableVoiceover, setEnableVoiceover] = useState(true);
   const [enableBgm, setEnableBgm] = useState(true);
   const [enableSfx, setEnableSfx] = useState(true);
   const [selectedTheme, setSelectedTheme] = useState(project.themeId || 'editorial-crimson');
@@ -97,6 +98,7 @@ export const Step5PreviewStudio: React.FC<Props> = ({
                   themeId: selectedTheme,
                   subtitleSettings: subSettings,
                   showSafeZones,
+                  enableVoiceover,
                   enableBgm,
                   enableSfx,
                 }}
@@ -138,50 +140,123 @@ export const Step5PreviewStudio: React.FC<Props> = ({
           <div className={`${isLandscape ? 'lg:col-span-6' : 'lg:col-span-7'} space-y-6`}>
             {/* Audio Polish & Sensory Sound Suite */}
             <div className="bg-paper rounded-2xl border border-paper-border p-6 space-y-4">
-              <div className="flex items-center gap-2">
-                <Volume2 className="w-5 h-5 text-crimson-accent" />
-                <h3 className="text-sm font-bold uppercase tracking-wider text-charcoal">
-                  Audio Design & Sensory SFX
-                </h3>
+              <div className="flex items-center justify-between pb-2 border-b border-paper-border">
+                <div className="flex items-center gap-2">
+                  <Volume2 className="w-5 h-5 text-crimson-accent" />
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-charcoal">
+                    Audio & Voiceover Controls
+                  </h3>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    const allMuted = !enableVoiceover && !enableBgm && !enableSfx;
+                    if (allMuted) {
+                      setEnableVoiceover(true);
+                      setEnableBgm(true);
+                      setEnableSfx(true);
+                    } else {
+                      setEnableVoiceover(false);
+                      setEnableBgm(false);
+                      setEnableSfx(false);
+                    }
+                  }}
+                  className={`text-xs px-3 py-1.5 rounded-lg font-bold flex items-center gap-1.5 border transition-all ${
+                    !enableVoiceover && !enableBgm && !enableSfx
+                      ? 'bg-amber-100 text-amber-900 border-amber-300'
+                      : 'bg-paper-pure text-charcoal border-paper-border hover:bg-paper-subtle'
+                  }`}
+                >
+                  {!enableVoiceover && !enableBgm && !enableSfx ? (
+                    <>
+                      <VolumeX className="w-3.5 h-3.5 text-amber-600" />
+                      <span>Silent Visual Mode (Active)</span>
+                    </>
+                  ) : (
+                    <>
+                      <Volume2 className="w-3.5 h-3.5 text-crimson-accent" />
+                      <span>Mute All Audio (Silent Demo)</span>
+                    </>
+                  )}
+                </button>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {/* Voiceover Master Track */}
+                <div className="bg-paper-pure p-3.5 rounded-xl border border-paper-border flex flex-col justify-between gap-3">
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      {enableVoiceover ? (
+                        <Mic className="w-4 h-4 text-emerald-600" />
+                      ) : (
+                        <MicOff className="w-4 h-4 text-charcoal-muted" />
+                      )}
+                      <span className="text-xs font-bold text-charcoal">Voiceover Track</span>
+                    </div>
+                    <p className="text-[11px] text-charcoal-muted leading-relaxed">
+                      {project.audio ? 'Master narration audio' : 'No recorded audio attached'}
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between pt-2 border-t border-paper-border">
+                    <span className="text-[10px] font-mono uppercase font-bold text-charcoal-muted">
+                      {enableVoiceover ? 'Enabled' : 'Muted'}
+                    </span>
+                    <input
+                      type="checkbox"
+                      checked={enableVoiceover}
+                      onChange={(e) => setEnableVoiceover(e.target.checked)}
+                      className="rounded text-crimson-accent focus:ring-crimson-accent"
+                    />
+                  </div>
+                </div>
+
                 {/* Background Music Bed */}
-                <div className="bg-paper-pure p-4 rounded-xl border border-paper-border flex items-start justify-between gap-3">
+                <div className="bg-paper-pure p-3.5 rounded-xl border border-paper-border flex flex-col justify-between gap-3">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
                       <Music className="w-4 h-4 text-crimson-accent" />
-                      <span className="text-xs font-bold text-charcoal">Ambient BGM Bed</span>
+                      <span className="text-xs font-bold text-charcoal">Ambient BGM</span>
                     </div>
                     <p className="text-[11px] text-charcoal-muted leading-relaxed">
-                      Lively corporate-tech synth bed with dynamic speech ducking (auto-lowers to 3% when narrator speaks).
+                      Lively synth bed with auto speech ducking
                     </p>
                   </div>
-                  <input
-                    type="checkbox"
-                    checked={enableBgm}
-                    onChange={(e) => setEnableBgm(e.target.checked)}
-                    className="rounded text-crimson-accent focus:ring-crimson-accent mt-0.5"
-                  />
+                  <div className="flex items-center justify-between pt-2 border-t border-paper-border">
+                    <span className="text-[10px] font-mono uppercase font-bold text-charcoal-muted">
+                      {enableBgm ? 'Enabled' : 'Muted'}
+                    </span>
+                    <input
+                      type="checkbox"
+                      checked={enableBgm}
+                      onChange={(e) => setEnableBgm(e.target.checked)}
+                      className="rounded text-crimson-accent focus:ring-crimson-accent"
+                    />
+                  </div>
                 </div>
 
                 {/* Transition SFX */}
-                <div className="bg-paper-pure p-4 rounded-xl border border-paper-border flex items-start justify-between gap-3">
+                <div className="bg-paper-pure p-3.5 rounded-xl border border-paper-border flex flex-col justify-between gap-3">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
                       <Zap className="w-4 h-4 text-crimson-accent" />
-                      <span className="text-xs font-bold text-charcoal">Editorial Whoosh SFX</span>
+                      <span className="text-xs font-bold text-charcoal">Whoosh SFX</span>
                     </div>
                     <p className="text-[11px] text-charcoal-muted leading-relaxed">
-                      Plays a subtle, crisp card-turn whoosh sound effect on every scene transition.
+                      Crisp card-turn whoosh on scene cuts
                     </p>
                   </div>
-                  <input
-                    type="checkbox"
-                    checked={enableSfx}
-                    onChange={(e) => setEnableSfx(e.target.checked)}
-                    className="rounded text-crimson-accent focus:ring-crimson-accent mt-0.5"
-                  />
+                  <div className="flex items-center justify-between pt-2 border-t border-paper-border">
+                    <span className="text-[10px] font-mono uppercase font-bold text-charcoal-muted">
+                      {enableSfx ? 'Enabled' : 'Muted'}
+                    </span>
+                    <input
+                      type="checkbox"
+                      checked={enableSfx}
+                      onChange={(e) => setEnableSfx(e.target.checked)}
+                      className="rounded text-crimson-accent focus:ring-crimson-accent"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

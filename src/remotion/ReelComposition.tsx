@@ -22,6 +22,7 @@ export interface ReelCompositionProps {
   themeId?: string;
   subtitleSettings?: Project['subtitleSettings'];
   showSafeZones?: boolean;
+  enableVoiceover?: boolean;
   enableBgm?: boolean;
   enableSfx?: boolean;
 }
@@ -33,6 +34,7 @@ export const ReelComposition: React.FC<ReelCompositionProps> = ({
   themeId: propsThemeId,
   subtitleSettings: propsSubtitleSettings,
   showSafeZones = false,
+  enableVoiceover = true,
   enableBgm = true,
   enableSfx = true,
 }) => {
@@ -74,7 +76,7 @@ export const ReelComposition: React.FC<ReelCompositionProps> = ({
       <BackgroundTexture theme={theme} width={width} height={height} />
 
       {/* Voiceover Master Audio */}
-      {audioUrl && <Audio src={audioUrl} />}
+      {enableVoiceover && audioUrl && <Audio src={audioUrl} />}
 
       {/* Ambient Lo-Fi / Editorial Background Bed with Dynamic Speech Ducking */}
       {enableBgm && (

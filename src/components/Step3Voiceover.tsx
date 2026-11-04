@@ -17,6 +17,7 @@ import {
   Check,
   Clock,
   Volume2,
+  Eye,
 } from 'lucide-react';
 
 interface Props {
@@ -27,6 +28,7 @@ interface Props {
   onRunAlignment: () => void;
   onUpdateTranscript: (transcript: TranscriptSegment[]) => void;
   onNext: () => void;
+  onSkipToVisuals?: () => void;
   isLoading: boolean;
 }
 
@@ -46,6 +48,7 @@ export const Step3Voiceover: React.FC<Props> = ({
   onRunAlignment,
   onUpdateTranscript,
   onNext,
+  onSkipToVisuals,
   isLoading,
 }) => {
   const [activeTab, setActiveTab] = useState<'teleprompter' | 'upload' | 'tts'>('teleprompter');
@@ -176,15 +179,29 @@ export const Step3Voiceover: React.FC<Props> = ({
             </p>
           </div>
 
-          {transcript && transcript.length > 0 && (
-            <button
-              onClick={onNext}
-              className="bg-charcoal hover:bg-black text-white px-6 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 transition-all shadow-sm"
-            >
-              <span>Advance to Scene Planner</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          )}
+          <div className="flex items-center gap-3">
+            {onSkipToVisuals && (
+              <button
+                type="button"
+                onClick={onSkipToVisuals}
+                disabled={isLoading}
+                className="bg-paper hover:bg-paper-border text-charcoal border border-paper-border px-4 py-2.5 rounded-xl font-semibold text-xs flex items-center gap-2 transition-all shadow-sm hover:border-charcoal-muted"
+              >
+                <Eye className="w-4 h-4 text-crimson-accent" />
+                <span>Preview Visuals Without Audio</span>
+              </button>
+            )}
+
+            {transcript && transcript.length > 0 && (
+              <button
+                onClick={onNext}
+                className="bg-charcoal hover:bg-black text-white px-6 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 transition-all shadow-sm"
+              >
+                <span>Advance to Scene Planner</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Input Method Switcher */}
